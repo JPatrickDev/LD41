@@ -1,0 +1,19 @@
+package me.jack.ld41;
+
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.SlickException;
+
+/**
+ * Created by Jack on 20/04/2018.
+ */
+public class Main {
+
+    public static void main(String[] args) throws SlickException {
+        AppGameContainer agc = new AppGameContainer(new LD41("LD41 - Theme: XXXX"));
+        agc.setDisplayMode(800,600,false);
+        agc.setTargetFrameRate(60);
+        agc.start();
+    }
+
+
+}
