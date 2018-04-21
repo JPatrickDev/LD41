@@ -1,6 +1,5 @@
 package me.jack.ld41.Tower;
 
-import me.jack.ld41.Level.Level;
 import me.jack.ld41.Level.Tile.Tile;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -8,15 +7,15 @@ import org.newdawn.slick.Graphics;
 /**
  * Created by Jack on 21/04/2018.
  */
-public class TestTower extends Tower {
+public class TestTowerTwo extends Tower {
 
-    public TestTower(int x, int y) {
-        super(x, y, 1, 1, 3,50f,0);
+    public TestTowerTwo(int x, int y) {
+        super(x, y, 1, 1, 3, 150, 5);
     }
 
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.blue);
+        g.setColor(Color.yellow);
         g.fillRect(getX(), getY(), getWidth() * Tile.TILE_SIZE, getHeight() * Tile.TILE_SIZE);
         g.setColor(Color.white);
     }
@@ -24,6 +23,6 @@ public class TestTower extends Tower {
 
     @Override
     public Tower copy() {
-        return new TestTower(getX(), getY());
+        return new TestTowerTwo(getX(), getY());
     }
 }

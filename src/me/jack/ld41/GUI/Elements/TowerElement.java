@@ -12,7 +12,7 @@ import org.newdawn.slick.Graphics;
  */
 public class TowerElement extends GUIElement {
     private Tower tower;
-
+    public boolean isUnlocked = false;
     public TowerElement(Tower tower, int x, int y, int width, int height) {
         super(x, y, width, height);
         this.tower = tower;
@@ -26,6 +26,10 @@ public class TowerElement extends GUIElement {
         tower.render(graphics);
         graphics.translate(-1 * (getWidth() / 2 - (tower.getWidth() * Tile.TILE_SIZE) / 2), -1 * (getHeight() / 2 - (tower.getHeight() * Tile.TILE_SIZE) / 2));
         graphics.setColor(Color.white);
+        if(!isUnlocked){
+            graphics.setColor(new Color(255,0,0,180));
+            graphics.fillRect(0,0,getWidth(),getHeight());
+        }
     }
 
     @Override

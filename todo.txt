@@ -23,7 +23,11 @@ GUI System
 
 Money system for buying towers
 EXP system for unlocking new towers/upgrades
-    - EXP levels
-    - Gain points towards level with each kill
+    - EXP levels/
+    - Gain points towards level with each kill/
+
+
+Make different towers unlock at different levels
+
 Upgrades should be based on using towers
     - E.g. X kills with a tower gives you an upgrade for it

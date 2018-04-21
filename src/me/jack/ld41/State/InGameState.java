@@ -12,6 +12,7 @@ import me.jack.ld41.Level.Tile.DirtTile;
 import me.jack.ld41.Level.Tile.Tile;
 import me.jack.ld41.Level.Turn;
 import me.jack.ld41.Tower.TestTower;
+import me.jack.ld41.Tower.TestTowerTwo;
 import me.jack.ld41.Tower.Tower;
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.*;
@@ -38,7 +39,7 @@ public class InGameState extends BasicGameState {
     private GUIArea towersGUIArea, hudGUIArea;
 
     int turnCount = 0;
-    TextArea turnCounter, turnDisplay, livesDisplay,expDisplay;
+    TextArea turnCounter, turnDisplay, livesDisplay, expDisplay;
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
@@ -56,12 +57,11 @@ public class InGameState extends BasicGameState {
         livesDisplay = new TextArea("Lives Remaining: " + level.getLivesLeft(), 0, 60, 200, 30, Color.red, Color.black);
         hudGUIArea.addElement(livesDisplay);
 
-        expDisplay = new TextArea(level.getLevel() +  ":" + level.getPoints() + "(" + Math.pow((level.getLevel()+1)/2,2) + ")", 0, 90, 200, 30, Color.pink, Color.black);
+        expDisplay = new TextArea(level.getLevel() + ":" + level.getPoints() + "(" + Math.pow((level.getLevel() + 1) / 2, 2) + ")", 0, 90, 200, 30, Color.pink, Color.black);
         hudGUIArea.addElement(expDisplay);
         // inHand = new TestTower(0, 0);
-        for (int i = 0; i != 5; i++)
-            towers.add(new TestTower(0, 0));
-
+        towers.add(new TestTower(0, 0));
+        towers.add(new TestTowerTwo(0, 0));
         GUIElementListener listener = new GUIElementListener() {
             @Override
             public void mouseDown(int x, int y, int button, GUIElement element) {
@@ -73,7 +73,9 @@ public class InGameState extends BasicGameState {
                 System.out.println("Clicked");
                 if (element instanceof TowerElement) {
                     Tower t = ((TowerElement) element).getTower();
-                    inHand = t.copy();
+                    if (((TowerElement) element).isUnlocked) {
+                        inHand = t.copy();
+                    }
                 }
             }
 
@@ -98,6 +100,17 @@ public class InGameState extends BasicGameState {
             if (x >= width * 4) {
                 x = 0;
                 y += height;
+            }
+        }
+    }
+
+    public void lockCheck() {
+
+        for (GUIElement element : towersGUIArea.getElements()) {
+            if (element instanceof TowerElement) {
+                TowerElement t = ((TowerElement) element);
+                Tower to = t.getTower();
+                t.isUnlocked = this.level.getLevel() >= to.getLevel();
             }
         }
     }
@@ -141,12 +154,13 @@ public class InGameState extends BasicGameState {
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
 
+        lockCheck();
         turnCount = level.update(this, i);
         turnCounter.setText("Turn: " + turnCount);
 
         turnDisplay.setText(level.getCurrentTurn().name());
         livesDisplay.setText("Lives Remaining: " + level.getLivesLeft());
-        expDisplay.setText(level.getLevel() +  ":" + level.getPoints() + "(" + Math.pow((level.getLevel()+1)/2,2) + ")");
+        expDisplay.setText(level.getLevel() + ":" + level.getPoints() + "(" + Math.pow((level.getLevel() + 1) / 2, 2) + ")");
     }
 
     @Override
@@ -159,7 +173,7 @@ public class InGameState extends BasicGameState {
     @Override
     public void mousePressed(int button, int x, int y) {
         super.mousePressed(button, x, y);
-        towersGUIArea.mouseDown(x, y, button);
+        towersGUIArea.mouseDown(x - towersGUIArea.getX(), y - towersGUIArea.getY(), button);
         if (gameArea.contains(x, y)) {
             if (inHand != null) {
                 Tile currentMouseTile = getCurrentMouseTile(x, y);
@@ -176,7 +190,7 @@ public class InGameState extends BasicGameState {
     @Override
     public void mouseReleased(int button, int x, int y) {
         super.mouseReleased(button, x, y);
-        towersGUIArea.mouseUp(x, y);
+        towersGUIArea.mouseUp(x - towersGUIArea.getX(), y - towersGUIArea.getY());
     }
 
     @Override

@@ -23,14 +23,17 @@ public abstract class Tower {
     private int shotsTaken = 0;
     private boolean turnOver = false;
     private boolean takingTurn = false;
+    private int unlockedAt;
 
-    public Tower(int x, int y, int width, int height, int shotsPerTurn,float range) {
+
+    public Tower(int x, int y, int width, int height, int shotsPerTurn,float range, int unlockedAt) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.shotsPerTurn = shotsPerTurn;
         this.range = range;
+        this.unlockedAt = unlockedAt;
     }
 
     public abstract void render(Graphics g);
@@ -100,5 +103,9 @@ public abstract class Tower {
 
     public boolean isTurnOver() {
         return turnOver;
+    }
+
+    public int getLevel() {
+        return unlockedAt;
     }
 }
