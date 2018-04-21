@@ -2,6 +2,7 @@ package me.jack.ld41.State;
 
 import me.jack.ld41.Level.Level;
 import me.jack.ld41.Level.Tile.Tile;
+import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -31,6 +32,13 @@ public class InGameState extends BasicGameState {
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
 
         level.update(this);
+    }
+
+    @Override
+    public void keyPressed(int key, char c) {
+        super.keyPressed(key, c);
+        if(key == Keyboard.KEY_SPACE)
+            level.toggleTurn();
     }
 
     @Override

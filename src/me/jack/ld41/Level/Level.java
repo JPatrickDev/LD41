@@ -1,5 +1,7 @@
 package me.jack.ld41.Level;
 
+import me.jack.ld41.Entity.PathFollower;
+import me.jack.ld41.Entity.TestEntity;
 import me.jack.ld41.Level.Tile.DirtTile;
 import me.jack.ld41.Level.Tile.GrassTile;
 import me.jack.ld41.Level.Tile.Tile;
@@ -12,6 +14,7 @@ import org.newdawn.slick.SlickException;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Random;
 
 /**
@@ -29,6 +32,10 @@ public class Level {
     private Point startPoint, endPoint;
     public static final HashMap<String, String> colourToTile = new HashMap<>();
 
+    private Turn currentTurn = Turn.PLAYER_TURN;
+
+    private ArrayList<PathFollower> pathFollowers = new ArrayList<>();
+
     static {
         colourToTile.put("3B9415", "GrassTile");
         colourToTile.put("702400", "DirtTile");
@@ -38,6 +45,7 @@ public class Level {
         this.width = w;
         this.height = h;
         this.tiles = new Tile[w][h];
+
     }
 
     public void render(Graphics g) {
@@ -47,7 +55,15 @@ public class Level {
                     tile.render(g);
             }
         }
+
+        for(PathFollower p : pathFollowers){
+            p.render(g);
+        }
+
+        g.drawString(currentTurn.name(),-40,-40);
     }
+
+    public static final Random r = new Random();
 
     public void update(InGameState parent) {
         for (Tile[] t : tiles) {
@@ -55,6 +71,39 @@ public class Level {
                 if (tile != null)
                     tile.update(this);
             }
+        }
+        boolean moverFound = false;
+        for(PathFollower p : pathFollowers){
+            p.update(this);
+            if(p.isMoving())
+                moverFound = true;
+        }
+        if(!moverFound && currentTurn == Turn.COMPUTER_TURN){
+            System.out.println("No movers found");
+            toggleTurn();
+        }
+
+
+        Iterator<PathFollower> pI = pathFollowers.iterator();
+        while(pI.hasNext()){
+            if(pI.next().isDead())
+                pI.remove();
+        }
+
+    }
+
+    public void toggleTurn(){
+        if(r.nextInt(10) == 0){
+            pathFollowers.add(new TestEntity(startPoint.x * Tile.TILE_SIZE,startPoint.y * Tile.TILE_SIZE));
+        }
+        if(currentTurn == Turn.PLAYER_TURN){
+            currentTurn = Turn.COMPUTER_TURN;
+            for(PathFollower p : pathFollowers){
+                p.nextStep(this);
+            }
+        }else{
+            currentTurn = Turn.PLAYER_TURN;
+            toggleTurn();
         }
     }
 
@@ -152,5 +201,15 @@ public class Level {
 
     public void setPath(Point[] path) {
         this.path = path;
+        toggleTurn();
     }
+
+    public Point getPathPoint(int pathPos) {
+        if(pathPos >= path.length)
+            return null;
+        return path[pathPos];
+    }
+}
+enum Turn{
+    PLAYER_TURN,COMPUTER_TURN;
 }
