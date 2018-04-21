@@ -1,0 +1,17 @@
+Theme: Combine Two Incompatible Genres
+
+
+=========================================================
+Turn based Tower Defence
+    - All enemies move at once during their "turn"
+    - Placing a tower uses a turn
+    - Upgrading a tower uses a turn
+    - Since you can only have one enemy per tile
+        - Make the tiles kinda small
+            - Towers take up multiple tiles
+        - Game needs to be balanced well
+    - Pokemon style faked smooth movement
+===========================================================
+
+
+Puzzle/Shoot-em-up
