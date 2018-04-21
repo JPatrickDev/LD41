@@ -272,6 +272,11 @@ public class InGameState extends BasicGameState {
         expDisplay.setText(level.getLevel() + ":" + level.getPoints() + "(" + Math.pow((level.getLevel() + 1) / 2, 2) + ")");
         moneyDisplay.setText("Money:" + level.getMoney());
         roundDisplay.setText("Round:" + level.getRound() + "(" + level.getToSpawn(level.getRound()) + ")");
+
+        if(level.getLivesLeft() <= 0){
+            GameOverState.level = level;
+            stateBasedGame.enterState(StateID.GAME_OVER.getID());
+        }
     }
 
     @Override

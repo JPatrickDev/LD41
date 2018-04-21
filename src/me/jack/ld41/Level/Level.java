@@ -41,7 +41,7 @@ public class Level {
     private ArrayList<Projectile> projectiles = new ArrayList<>();
 
 
-    private int livesLeft = 200;
+    private int livesLeft = 5;
 
 
     private int level = 50;
