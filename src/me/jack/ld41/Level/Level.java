@@ -6,6 +6,7 @@ import me.jack.ld41.Level.Tile.DirtTile;
 import me.jack.ld41.Level.Tile.GrassTile;
 import me.jack.ld41.Level.Tile.Tile;
 import me.jack.ld41.State.InGameState;
+import me.jack.ld41.Tower.Tower;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -35,7 +36,7 @@ public class Level {
     private Turn currentTurn = Turn.PLAYER_TURN;
 
     private ArrayList<PathFollower> pathFollowers = new ArrayList<>();
-
+    private ArrayList<Tower> towers = new ArrayList<>();
     static {
         colourToTile.put("3B9415", "GrassTile");
         colourToTile.put("702400", "DirtTile");
@@ -58,6 +59,10 @@ public class Level {
 
         for(PathFollower p : pathFollowers){
             p.render(g);
+        }
+
+        for(Tower t : towers){
+            t.render(g);
         }
 
         g.drawString(currentTurn.name(),-40,-40);
@@ -208,6 +213,10 @@ public class Level {
         if(pathPos >= path.length)
             return null;
         return path[pathPos];
+    }
+
+    public void addTower(Tower t){
+        this.towers.add(t);
     }
 }
 enum Turn{

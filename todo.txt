@@ -1,7 +1,9 @@
 Turn based engine/
 Entities following the path/
 Basic GUI layout/
-Placing towers
+Placing towers/
+    - Need to support Towers bigger than 1x1
+    - Need to be unable to place towers on top of each other
 Towers shooting at entities
     - Need to work out how that's going to work in a turn based game
         - Probably best to just make projectiles non-turn based?
