@@ -10,7 +10,7 @@ import org.newdawn.slick.Graphics;
 public class TestTowerTwo extends Tower {
 
     public TestTowerTwo(int x, int y) {
-        super(x, y, 1, 1, 3, 150, 5);
+        super(x, y, 1, 1, 3, 150, 5,15f);
     }
 
     @Override

@@ -11,7 +11,7 @@ import org.newdawn.slick.Graphics;
 public class TestTower extends Tower {
 
     public TestTower(int x, int y) {
-        super(x, y, 1, 1, 3,50f,0);
+        super(x, y, 1, 1, 3,50f,0,8f);
     }
 
     @Override

@@ -27,7 +27,15 @@ EXP system for unlocking new towers/upgrades
     - Gain points towards level with each kill/
 
 
-Make different towers unlock at different levels
+Make different towers unlock at different levels/
 
 Upgrades should be based on using towers
     - E.g. X kills with a tower gives you an upgrade for it
+
+
+Money system - 19:00/
+Tower upgrades - 20:00
+Skipping X turns 20:30
+Game Over Screen 20:45
+Level Select Screen 9:15
+Main Menu 10:00

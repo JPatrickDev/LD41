@@ -47,6 +47,8 @@ public class Level {
     private int level = 1;
     private int points;
 
+    private float money = 8.0f;
+
     static {
         colourToTile.put("3B9415", "GrassTile");
         colourToTile.put("702400", "DirtTile");
@@ -299,6 +301,8 @@ public class Level {
 
     public void pathfinderKilled() {
         addPoints(1);
+        float i = 2.5f + r.nextFloat() * 2;
+        addMoney(Float.valueOf(roundOffTo2DecPlaces(i)));
     }
 
     public int getLivesLeft() {
@@ -321,5 +325,21 @@ public class Level {
 
     public int getLevel() {
         return this.level;
+    }
+
+    public void addMoney(float money) {
+        this.money += money;
+    }
+
+    public float getMoney() {
+        return this.money;
+    }
+
+    public void setMoney(float money) {
+        this.money = money;
+    }
+
+    String roundOffTo2DecPlaces(float val) {
+        return String.format("%.2f", val);
     }
 }

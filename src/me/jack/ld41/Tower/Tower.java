@@ -24,9 +24,10 @@ public abstract class Tower {
     private boolean turnOver = false;
     private boolean takingTurn = false;
     private int unlockedAt;
+    private float cost;
 
 
-    public Tower(int x, int y, int width, int height, int shotsPerTurn,float range, int unlockedAt) {
+    public Tower(int x, int y, int width, int height, int shotsPerTurn, float range, int unlockedAt, float cost) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -34,6 +35,7 @@ public abstract class Tower {
         this.shotsPerTurn = shotsPerTurn;
         this.range = range;
         this.unlockedAt = unlockedAt;
+        this.cost = cost;
     }
 
     public abstract void render(Graphics g);
@@ -50,14 +52,14 @@ public abstract class Tower {
                     System.out.println("Shot Fired");
                     shotsTaken++;
                     lastShotTime = 0;
-                    ArrayList<PathFollower> valid = level.getTargets(getX(),getY(),this.range);
-                    if(valid.size() == 0){
+                    ArrayList<PathFollower> valid = level.getTargets(getX(), getY(), this.range);
+                    if (valid.size() == 0) {
                         lastShotTime = 0;
                         shotsTaken++;
-                        return update(level,delta);
-                    }else{
+                        return update(level, delta);
+                    } else {
                         PathFollower target = valid.get(r.nextInt(valid.size()));
-                        return new TestProjectile(getX(), getY(), new Point((int)target.getX() + Tile.TILE_SIZE/2, (int)target.getY() + Tile.TILE_SIZE/2));
+                        return new TestProjectile(getX(), getY(), new Point((int) target.getX() + Tile.TILE_SIZE / 2, (int) target.getY() + Tile.TILE_SIZE / 2));
                     }
                 }
             } else {
@@ -107,5 +109,9 @@ public abstract class Tower {
 
     public int getLevel() {
         return unlockedAt;
+    }
+
+    public float getCost() {
+        return cost;
     }
 }

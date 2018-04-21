@@ -39,7 +39,7 @@ public class InGameState extends BasicGameState {
     private GUIArea towersGUIArea, hudGUIArea;
 
     int turnCount = 0;
-    TextArea turnCounter, turnDisplay, livesDisplay, expDisplay;
+    TextArea turnCounter, turnDisplay, livesDisplay, expDisplay, moneyDisplay;
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
@@ -59,6 +59,11 @@ public class InGameState extends BasicGameState {
 
         expDisplay = new TextArea(level.getLevel() + ":" + level.getPoints() + "(" + Math.pow((level.getLevel() + 1) / 2, 2) + ")", 0, 90, 200, 30, Color.pink, Color.black);
         hudGUIArea.addElement(expDisplay);
+
+
+        moneyDisplay = new TextArea("Money:" + level.getMoney(), 0, 120, 200, 30, Color.cyan, Color.black);
+        hudGUIArea.addElement(moneyDisplay);
+
         // inHand = new TestTower(0, 0);
         towers.add(new TestTower(0, 0));
         towers.add(new TestTowerTwo(0, 0));
@@ -73,7 +78,7 @@ public class InGameState extends BasicGameState {
                 System.out.println("Clicked");
                 if (element instanceof TowerElement) {
                     Tower t = ((TowerElement) element).getTower();
-                    if (((TowerElement) element).isUnlocked) {
+                    if (((TowerElement) element).isUnlocked && InGameState.this.level.getMoney() >= t.getCost()) {
                         inHand = t.copy();
                     }
                 }
@@ -161,6 +166,7 @@ public class InGameState extends BasicGameState {
         turnDisplay.setText(level.getCurrentTurn().name());
         livesDisplay.setText("Lives Remaining: " + level.getLivesLeft());
         expDisplay.setText(level.getLevel() + ":" + level.getPoints() + "(" + Math.pow((level.getLevel() + 1) / 2, 2) + ")");
+        moneyDisplay.setText("Money:" + level.getMoney());
     }
 
     @Override
@@ -177,11 +183,12 @@ public class InGameState extends BasicGameState {
         if (gameArea.contains(x, y)) {
             if (inHand != null) {
                 Tile currentMouseTile = getCurrentMouseTile(x, y);
-                if (currentMouseTile != null && !(currentMouseTile instanceof DirtTile)) {
+                if (currentMouseTile != null && !(currentMouseTile instanceof DirtTile) && level.getMoney() >= inHand.getCost()) {
                     Tower t = inHand.copy();
                     t.setX(currentMouseTile.getX() * Tile.TILE_SIZE);
                     t.setY(currentMouseTile.getY() * Tile.TILE_SIZE);
                     level.addTower(t);
+                    level.setMoney(level.getMoney() - inHand.getCost());
                 }
             }
         }
