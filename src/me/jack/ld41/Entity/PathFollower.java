@@ -15,6 +15,7 @@ public abstract class PathFollower extends Entity {
     private Point currentTarget = null;
     private float health = 0;
     private float maxHealth = 0;
+    private boolean wasKilled = false;
 
     public PathFollower(float x, float y, float maxHealth) {
         super(x, y);
@@ -29,6 +30,7 @@ public abstract class PathFollower extends Entity {
         if (currentTarget == null) {
             isMoving = false;
             dead = true;
+            level.removeLife();
         }
     }
 
@@ -72,6 +74,11 @@ public abstract class PathFollower extends Entity {
         health -= damage;
         if (health <= 0) {
             dead = true;
+            wasKilled = true;
         }
+    }
+
+    public boolean wasKilled(){
+        return wasKilled;
     }
 }

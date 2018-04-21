@@ -1,6 +1,7 @@
 package me.jack.ld41.State;
 
 import com.sun.org.apache.regexp.internal.RE;
+import me.jack.ld41.GUI.Elements.TextArea;
 import me.jack.ld41.GUI.Elements.TextButton;
 import me.jack.ld41.GUI.Elements.TowerElement;
 import me.jack.ld41.GUI.GUIArea;
@@ -34,13 +35,29 @@ public class InGameState extends BasicGameState {
     private HashMap<java.awt.Rectangle, Tower> rectToTower;
 
 
-    private GUIArea towersGUIArea;
+    private GUIArea towersGUIArea, hudGUIArea;
+
+    int turnCount = 0;
+    TextArea turnCounter, turnDisplay, livesDisplay,expDisplay;
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         level = Level.fromImage(new Image("res/levels/level.png"));
         towersGUIArea = new GUIArea(420, 0, 160, 330);
-        towersGUIArea.addElement(new TextButton("Towers",0,0,160,30));
+        towersGUIArea.addElement(new TextArea("Towers", 0, 0, 160, 30));
+
+        hudGUIArea = new GUIArea(0, 330, 580, 150);
+        turnCounter = new TextArea("Turn: " + turnCount, 0, 0, 200, 30, Color.yellow, Color.black);
+        hudGUIArea.addElement(turnCounter);
+
+        turnDisplay = new TextArea(level.getCurrentTurn().name(), 0, 30, 200, 30, Color.green, Color.black);
+        hudGUIArea.addElement(turnDisplay);
+
+        livesDisplay = new TextArea("Lives Remaining: " + level.getLivesLeft(), 0, 60, 200, 30, Color.red, Color.black);
+        hudGUIArea.addElement(livesDisplay);
+
+        expDisplay = new TextArea(level.getLevel() +  ":" + level.getPoints() + "(" + Math.pow((level.getLevel()+1)/2,2) + ")", 0, 90, 200, 30, Color.pink, Color.black);
+        hudGUIArea.addElement(expDisplay);
         // inHand = new TestTower(0, 0);
         for (int i = 0; i != 5; i++)
             towers.add(new TestTower(0, 0));
@@ -54,8 +71,8 @@ public class InGameState extends BasicGameState {
             @Override
             public void mouseUp(int x, int y, GUIElement element) {
                 System.out.println("Clicked");
-                if(element instanceof TowerElement){
-                    Tower t = ((TowerElement)element).getTower();
+                if (element instanceof TowerElement) {
+                    Tower t = ((TowerElement) element).getTower();
                     inHand = t.copy();
                 }
             }
@@ -75,10 +92,10 @@ public class InGameState extends BasicGameState {
         int y = startY;
         int width = towersGUIArea.getWidth() / 4;
         int height = width;
-        for(Tower t : towers){
-            towersGUIArea.addElement(new TowerElement(t,x,y,width,height).setListener(listener));
+        for (Tower t : towers) {
+            towersGUIArea.addElement(new TowerElement(t, x, y, width, height).setListener(listener));
             x += width;
-            if(x >= width * 4){
+            if (x >= width * 4) {
                 x = 0;
                 y += height;
             }
@@ -115,15 +132,21 @@ public class InGameState extends BasicGameState {
         graphics.resetTransform();
 
         graphics.translate(towerSelectArea.getX(), towerSelectArea.getY());
-       // graphics.drawString("Towers:", 0, 0);
+        // graphics.drawString("Towers:", 0, 0);
         graphics.resetTransform();
         towersGUIArea.render(graphics);
+        hudGUIArea.render(graphics);
     }
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
 
-        level.update(this, i);
+        turnCount = level.update(this, i);
+        turnCounter.setText("Turn: " + turnCount);
+
+        turnDisplay.setText(level.getCurrentTurn().name());
+        livesDisplay.setText("Lives Remaining: " + level.getLivesLeft());
+        expDisplay.setText(level.getLevel() +  ":" + level.getPoints() + "(" + Math.pow((level.getLevel()+1)/2,2) + ")");
     }
 
     @Override

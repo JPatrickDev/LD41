@@ -41,6 +41,12 @@ public class Level {
     private ArrayList<Projectile> projectiles = new ArrayList<>();
 
 
+    private int livesLeft = 200;
+
+
+    private int level = 1;
+    private int points;
+
     static {
         colourToTile.put("3B9415", "GrassTile");
         colourToTile.put("702400", "DirtTile");
@@ -77,7 +83,9 @@ public class Level {
 
     public static final Random r = new Random();
 
-    public void update(InGameState parent, int delta) {
+    int i = 0;
+
+    public int update(InGameState parent, int delta) {
         for (Tile[] t : tiles) {
             for (Tile tile : t) {
                 if (tile != null)
@@ -120,8 +128,12 @@ public class Level {
 
         Iterator<PathFollower> pI = pathFollowers.iterator();
         while (pI.hasNext()) {
-            if (pI.next().isDead())
+            PathFollower next = pI.next();
+            if (next.isDead()) {
                 pI.remove();
+                if (next.wasKilled())
+                    pathfinderKilled();
+            }
         }
 
 
@@ -131,12 +143,13 @@ public class Level {
                 eI.remove();
         }
 
+        return i;
     }
 
     public void toggleTurn() {
         if (currentTurn == Turn.PLAYER_TURN) {
             System.out.println("Starting towers");
-
+            i++;
             currentTurn = Turn.TOWER_TURN;
             for (Tower t : towers) {
                 t.newTurn(this);
@@ -274,5 +287,39 @@ public class Level {
 
     public ArrayList<PathFollower> getPathFollowers() {
         return pathFollowers;
+    }
+
+    public Turn getCurrentTurn() {
+        return currentTurn;
+    }
+
+    public void removeLife() {
+        this.livesLeft--;
+    }
+
+    public void pathfinderKilled() {
+        addPoints(1);
+    }
+
+    public int getLivesLeft() {
+        return livesLeft;
+    }
+
+    public void addPoints(int points) {
+        this.points += points;
+        int nextLevel = (int) Math.pow((level + 1) / 2, 2);
+        if (this.points >= Math.pow((level + 1) / 2, 2)) {
+            int diff = (int) ((this.points + points) - (Math.pow((level + 1) / 2, 2)));
+            this.level += 1;
+            this.points = diff;
+        }
+    }
+
+    public int getPoints() {
+        return this.points;
+    }
+
+    public int getLevel() {
+        return this.level;
     }
 }

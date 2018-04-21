@@ -12,16 +12,18 @@ Towers shooting at entities/
 
 GUI System
     - Support for different type of widgets
-        - Towers
-        - Text
-        - Buttons
+        - Towers/
+        - Text/
+        - Buttons/
     - Event Based
-        - Click
+        - Click/
         - Mouse enter
         - Mouse leave
 
 
 Money system for buying towers
 EXP system for unlocking new towers/upgrades
+    - EXP levels
+    - Gain points towards level with each kill
 Upgrades should be based on using towers
     - E.g. X kills with a tower gives you an upgrade for it
