@@ -10,8 +10,8 @@ import org.newdawn.slick.Graphics;
  */
 public class TestTower extends Tower {
 
-    public TestTower(int x, int y) {
-        super(x, y, 1, 1, 3,50f,0,8f);
+    public TestTower(int x, int y,int fireRateLevel, int shotsPerTurnLevel,int rangeLevel, int dmgLevel) {
+        super(x, y, 1, 1,new TowerUpgrades(50,50,1,1,40,40,1,1),0,8f,fireRateLevel,shotsPerTurnLevel,rangeLevel,dmgLevel);
     }
 
     @Override
@@ -24,6 +24,6 @@ public class TestTower extends Tower {
 
     @Override
     public Tower copy() {
-        return new TestTower(getX(), getY());
+        return new TestTower(getX(), getY(),getFireRateLevel(),getShotsPerTurnLevel(),getRangeLevel(),getDmgLevel());
     }
 }

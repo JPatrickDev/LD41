@@ -44,10 +44,10 @@ public class Level {
     private int livesLeft = 200;
 
 
-    private int level = 1;
+    private int level = 50;
     private int points;
 
-    private float money = 8.0f;
+    private float money = 8000.0f;
 
     static {
         colourToTile.put("3B9415", "GrassTile");
@@ -341,5 +341,9 @@ public class Level {
 
     String roundOffTo2DecPlaces(float val) {
         return String.format("%.2f", val);
+    }
+
+    public ArrayList<Tower> getTowers() {
+        return towers;
     }
 }

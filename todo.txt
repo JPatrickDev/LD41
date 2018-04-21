@@ -21,7 +21,7 @@ GUI System
         - Mouse leave
 
 
-Money system for buying towers
+Money system for buying towers/
 EXP system for unlocking new towers/upgrades
     - EXP levels/
     - Gain points towards level with each kill/
@@ -35,7 +35,21 @@ Upgrades should be based on using towers
 
 Money system - 19:00/
 Tower upgrades - 20:00
-Skipping X turns 20:30
-Game Over Screen 20:45
-Level Select Screen 9:15
-Main Menu 10:00
+    - Things that can be upgraded
+        - Shots per turn/
+        - Range/
+        - Firepower
+        - Physical effects
+            - Can become multi-shot with an upgrade for example
+            - Implement a "weapon" class to allow different weapons on different tiles
+                - And also the same weapon on different tiles
+            - Each tower can be made up of multiple weapons
+Round System : 21:30
+Skipping X turns 21:45
+Game Over Screen 10:15
+Level Select Screen 11:00
+Main Menu 11:30
+
+
+Known issues:
+    - Money is still removed even if effect is not applied

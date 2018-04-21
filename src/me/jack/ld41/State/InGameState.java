@@ -1,9 +1,8 @@
 package me.jack.ld41.State;
 
-import com.sun.org.apache.regexp.internal.RE;
 import me.jack.ld41.GUI.Elements.TextArea;
-import me.jack.ld41.GUI.Elements.TextButton;
 import me.jack.ld41.GUI.Elements.TowerElement;
+import me.jack.ld41.GUI.Elements.UpgradeElement;
 import me.jack.ld41.GUI.GUIArea;
 import me.jack.ld41.GUI.GUIElement;
 import me.jack.ld41.GUI.GUIElementListener;
@@ -14,6 +13,9 @@ import me.jack.ld41.Level.Turn;
 import me.jack.ld41.Tower.TestTower;
 import me.jack.ld41.Tower.TestTowerTwo;
 import me.jack.ld41.Tower.Tower;
+import me.jack.ld41.Tower.Upgrades.RangeUpgrade;
+import me.jack.ld41.Tower.Upgrades.ShotsPerTurn;
+import me.jack.ld41.Tower.Upgrades.Upgrade;
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
@@ -32,7 +34,7 @@ public class InGameState extends BasicGameState {
     private Rectangle gameArea = new Rectangle(0, 0, 420, 330), towerSelectArea = new Rectangle(420, 0, 160, 330), hud = new Rectangle(0, 330, 580, 150);
 
     private Tower inHand = null;
-    ArrayList<Tower> towers = new ArrayList<>();
+    public ArrayList<Tower> towers = new ArrayList<>();
     private HashMap<java.awt.Rectangle, Tower> rectToTower;
 
 
@@ -40,6 +42,10 @@ public class InGameState extends BasicGameState {
 
     int turnCount = 0;
     TextArea turnCounter, turnDisplay, livesDisplay, expDisplay, moneyDisplay;
+
+    ArrayList<UpgradeElement> upgrades = new ArrayList<>();
+
+    private Tower currentlySelected = null;
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
@@ -64,9 +70,53 @@ public class InGameState extends BasicGameState {
         moneyDisplay = new TextArea("Money:" + level.getMoney(), 0, 120, 200, 30, Color.cyan, Color.black);
         hudGUIArea.addElement(moneyDisplay);
 
+
+        GUIElementListener upgradesListener = new GUIElementListener() {
+            @Override
+            public void mouseDown(int x, int y, int button, GUIElement element) {
+
+            }
+
+            @Override
+            public void mouseUp(int x, int y, GUIElement element) {
+                if (element instanceof UpgradeElement) {
+                    if (InGameState.this.currentlySelected != null) {
+                        System.out.println("Using");
+                        Upgrade up = ((UpgradeElement) element).getUpgrade();
+                        if (up != null && up.getNextForTower(currentlySelected) != null && level.getMoney() >= up.getCost()) {
+                            up.use(InGameState.this.currentlySelected, InGameState.this);
+                            level.setMoney(level.getMoney() - up.getCost());
+                            ((UpgradeElement) element).setUpgrade(up);
+                            setCurrentlySelectedTower(currentlySelected);
+                            inHand = null;
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void mouseEnter(int x, int y, GUIElement element) {
+
+            }
+
+            @Override
+            public void mouseLeave(int x, int y, GUIElement element) {
+
+            }
+        };
+        UpgradeElement shotRateUpgrade = new UpgradeElement(new ShotsPerTurn(0), 250, 0, 64, 64);
+        shotRateUpgrade.setListener(upgradesListener);
+        upgrades.add(shotRateUpgrade);
+        hudGUIArea.addElement(shotRateUpgrade);
+        UpgradeElement rangeUpgrade = new UpgradeElement(new RangeUpgrade(0), 250 + 64, 0, 64, 64);
+        rangeUpgrade.setListener(upgradesListener);
+        upgrades.add(rangeUpgrade);
+        hudGUIArea.addElement(rangeUpgrade);
+
+
         // inHand = new TestTower(0, 0);
-        towers.add(new TestTower(0, 0));
-        towers.add(new TestTowerTwo(0, 0));
+        towers.add(new TestTower(0, 0, 0, 0, 0, 0));
+        towers.add(new TestTowerTwo(0, 0, 0, 0, 0, 0));
         GUIElementListener listener = new GUIElementListener() {
             @Override
             public void mouseDown(int x, int y, int button, GUIElement element) {
@@ -120,6 +170,15 @@ public class InGameState extends BasicGameState {
         }
     }
 
+    public void setCurrentlySelectedTower(Tower tower) {
+        this.currentlySelected = tower;
+        for (UpgradeElement e : upgrades) {
+            Upgrade u = e.getUpgrade();
+            if (u != null)
+                e.setUpgrade(u.getNextForTower(tower));
+        }
+    }
+
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
         graphics.setColor(Color.black);
@@ -154,6 +213,7 @@ public class InGameState extends BasicGameState {
         graphics.resetTransform();
         towersGUIArea.render(graphics);
         hudGUIArea.render(graphics);
+        graphics.drawString(currentlySelected + " hi", 0, 0);
     }
 
     @Override
@@ -180,9 +240,12 @@ public class InGameState extends BasicGameState {
     public void mousePressed(int button, int x, int y) {
         super.mousePressed(button, x, y);
         towersGUIArea.mouseDown(x - towersGUIArea.getX(), y - towersGUIArea.getY(), button);
+        hudGUIArea.mouseDown(x - hudGUIArea.getX(), y - hudGUIArea.getY(), button);
         if (gameArea.contains(x, y)) {
-            if (inHand != null) {
+            Tower towerAt = getMouseTower(x, y);
+            if (inHand != null && towerAt == null) {
                 Tile currentMouseTile = getCurrentMouseTile(x, y);
+                this.currentlySelected = towerAt;
                 if (currentMouseTile != null && !(currentMouseTile instanceof DirtTile) && level.getMoney() >= inHand.getCost()) {
                     Tower t = inHand.copy();
                     t.setX(currentMouseTile.getX() * Tile.TILE_SIZE);
@@ -191,13 +254,32 @@ public class InGameState extends BasicGameState {
                     level.setMoney(level.getMoney() - inHand.getCost());
                 }
             }
+            if (towerAt != null) {
+                setCurrentlySelectedTower(towerAt);
+            }
         }
+    }
+
+    private Tower getMouseTower(int mX, int mY) {
+        mX -= gameArea.getWidth() / 2 - (level.getWidth() * Tile.TILE_SIZE) / 2;
+        mY -= gameArea.getHeight() / 2 - (level.getHeight() * Tile.TILE_SIZE) / 2;
+        mX /= Tile.TILE_SIZE;
+        mY /= Tile.TILE_SIZE;
+        int x = mX;
+        int y = mY;
+        for (Tower t : level.getTowers()) {
+            if (t.getX() == x * Tile.TILE_SIZE && t.getY() == y * Tile.TILE_SIZE) {
+                return t;
+            }
+        }
+        return null;
     }
 
     @Override
     public void mouseReleased(int button, int x, int y) {
         super.mouseReleased(button, x, y);
         towersGUIArea.mouseUp(x - towersGUIArea.getX(), y - towersGUIArea.getY());
+        hudGUIArea.mouseUp(x - hudGUIArea.getX(), y - hudGUIArea.getY());
     }
 
     @Override

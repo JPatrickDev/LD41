@@ -16,26 +16,34 @@ import java.util.Random;
  */
 public abstract class Tower {
 
+    private final TowerUpgrades upgrades;
     private int x, y, width, height;
-    private float range;
 
-    private int shotsPerTurn;
+
     private int shotsTaken = 0;
     private boolean turnOver = false;
     private boolean takingTurn = false;
     private int unlockedAt;
     private float cost;
 
+    private int fireRateLevel = 0;
+    private int shotsPerTurnLevel = 0;
+    private int rangeLevel = 0;
+    private int dmgLevel = 0;
 
-    public Tower(int x, int y, int width, int height, int shotsPerTurn, float range, int unlockedAt, float cost) {
+
+    public Tower(int x, int y, int width, int height, TowerUpgrades upgrades, int unlockedAt, float cost,int fireRateLevel,int shotsPerTurnLevel,int rangeLevel,int dmgLevel) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
-        this.shotsPerTurn = shotsPerTurn;
-        this.range = range;
         this.unlockedAt = unlockedAt;
         this.cost = cost;
+        this.upgrades = upgrades;
+        this.fireRateLevel = fireRateLevel;
+        this.shotsPerTurnLevel = shotsPerTurnLevel;
+        this.rangeLevel = rangeLevel;
+        this.dmgLevel = dmgLevel;
     }
 
     public abstract void render(Graphics g);
@@ -47,12 +55,12 @@ public abstract class Tower {
     public Projectile update(Level level, int delta) {
         lastShotTime += delta;
         if (takingTurn) {
-            if (shotsTaken < shotsPerTurn) {
-                if (r.nextInt(10) == 0 && lastShotTime >= 50) {
+            if (shotsTaken < upgrades.getShotsPerTurn()) {
+                if (r.nextInt(10) == 0 && lastShotTime >= this.upgrades.getFireSpeed()) {
                     System.out.println("Shot Fired");
                     shotsTaken++;
                     lastShotTime = 0;
-                    ArrayList<PathFollower> valid = level.getTargets(getX(), getY(), this.range);
+                    ArrayList<PathFollower> valid = level.getTargets(getX(), getY(), this.upgrades.getRange());
                     if (valid.size() == 0) {
                         lastShotTime = 0;
                         shotsTaken++;
@@ -113,5 +121,37 @@ public abstract class Tower {
 
     public float getCost() {
         return cost;
+    }
+
+    public int getFireRateLevel() {
+        return fireRateLevel;
+    }
+
+    public int getShotsPerTurnLevel() {
+        return shotsPerTurnLevel;
+    }
+
+    public int getRangeLevel() {
+        return rangeLevel;
+    }
+
+    public int getDmgLevel() {
+        return dmgLevel;
+    }
+
+    public TowerUpgrades getUpgrades() {
+        return upgrades;
+    }
+
+    public void setFireRateLevel(int fireRateLevel) {
+        this.fireRateLevel = fireRateLevel;
+    }
+
+    public void setShotsPerTurnLevel(int shotsPerTurnLevel) {
+        this.shotsPerTurnLevel = shotsPerTurnLevel;
+    }
+
+    public void setRangeLevel(int rangeLevel) {
+        this.rangeLevel = rangeLevel;
     }
 }
