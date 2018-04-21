@@ -4,6 +4,7 @@ import me.jack.ld41.Level.Level;
 import me.jack.ld41.Level.Tile.Tile;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -17,7 +18,7 @@ public class InGameState extends BasicGameState {
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
-        level = new Level(10, 10);
+        level = Level.fromImage(new Image("res/levels/level.png"));
     }
 
     @Override
