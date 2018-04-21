@@ -49,6 +49,9 @@ public class Level {
 
     private float money = 8000.0f;
 
+    private int round = 1;
+    private int spawnedThisRound = 0;
+
     static {
         colourToTile.put("3B9415", "GrassTile");
         colourToTile.put("702400", "DirtTile");
@@ -158,12 +161,10 @@ public class Level {
             }
         } else if (currentTurn == Turn.TOWER_TURN) {
             currentTurn = Turn.COMPUTER_TURN;
-            if (Keyboard.isKeyDown(Keyboard.KEY_V)) {
-                pathFollowers.add(new TestEntity(startPoint.x * Tile.TILE_SIZE, startPoint.y * Tile.TILE_SIZE));
-            }
             for (PathFollower p : pathFollowers)
                 p.nextStep(this);
         } else {
+            attemptSpawn();
             currentTurn = Turn.PLAYER_TURN;
         }
     }
@@ -319,6 +320,21 @@ public class Level {
         }
     }
 
+    public void attemptSpawn(){
+        for(PathFollower f : this.getPathFollowers()){
+            if(f.getX() == startPoint.x * Tile.TILE_SIZE && f.getY() == startPoint.y * Tile.TILE_SIZE){
+                return;
+            }
+        }
+        if(r.nextInt(20) >= 5)
+            return;
+        pathFollowers.add(new TestEntity(startPoint.x * Tile.TILE_SIZE, startPoint.y * Tile.TILE_SIZE));
+        spawnedThisRound++;
+        if(spawnedThisRound >= getToSpawn(round)){
+            spawnedThisRound = 0;
+            round++;
+        }
+    }
     public int getPoints() {
         return this.points;
     }
@@ -345,5 +361,13 @@ public class Level {
 
     public ArrayList<Tower> getTowers() {
         return towers;
+    }
+
+    public int getToSpawn(int round){
+        return (int) Math.ceil(0.5 * Math.pow(1.5,round));
+    }
+
+    public int getRound() {
+        return round;
     }
 }

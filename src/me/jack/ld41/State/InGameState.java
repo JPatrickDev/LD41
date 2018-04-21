@@ -41,7 +41,7 @@ public class InGameState extends BasicGameState {
     private GUIArea towersGUIArea, hudGUIArea;
 
     int turnCount = 0;
-    TextArea turnCounter, turnDisplay, livesDisplay, expDisplay, moneyDisplay;
+    TextArea turnCounter, turnDisplay, livesDisplay, expDisplay, moneyDisplay,roundDisplay;
 
     ArrayList<UpgradeElement> upgrades = new ArrayList<>();
 
@@ -54,21 +54,24 @@ public class InGameState extends BasicGameState {
         towersGUIArea.addElement(new TextArea("Towers", 0, 0, 160, 30));
 
         hudGUIArea = new GUIArea(0, 330, 580, 150);
-        turnCounter = new TextArea("Turn: " + turnCount, 0, 0, 200, 30, Color.yellow, Color.black);
+        turnCounter = new TextArea("Turn: " + turnCount, 0, 0, 200, 20, Color.yellow, Color.black);
         hudGUIArea.addElement(turnCounter);
 
-        turnDisplay = new TextArea(level.getCurrentTurn().name(), 0, 30, 200, 30, Color.green, Color.black);
+        turnDisplay = new TextArea(level.getCurrentTurn().name(), 0, 20, 200, 20, Color.green, Color.black);
         hudGUIArea.addElement(turnDisplay);
 
-        livesDisplay = new TextArea("Lives Remaining: " + level.getLivesLeft(), 0, 60, 200, 30, Color.red, Color.black);
+        livesDisplay = new TextArea("Lives Remaining: " + level.getLivesLeft(), 0, 40, 200, 20, Color.red, Color.black);
         hudGUIArea.addElement(livesDisplay);
 
-        expDisplay = new TextArea(level.getLevel() + ":" + level.getPoints() + "(" + Math.pow((level.getLevel() + 1) / 2, 2) + ")", 0, 90, 200, 30, Color.pink, Color.black);
+        expDisplay = new TextArea(level.getLevel() + ":" + level.getPoints() + "(" + Math.pow((level.getLevel() + 1) / 2, 2) + ")", 0, 60, 200, 20, Color.pink, Color.black);
         hudGUIArea.addElement(expDisplay);
 
 
-        moneyDisplay = new TextArea("Money:" + level.getMoney(), 0, 120, 200, 30, Color.cyan, Color.black);
+        moneyDisplay = new TextArea("Money:" + level.getMoney(), 0, 80, 200, 20, Color.cyan, Color.black);
         hudGUIArea.addElement(moneyDisplay);
+
+        roundDisplay = new TextArea("Round:" + level.getRound() + "(" + level.getToSpawn(level.getRound()) + ")", 0, 100, 200, 20, Color.magenta, Color.black);
+        hudGUIArea.addElement(roundDisplay);
 
 
         GUIElementListener upgradesListener = new GUIElementListener() {
@@ -227,6 +230,7 @@ public class InGameState extends BasicGameState {
         livesDisplay.setText("Lives Remaining: " + level.getLivesLeft());
         expDisplay.setText(level.getLevel() + ":" + level.getPoints() + "(" + Math.pow((level.getLevel() + 1) / 2, 2) + ")");
         moneyDisplay.setText("Money:" + level.getMoney());
+        roundDisplay.setText("Round:" + level.getRound() + "(" + level.getToSpawn(level.getRound()) + ")");
     }
 
     @Override

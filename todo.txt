@@ -45,7 +45,10 @@ Tower upgrades - 20:00
                 - And also the same weapon on different tiles
             - Each tower can be made up of multiple weapons
 Round System : 21:30
+    - Popup When New Round starts
+        - Like an Android Toast
 Skipping X turns 21:45
+    Skip to next round?
 Game Over Screen 10:15
 Level Select Screen 11:00
 Main Menu 11:30
@@ -53,3 +56,5 @@ Main Menu 11:30
 
 Known issues:
     - Money is still removed even if effect is not applied
+    - Can place towers during other turns
+        - Breaks it
