@@ -32,7 +32,7 @@ public abstract class Tower {
     private int dmgLevel = 0;
 
 
-    public Tower(int x, int y, int width, int height, TowerUpgrades upgrades, int unlockedAt, float cost,int fireRateLevel,int shotsPerTurnLevel,int rangeLevel,int dmgLevel) {
+    public Tower(int x, int y, int width, int height, TowerUpgrades upgrades, int unlockedAt, float cost, int fireRateLevel, int shotsPerTurnLevel, int rangeLevel, int dmgLevel) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -62,9 +62,7 @@ public abstract class Tower {
                     lastShotTime = 0;
                     ArrayList<PathFollower> valid = level.getTargets(getX(), getY(), this.upgrades.getRange());
                     if (valid.size() == 0) {
-                        lastShotTime = 0;
-                        shotsTaken++;
-                        return update(level, delta);
+                        shotsTaken = upgrades.getShotsPerTurn();
                     } else {
                         PathFollower target = valid.get(r.nextInt(valid.size()));
                         return new TestProjectile(getX(), getY(), new Point((int) target.getX() + Tile.TILE_SIZE / 2, (int) target.getY() + Tile.TILE_SIZE / 2));

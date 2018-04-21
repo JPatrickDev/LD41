@@ -10,7 +10,7 @@ public abstract class Entity{
 
     private float x,y;
     private float xO,yO;
-    protected float moveSpeed = 0.5f;
+    protected float moveSpeed = 1f;
     protected boolean dead;
     public Entity(float x, float y) {
         this.x = x;

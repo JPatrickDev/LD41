@@ -91,6 +91,7 @@ public class Level {
     int i = 0;
 
     public int update(InGameState parent, int delta) {
+        System.out.println(skipping);
         for (Tile[] t : tiles) {
             for (Tile tile : t) {
                 if (tile != null)
@@ -148,6 +149,13 @@ public class Level {
                 eI.remove();
         }
 
+        if (currentTurn == Turn.PLAYER_TURN) {
+            if (skipping > 0 || skipping == -1) {
+                toggleTurn();
+                if (skipping > 0)
+                    skipping--;
+            }
+        }
         return i;
     }
 
@@ -172,6 +180,8 @@ public class Level {
     public Tile[][] getTiles() {
         return tiles;
     }
+
+    private int skipping;
 
     public void setTileAt(Tile t, int x, int y) {
         tiles[x][y] = t;
@@ -320,21 +330,24 @@ public class Level {
         }
     }
 
-    public void attemptSpawn(){
-        for(PathFollower f : this.getPathFollowers()){
-            if(f.getX() == startPoint.x * Tile.TILE_SIZE && f.getY() == startPoint.y * Tile.TILE_SIZE){
+    public void attemptSpawn() {
+        for (PathFollower f : this.getPathFollowers()) {
+            if (f.getX() == startPoint.x * Tile.TILE_SIZE && f.getY() == startPoint.y * Tile.TILE_SIZE) {
                 return;
             }
         }
-        if(r.nextInt(20) >= 5)
+        if (r.nextInt(10) >= 5)
             return;
         pathFollowers.add(new TestEntity(startPoint.x * Tile.TILE_SIZE, startPoint.y * Tile.TILE_SIZE));
         spawnedThisRound++;
-        if(spawnedThisRound >= getToSpawn(round)){
+        if (spawnedThisRound >= getToSpawn(round)) {
             spawnedThisRound = 0;
             round++;
+            if (skipping == -1)
+                skipping = 0;
         }
     }
+
     public int getPoints() {
         return this.points;
     }
@@ -363,11 +376,16 @@ public class Level {
         return towers;
     }
 
-    public int getToSpawn(int round){
-        return (int) Math.ceil(0.5 * Math.pow(1.5,round));
+    public int getToSpawn(int round) {
+        return (int) Math.ceil(0.5 * Math.pow(1.5, round));
     }
 
     public int getRound() {
         return round;
+    }
+
+
+    public void skipTurns(int skipping) {
+        this.skipping = skipping;
     }
 }

@@ -53,4 +53,8 @@ public class TextArea extends GUIElement {
         this.tY = -1;
     }
 
+    public String getText() {
+        return text;
+    }
+
 }

@@ -1,6 +1,7 @@
 package me.jack.ld41.State;
 
 import me.jack.ld41.GUI.Elements.TextArea;
+import me.jack.ld41.GUI.Elements.TextButton;
 import me.jack.ld41.GUI.Elements.TowerElement;
 import me.jack.ld41.GUI.Elements.UpgradeElement;
 import me.jack.ld41.GUI.GUIArea;
@@ -42,6 +43,7 @@ public class InGameState extends BasicGameState {
 
     int turnCount = 0;
     TextArea turnCounter, turnDisplay, livesDisplay, expDisplay, moneyDisplay,roundDisplay;
+    TextButton skip5Turns,skip10Turns;
 
     ArrayList<UpgradeElement> upgrades = new ArrayList<>();
 
@@ -74,6 +76,45 @@ public class InGameState extends BasicGameState {
         hudGUIArea.addElement(roundDisplay);
 
 
+        GUIElementListener skipListener = new GUIElementListener() {
+            @Override
+            public void mouseDown(int x, int y, int button, GUIElement element) {
+
+            }
+
+            @Override
+            public void mouseUp(int x, int y, GUIElement element) {
+                if(element instanceof TextButton){
+                    switch(((TextButton) element).getText()){
+                        case "Skip 5 Turns" : level.skipTurns(5); break;
+                        case "Skip 10 Turns" : level.skipTurns(10); break;
+                        case "Skip To Next Round":  level.skipTurns(-1); break;
+                    }
+                }
+            }
+
+            @Override
+            public void mouseEnter(int x, int y, GUIElement element) {
+
+            }
+
+            @Override
+            public void mouseLeave(int x, int y, GUIElement element) {
+
+            }
+        };
+
+        skip5Turns = new TextButton("Skip 5 Turns", hudGUIArea.getWidth() - 200, 0, 200, 20, Color.magenta, Color.black);
+        skip5Turns.setListener(skipListener);
+        hudGUIArea.addElement(skip5Turns);
+
+        skip10Turns = new TextButton("Skip 10 Turns", hudGUIArea.getWidth() - 200, 20, 200, 20, Color.pink, Color.black);
+        skip10Turns.setListener(skipListener);
+        hudGUIArea.addElement(skip10Turns);
+
+        skip10Turns = new TextButton("Skip To Next Round", hudGUIArea.getWidth() - 200, 40, 200, 20, Color.pink, Color.black);
+        skip10Turns.setListener(skipListener);
+        hudGUIArea.addElement(skip10Turns);
         GUIElementListener upgradesListener = new GUIElementListener() {
             @Override
             public void mouseDown(int x, int y, int button, GUIElement element) {
