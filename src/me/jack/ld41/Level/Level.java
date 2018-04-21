@@ -1,18 +1,21 @@
 package me.jack.ld41.Level;
 
 import me.jack.ld41.Entity.PathFollower;
+import me.jack.ld41.Entity.Projectile.Projectile;
 import me.jack.ld41.Entity.TestEntity;
 import me.jack.ld41.Level.Tile.DirtTile;
 import me.jack.ld41.Level.Tile.GrassTile;
 import me.jack.ld41.Level.Tile.Tile;
 import me.jack.ld41.State.InGameState;
 import me.jack.ld41.Tower.Tower;
+import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import java.awt.*;
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -37,6 +40,10 @@ public class Level {
 
     private ArrayList<PathFollower> pathFollowers = new ArrayList<>();
     private ArrayList<Tower> towers = new ArrayList<>();
+    private ArrayList<Projectile> projectiles = new ArrayList<>();
+
+    private boolean canChangeTurn = false;
+
     static {
         colourToTile.put("3B9415", "GrassTile");
         colourToTile.put("702400", "DirtTile");
@@ -65,7 +72,11 @@ public class Level {
             t.render(g);
         }
 
+        for(Projectile p : projectiles){
+            p.render(g);
+        }
         g.drawString(currentTurn.name(),-40,-40);
+        g.drawString(canChangeTurn + "",-40,-80);
     }
 
     public static final Random r = new Random();
@@ -77,17 +88,37 @@ public class Level {
                     tile.update(this);
             }
         }
-        boolean moverFound = false;
-        for(PathFollower p : pathFollowers){
-            p.update(this);
-            if(p.isMoving())
-                moverFound = true;
-        }
-        if(!moverFound && currentTurn == Turn.COMPUTER_TURN){
-            System.out.println("No movers found");
-            toggleTurn();
+
+        if(currentTurn == Turn.TOWER_TURN){
+            boolean allDone = true;
+            for(Tower t : towers){
+                t.update(this);
+                if(!t.isTurnOver())
+                    allDone = false;
+            }
+            for(Projectile p : projectiles){
+                p.update(this);
+                if(!p.isDead())
+                    allDone = false;
+            }
+            if(allDone){
+                System.out.println("Tower turn over");
+                toggleTurn();
+            }
         }
 
+        if(currentTurn == Turn.COMPUTER_TURN){
+            boolean allDone = true;
+            for(PathFollower t : pathFollowers){
+                t.update(this);
+                if(t.isMoving())
+                    allDone = false;
+            }
+            if(allDone){
+                System.out.println("Computer turn over");
+                toggleTurn();
+            }
+        }
 
         Iterator<PathFollower> pI = pathFollowers.iterator();
         while(pI.hasNext()){
@@ -95,20 +126,32 @@ public class Level {
                 pI.remove();
         }
 
+
+        Iterator<Projectile> eI = projectiles.iterator();
+        while(eI.hasNext()){
+            if(eI.next().isDead())
+                eI.remove();
+        }
+
     }
 
     public void toggleTurn(){
-        if(r.nextInt(10) == 0){
-            pathFollowers.add(new TestEntity(startPoint.x * Tile.TILE_SIZE,startPoint.y * Tile.TILE_SIZE));
-        }
         if(currentTurn == Turn.PLAYER_TURN){
-            currentTurn = Turn.COMPUTER_TURN;
-            for(PathFollower p : pathFollowers){
-                p.nextStep(this);
+            System.out.println("Starting towers");
+
+            currentTurn = Turn.TOWER_TURN;
+            for(Tower t : towers){
+                t.newTurn(this);
             }
+        }else if(currentTurn == Turn.TOWER_TURN){
+            currentTurn = Turn.COMPUTER_TURN;
+            if(Keyboard.isKeyDown(Keyboard.KEY_V)){
+                pathFollowers.add(new TestEntity(startPoint.x * Tile.TILE_SIZE,startPoint.y * Tile.TILE_SIZE));
+            }
+            for(PathFollower p : pathFollowers)
+                p.nextStep(this);
         }else{
             currentTurn = Turn.PLAYER_TURN;
-            toggleTurn();
         }
     }
 
@@ -206,7 +249,6 @@ public class Level {
 
     public void setPath(Point[] path) {
         this.path = path;
-        toggleTurn();
     }
 
     public Point getPathPoint(int pathPos) {
@@ -220,5 +262,5 @@ public class Level {
     }
 }
 enum Turn{
-    PLAYER_TURN,COMPUTER_TURN;
+    PLAYER_TURN,COMPUTER_TURN,TOWER_TURN;
 }

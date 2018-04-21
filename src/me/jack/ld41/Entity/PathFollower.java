@@ -9,6 +9,7 @@ import java.awt.*;
  * Created by Jack on 21/04/2018.
  */
 public abstract class PathFollower extends Entity {
+
     private int pathPos = 0;
     private boolean isMoving;
     private Point currentTarget = null;
