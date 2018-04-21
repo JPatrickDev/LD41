@@ -1,0 +1,13 @@
+Turn based engine
+Entities following the path
+Placing towers
+Towers shooting at entities
+    - Need to work out how that's going to work in a turn based game
+        - Probably best to just make projectiles non-turn based?
+        - Might work if projectiles firing is part of the players turn
+            - As long as the projectiles move quickly
+
+Money system for buying towers
+EXP system for unlocking new towers/upgrades
+Upgrades should be based on using towers
+    - E.g. X kills with a tower gives you an upgrade for it

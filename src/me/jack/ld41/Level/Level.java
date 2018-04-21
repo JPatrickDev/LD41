@@ -57,7 +57,7 @@ public class Level {
             }
         }
     }
-    
+
     public Tile[][] getTiles() {
         return tiles;
     }
