@@ -3,10 +3,8 @@ package me.jack.ld41.State;
 import me.jack.ld41.Level.Level;
 import me.jack.ld41.Level.Tile.Tile;
 import org.lwjgl.input.Keyboard;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.*;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -16,7 +14,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class InGameState extends BasicGameState {
 
     Level level = null;
-
+    private Rectangle gameArea = new Rectangle(0,0,420,330), towerSelectArea = new Rectangle(420,0,160,330),hud = new Rectangle(0,330,580,150);
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         level = Level.fromImage(new Image("res/levels/level.png"));
@@ -24,7 +22,16 @@ public class InGameState extends BasicGameState {
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
-        graphics.translate(290 - (level.getWidth() * Tile.TILE_SIZE) / 2, 240 - (level.getHeight() * Tile.TILE_SIZE) / 2);
+
+
+        graphics.setColor(Color.black);
+        graphics.fill(gameArea);
+        graphics.setColor(Color.red);
+        graphics.fill(towerSelectArea);
+        graphics.setColor(Color.blue);
+        graphics.fill(hud);
+        graphics.setColor(Color.white);
+        graphics.translate(gameArea.getWidth()/2 - (level.getWidth() * Tile.TILE_SIZE) / 2, gameArea.getHeight()/2 - (level.getHeight() * Tile.TILE_SIZE) / 2);
         level.render(graphics);
     }
 

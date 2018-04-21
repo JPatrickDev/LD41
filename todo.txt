@@ -1,5 +1,6 @@
-Turn based engine
-Entities following the path
+Turn based engine/
+Entities following the path/
+Basic GUI layout/
 Placing towers
 Towers shooting at entities
     - Need to work out how that's going to work in a turn based game
