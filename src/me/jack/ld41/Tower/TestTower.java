@@ -11,12 +11,12 @@ import org.newdawn.slick.Graphics;
 public class TestTower extends Tower {
 
     public TestTower(int x, int y) {
-        super(x, y, 1, 1, 3);
+        super(x, y, 1, 1, 3,50f);
     }
 
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.red);
+        g.setColor(Color.blue);
         g.fillRect(getX(), getY(), getWidth() * Tile.TILE_SIZE, getHeight() * Tile.TILE_SIZE);
         g.setColor(Color.white);
     }

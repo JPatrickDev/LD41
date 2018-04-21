@@ -1,6 +1,7 @@
 package me.jack.ld41.Entity.Projectile;
 
 import me.jack.ld41.Entity.Entity;
+import me.jack.ld41.Entity.PathFollower;
 import me.jack.ld41.Level.Level;
 import me.jack.ld41.Level.Tile.Tile;
 
@@ -19,6 +20,7 @@ public abstract class Projectile extends Entity {
 
     public Projectile(float x, float y, float moveSpeed, float damage, Point target) {
         super(x, y);
+        this.damage = damage;
         float xSpeed = target.x - x;
         float ySpeed = target.y - y;
         float factor = (float) (moveSpeed / Math.sqrt(xSpeed * xSpeed + ySpeed * ySpeed));
@@ -35,6 +37,14 @@ public abstract class Projectile extends Entity {
         setY(getY() + yVel);
         if(getX() < 0 || getY() < 0 || getX() > level.getWidth() * Tile.TILE_SIZE || getY() > level.getHeight() * Tile.TILE_SIZE){
             dead = true;
+        }
+
+        Rectangle me = new Rectangle((int)getX(),(int)getY(),4,4);
+        for(PathFollower f : level.getPathFollowers()){
+            if(f.getCurrentHitbox().intersects(me)){
+                dead = true;
+                f.damage(damage);
+            }
         }
     }
 

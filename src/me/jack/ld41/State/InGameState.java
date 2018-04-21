@@ -1,5 +1,11 @@
 package me.jack.ld41.State;
 
+import com.sun.org.apache.regexp.internal.RE;
+import me.jack.ld41.GUI.Elements.TextButton;
+import me.jack.ld41.GUI.Elements.TowerElement;
+import me.jack.ld41.GUI.GUIArea;
+import me.jack.ld41.GUI.GUIElement;
+import me.jack.ld41.GUI.GUIElementListener;
 import me.jack.ld41.Level.Level;
 import me.jack.ld41.Level.Tile.DirtTile;
 import me.jack.ld41.Level.Tile.Tile;
@@ -12,6 +18,9 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  * Created by Jack on 21/04/2018.
  */
@@ -21,11 +30,59 @@ public class InGameState extends BasicGameState {
     private Rectangle gameArea = new Rectangle(0, 0, 420, 330), towerSelectArea = new Rectangle(420, 0, 160, 330), hud = new Rectangle(0, 330, 580, 150);
 
     private Tower inHand = null;
+    ArrayList<Tower> towers = new ArrayList<>();
+    private HashMap<java.awt.Rectangle, Tower> rectToTower;
+
+
+    private GUIArea towersGUIArea;
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         level = Level.fromImage(new Image("res/levels/level.png"));
-        inHand = new TestTower(0, 0);
+        towersGUIArea = new GUIArea(420, 0, 160, 330);
+        towersGUIArea.addElement(new TextButton("Towers",0,0,160,30));
+        // inHand = new TestTower(0, 0);
+        for (int i = 0; i != 5; i++)
+            towers.add(new TestTower(0, 0));
+
+        GUIElementListener listener = new GUIElementListener() {
+            @Override
+            public void mouseDown(int x, int y, int button, GUIElement element) {
+
+            }
+
+            @Override
+            public void mouseUp(int x, int y, GUIElement element) {
+                System.out.println("Clicked");
+                if(element instanceof TowerElement){
+                    Tower t = ((TowerElement)element).getTower();
+                    inHand = t.copy();
+                }
+            }
+
+            @Override
+            public void mouseEnter(int x, int y, GUIElement element) {
+
+            }
+
+            @Override
+            public void mouseLeave(int x, int y, GUIElement element) {
+
+            }
+        };
+        int startY = 30;
+        int x = 0;
+        int y = startY;
+        int width = towersGUIArea.getWidth() / 4;
+        int height = width;
+        for(Tower t : towers){
+            towersGUIArea.addElement(new TowerElement(t,x,y,width,height).setListener(listener));
+            x += width;
+            if(x >= width * 4){
+                x = 0;
+                y += height;
+            }
+        }
     }
 
     @Override
@@ -56,12 +113,17 @@ public class InGameState extends BasicGameState {
             }
         }
         graphics.resetTransform();
+
+        graphics.translate(towerSelectArea.getX(), towerSelectArea.getY());
+       // graphics.drawString("Towers:", 0, 0);
+        graphics.resetTransform();
+        towersGUIArea.render(graphics);
     }
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
 
-        level.update(this,i);
+        level.update(this, i);
     }
 
     @Override
@@ -74,15 +136,24 @@ public class InGameState extends BasicGameState {
     @Override
     public void mousePressed(int button, int x, int y) {
         super.mousePressed(button, x, y);
-        if (inHand != null) {
-            Tile currentMouseTile = getCurrentMouseTile(x, y);
-            if (currentMouseTile != null && !(currentMouseTile instanceof DirtTile)) {
-                Tower t = inHand.copy();
-                t.setX(currentMouseTile.getX() * Tile.TILE_SIZE);
-                t.setY(currentMouseTile.getY() * Tile.TILE_SIZE);
-                level.addTower(t);
+        towersGUIArea.mouseDown(x, y, button);
+        if (gameArea.contains(x, y)) {
+            if (inHand != null) {
+                Tile currentMouseTile = getCurrentMouseTile(x, y);
+                if (currentMouseTile != null && !(currentMouseTile instanceof DirtTile)) {
+                    Tower t = inHand.copy();
+                    t.setX(currentMouseTile.getX() * Tile.TILE_SIZE);
+                    t.setY(currentMouseTile.getY() * Tile.TILE_SIZE);
+                    level.addTower(t);
+                }
             }
         }
+    }
+
+    @Override
+    public void mouseReleased(int button, int x, int y) {
+        super.mouseReleased(button, x, y);
+        towersGUIArea.mouseUp(x, y);
     }
 
     @Override

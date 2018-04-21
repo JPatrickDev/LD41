@@ -4,7 +4,6 @@ import me.jack.ld41.Entity.PathFollower;
 import me.jack.ld41.Entity.Projectile.Projectile;
 import me.jack.ld41.Entity.TestEntity;
 import me.jack.ld41.Level.Tile.DirtTile;
-import me.jack.ld41.Level.Tile.GrassTile;
 import me.jack.ld41.Level.Tile.Tile;
 import me.jack.ld41.State.InGameState;
 import me.jack.ld41.Tower.Tower;
@@ -15,7 +14,6 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import java.awt.*;
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -272,5 +270,9 @@ public class Level {
 
     public void addTower(Tower t) {
         this.towers.add(t);
+    }
+
+    public ArrayList<PathFollower> getPathFollowers() {
+        return pathFollowers;
     }
 }

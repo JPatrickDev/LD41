@@ -13,16 +13,20 @@ public abstract class PathFollower extends Entity {
     private int pathPos = 0;
     private boolean isMoving;
     private Point currentTarget = null;
+    private float health = 0;
+    private float maxHealth = 0;
 
-    public PathFollower(float x, float y) {
+    public PathFollower(float x, float y, float maxHealth) {
         super(x, y);
+        this.maxHealth = maxHealth;
+        this.health = maxHealth;
     }
 
     public void nextStep(Level level) {
         pathPos++;
         isMoving = true;
         currentTarget = level.getPathPoint(pathPos);
-        if(currentTarget == null){
+        if (currentTarget == null) {
             isMoving = false;
             dead = true;
         }
@@ -49,7 +53,7 @@ public abstract class PathFollower extends Entity {
                 setyO(getyO() - moveSpeed);
             }
 
-            if(Math.abs(getxO()) >= Tile.TILE_SIZE || Math.abs(getyO()) >= Tile.TILE_SIZE){
+            if (Math.abs(getxO()) >= Tile.TILE_SIZE || Math.abs(getyO()) >= Tile.TILE_SIZE) {
                 setxO(0);
                 setyO(0);
                 setX(currentTarget.x * Tile.TILE_SIZE);
@@ -60,5 +64,14 @@ public abstract class PathFollower extends Entity {
         }
     }
 
+    public Rectangle getCurrentHitbox() {
+        return new Rectangle((int) (getX() + getxO()), (int) (getY() + getyO()), Tile.TILE_SIZE, Tile.TILE_SIZE);
+    }
 
+    public void damage(float damage) {
+        health -= damage;
+        if (health <= 0) {
+            dead = true;
+        }
+    }
 }

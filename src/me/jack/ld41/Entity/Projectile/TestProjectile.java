@@ -10,7 +10,7 @@ import java.awt.*;
 public class TestProjectile extends Projectile {
 
     public TestProjectile(float x, float y, Point target) {
-        super(x, y, 5f, 1f, target);
+        super(x, y, 5f, 5f, target);
     }
 
     @Override

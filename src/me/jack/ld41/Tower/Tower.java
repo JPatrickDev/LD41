@@ -17,18 +17,20 @@ import java.util.Random;
 public abstract class Tower {
 
     private int x, y, width, height;
+    private float range;
 
     private int shotsPerTurn;
     private int shotsTaken = 0;
     private boolean turnOver = false;
     private boolean takingTurn = false;
 
-    public Tower(int x, int y, int width, int height, int shotsPerTurn) {
+    public Tower(int x, int y, int width, int height, int shotsPerTurn,float range) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.shotsPerTurn = shotsPerTurn;
+        this.range = range;
     }
 
     public abstract void render(Graphics g);
@@ -45,7 +47,7 @@ public abstract class Tower {
                     System.out.println("Shot Fired");
                     shotsTaken++;
                     lastShotTime = 0;
-                    ArrayList<PathFollower> valid = level.getTargets(getX(),getY(),40);
+                    ArrayList<PathFollower> valid = level.getTargets(getX(),getY(),this.range);
                     if(valid.size() == 0){
                         lastShotTime = 0;
                         shotsTaken++;
