@@ -3,6 +3,7 @@ package me.jack.ld41.State;
 import me.jack.ld41.Level.Level;
 import me.jack.ld41.Level.Tile.DirtTile;
 import me.jack.ld41.Level.Tile.Tile;
+import me.jack.ld41.Level.Turn;
 import me.jack.ld41.Tower.TestTower;
 import me.jack.ld41.Tower.Tower;
 import org.lwjgl.input.Keyboard;
@@ -60,13 +61,13 @@ public class InGameState extends BasicGameState {
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
 
-        level.update(this);
+        level.update(this,i);
     }
 
     @Override
     public void keyPressed(int key, char c) {
         super.keyPressed(key, c);
-        if (key == Keyboard.KEY_SPACE)
+        if (key == Keyboard.KEY_SPACE && level.currentTurn == Turn.PLAYER_TURN)
             level.toggleTurn();
     }
 

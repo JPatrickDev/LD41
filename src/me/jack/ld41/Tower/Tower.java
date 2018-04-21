@@ -1,8 +1,14 @@
 package me.jack.ld41.Tower;
 
+import me.jack.ld41.Entity.PathFollower;
+import me.jack.ld41.Entity.Projectile.Projectile;
+import me.jack.ld41.Entity.Projectile.TestProjectile;
 import me.jack.ld41.Level.Level;
+import me.jack.ld41.Level.Tile.Tile;
 import org.newdawn.slick.Graphics;
 
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -29,18 +35,33 @@ public abstract class Tower {
 
     Random r = new Random();
 
-    public void update(Level level) {
+    int lastShotTime = 0;
+
+    public Projectile update(Level level, int delta) {
+        lastShotTime += delta;
         if (takingTurn) {
-            if (r.nextInt(5) == 0) {
-                if (shotsTaken < shotsPerTurn) {
+            if (shotsTaken < shotsPerTurn) {
+                if (r.nextInt(10) == 0 && lastShotTime >= 50) {
                     System.out.println("Shot Fired");
                     shotsTaken++;
-                } else {
-                    turnOver = true;
-                    takingTurn = false;
+                    lastShotTime = 0;
+                    ArrayList<PathFollower> valid = level.getTargets(getX(),getY(),40);
+                    if(valid.size() == 0){
+                        lastShotTime = 0;
+                        shotsTaken++;
+                        return update(level,delta);
+                    }else{
+                        PathFollower target = valid.get(r.nextInt(valid.size()));
+                        return new TestProjectile(getX(), getY(), new Point((int)target.getX() + Tile.TILE_SIZE/2, (int)target.getY() + Tile.TILE_SIZE/2));
+                    }
                 }
+            } else {
+                turnOver = true;
+                takingTurn = false;
             }
+
         }
+        return null;
     }
 
     public abstract Tower copy();

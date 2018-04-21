@@ -36,13 +36,12 @@ public class Level {
     private Point startPoint, endPoint;
     public static final HashMap<String, String> colourToTile = new HashMap<>();
 
-    private Turn currentTurn = Turn.PLAYER_TURN;
+    public Turn currentTurn = Turn.PLAYER_TURN;
 
     private ArrayList<PathFollower> pathFollowers = new ArrayList<>();
     private ArrayList<Tower> towers = new ArrayList<>();
     private ArrayList<Projectile> projectiles = new ArrayList<>();
 
-    private boolean canChangeTurn = false;
 
     static {
         colourToTile.put("3B9415", "GrassTile");
@@ -64,24 +63,23 @@ public class Level {
             }
         }
 
-        for(PathFollower p : pathFollowers){
+        for (PathFollower p : pathFollowers) {
             p.render(g);
         }
 
-        for(Tower t : towers){
+        for (Tower t : towers) {
             t.render(g);
         }
 
-        for(Projectile p : projectiles){
+        for (Projectile p : projectiles) {
             p.render(g);
         }
-        g.drawString(currentTurn.name(),-40,-40);
-        g.drawString(canChangeTurn + "",-40,-80);
+        g.drawString(currentTurn.name(), -40, -40);
     }
 
     public static final Random r = new Random();
 
-    public void update(InGameState parent) {
+    public void update(InGameState parent, int delta) {
         for (Tile[] t : tiles) {
             for (Tile tile : t) {
                 if (tile != null)
@@ -89,68 +87,70 @@ public class Level {
             }
         }
 
-        if(currentTurn == Turn.TOWER_TURN){
+        if (currentTurn == Turn.TOWER_TURN) {
             boolean allDone = true;
-            for(Tower t : towers){
-                t.update(this);
-                if(!t.isTurnOver())
+            for (Tower t : towers) {
+                Projectile p = t.update(this, delta);
+                if (p != null)
+                    projectiles.add(p);
+                if (!t.isTurnOver())
                     allDone = false;
             }
-            for(Projectile p : projectiles){
+            for (Projectile p : projectiles) {
                 p.update(this);
-                if(!p.isDead())
+                if (!p.isDead())
                     allDone = false;
             }
-            if(allDone){
+            if (allDone) {
                 System.out.println("Tower turn over");
                 toggleTurn();
             }
         }
 
-        if(currentTurn == Turn.COMPUTER_TURN){
+        if (currentTurn == Turn.COMPUTER_TURN) {
             boolean allDone = true;
-            for(PathFollower t : pathFollowers){
+            for (PathFollower t : pathFollowers) {
                 t.update(this);
-                if(t.isMoving())
+                if (t.isMoving())
                     allDone = false;
             }
-            if(allDone){
+            if (allDone) {
                 System.out.println("Computer turn over");
                 toggleTurn();
             }
         }
 
         Iterator<PathFollower> pI = pathFollowers.iterator();
-        while(pI.hasNext()){
-            if(pI.next().isDead())
+        while (pI.hasNext()) {
+            if (pI.next().isDead())
                 pI.remove();
         }
 
 
         Iterator<Projectile> eI = projectiles.iterator();
-        while(eI.hasNext()){
-            if(eI.next().isDead())
+        while (eI.hasNext()) {
+            if (eI.next().isDead())
                 eI.remove();
         }
 
     }
 
-    public void toggleTurn(){
-        if(currentTurn == Turn.PLAYER_TURN){
+    public void toggleTurn() {
+        if (currentTurn == Turn.PLAYER_TURN) {
             System.out.println("Starting towers");
 
             currentTurn = Turn.TOWER_TURN;
-            for(Tower t : towers){
+            for (Tower t : towers) {
                 t.newTurn(this);
             }
-        }else if(currentTurn == Turn.TOWER_TURN){
+        } else if (currentTurn == Turn.TOWER_TURN) {
             currentTurn = Turn.COMPUTER_TURN;
-            if(Keyboard.isKeyDown(Keyboard.KEY_V)){
-                pathFollowers.add(new TestEntity(startPoint.x * Tile.TILE_SIZE,startPoint.y * Tile.TILE_SIZE));
+            if (Keyboard.isKeyDown(Keyboard.KEY_V)) {
+                pathFollowers.add(new TestEntity(startPoint.x * Tile.TILE_SIZE, startPoint.y * Tile.TILE_SIZE));
             }
-            for(PathFollower p : pathFollowers)
+            for (PathFollower p : pathFollowers)
                 p.nextStep(this);
-        }else{
+        } else {
             currentTurn = Turn.PLAYER_TURN;
         }
     }
@@ -171,6 +171,19 @@ public class Level {
         return tiles[x][y];
     }
 
+
+    public ArrayList<PathFollower> getTargets(float tX, float tY, float range) {
+        ArrayList<PathFollower> e = new ArrayList<>();
+        for (PathFollower p : pathFollowers) {
+            float xSpeed = p.getX() - tX;
+            float ySpeed = p.getY() - tY;
+            float factor = (float) (Math.sqrt(xSpeed * xSpeed + ySpeed * ySpeed));
+            if (factor <= range) {
+                e.add(p);
+            }
+        }
+        return e;
+    }
 
     public int getWidth() {
         return width;
@@ -198,11 +211,11 @@ public class Level {
                 System.out.println(hex);
                 if (hex.equals(startTile)) {
                     level.setTileAt(new DirtTile(x, y), x, y);
-                    level.setStartPoint(new Point(x,y));
+                    level.setStartPoint(new Point(x, y));
                     continue;
                 } else if (hex.equals(endTile)) {
                     level.setTileAt(new DirtTile(x, y), x, y);
-                    level.setEndPoint(new Point(x,y));
+                    level.setEndPoint(new Point(x, y));
                     continue;
                 }
                 String tile = colourToTile.get(hex);
@@ -225,13 +238,13 @@ public class Level {
         Point currentPoint = startPoint;
         while (!currentPoint.equals(endPoint)) {
             points.add(currentPoint);
-            if (level.getTileAt(currentPoint.x, currentPoint.y - 1) instanceof DirtTile && !points.contains(new Point(currentPoint.x,currentPoint.y - 1))) {
+            if (level.getTileAt(currentPoint.x, currentPoint.y - 1) instanceof DirtTile && !points.contains(new Point(currentPoint.x, currentPoint.y - 1))) {
                 currentPoint = new Point(currentPoint.x, currentPoint.y - 1);
-            }else if (level.getTileAt(currentPoint.x, currentPoint.y + 1) instanceof DirtTile && !points.contains(new Point(currentPoint.x,currentPoint.y + 1))) {
+            } else if (level.getTileAt(currentPoint.x, currentPoint.y + 1) instanceof DirtTile && !points.contains(new Point(currentPoint.x, currentPoint.y + 1))) {
                 currentPoint = new Point(currentPoint.x, currentPoint.y + 1);
-            }else if (level.getTileAt(currentPoint.x + 1, currentPoint.y) instanceof DirtTile && !points.contains(new Point(currentPoint.x + 1,currentPoint.y))) {
+            } else if (level.getTileAt(currentPoint.x + 1, currentPoint.y) instanceof DirtTile && !points.contains(new Point(currentPoint.x + 1, currentPoint.y))) {
                 currentPoint = new Point(currentPoint.x + 1, currentPoint.y);
-            }else if (level.getTileAt(currentPoint.x - 1, currentPoint.y) instanceof DirtTile && !points.contains(new Point(currentPoint.x - 1,currentPoint.y))) {
+            } else if (level.getTileAt(currentPoint.x - 1, currentPoint.y) instanceof DirtTile && !points.contains(new Point(currentPoint.x - 1, currentPoint.y))) {
                 currentPoint = new Point(currentPoint.x - 1, currentPoint.y);
             }
         }
@@ -252,15 +265,12 @@ public class Level {
     }
 
     public Point getPathPoint(int pathPos) {
-        if(pathPos >= path.length)
+        if (pathPos >= path.length)
             return null;
         return path[pathPos];
     }
 
-    public void addTower(Tower t){
+    public void addTower(Tower t) {
         this.towers.add(t);
     }
-}
-enum Turn{
-    PLAYER_TURN,COMPUTER_TURN,TOWER_TURN;
 }
