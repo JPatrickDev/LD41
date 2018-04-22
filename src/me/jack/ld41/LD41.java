@@ -3,6 +3,7 @@ package me.jack.ld41;
 import me.jack.ld41.State.GameOverState;
 import me.jack.ld41.State.InGameState;
 import me.jack.ld41.State.LevelSelectState;
+import me.jack.ld41.State.MainMenuState;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
@@ -17,6 +18,7 @@ public class LD41 extends StateBasedGame{
 
     @Override
     public void initStatesList(GameContainer gameContainer) throws SlickException {
+        addState(new MainMenuState());
         addState(new LevelSelectState());
         addState(new InGameState());
         addState(new GameOverState());
