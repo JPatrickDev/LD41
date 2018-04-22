@@ -2,12 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9ea413a-def3-441f-af2e-8d9998da41ba" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jack/ld41/Entity/EntityFour.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jack/ld41/Entity/EntityThree.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/enemies.png" afterPath="$PROJECT_DIR$/res/enemies.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jack/ld41/Tower/TowerFour.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jack/ld41/Tower/TowerTwo.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jack/ld41/Weapon/Weapons/BasicAOETurret.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jack/ld41/Weapon/Weapons/BasicMissleLauncher.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/Tower/TestTower.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/Tower/TestTowerTwo.class" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/res/levels/level.png" afterPath="$PROJECT_DIR$/res/levels/1.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/me/jack/ld41/Tower/TestTower.java" afterPath="$PROJECT_DIR$/src/me/jack/ld41/Tower/TowerOne.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/me/jack/ld41/Tower/TestTowerTwo.java" afterPath="$PROJECT_DIR$/src/me/jack/ld41/Tower/TowerThree.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/GUI/Elements/LevelSelectElement.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/GUI/Elements/LevelSelectElement.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/GUI/GUIArea.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/GUI/GUIArea.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/InGameState$1.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/InGameState$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/InGameState$2.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/InGameState$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/InGameState$3.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/InGameState$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/InGameState.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/InGameState.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/LevelSelectState.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/LevelSelectState.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/MainMenuState$1.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/MainMenuState$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/MainMenuState.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/MainMenuState.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/towers.png" afterPath="$PROJECT_DIR$/res/towers.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/weapons.png" afterPath="$PROJECT_DIR$/res/weapons.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jack/ld41/Entity/Projectile/EntityProjectile.java" afterPath="$PROJECT_DIR$/src/me/jack/ld41/Entity/Projectile/EntityProjectile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jack/ld41/Level/Level.java" afterPath="$PROJECT_DIR$/src/me/jack/ld41/Level/Level.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jack/ld41/GUI/Elements/LevelSelectElement.java" afterPath="$PROJECT_DIR$/src/me/jack/ld41/GUI/Elements/LevelSelectElement.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jack/ld41/GUI/GUIArea.java" afterPath="$PROJECT_DIR$/src/me/jack/ld41/GUI/GUIArea.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jack/ld41/State/InGameState.java" afterPath="$PROJECT_DIR$/src/me/jack/ld41/State/InGameState.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jack/ld41/State/LevelSelectState.java" afterPath="$PROJECT_DIR$/src/me/jack/ld41/State/LevelSelectState.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jack/ld41/State/MainMenuState.java" afterPath="$PROJECT_DIR$/src/me/jack/ld41/State/MainMenuState.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/todo.txt" afterPath="$PROJECT_DIR$/todo.txt" />
     </list>
     <ignored path="Game.iws" />
@@ -33,105 +53,100 @@
       <file leaf-file-name="todo.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/todo.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.84444445">
-              <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.75555557">
+              <caret line="88" column="22" selection-start-line="88" selection-start-column="22" selection-end-line="88" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Level.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Level/Level.java">
+      <file leaf-file-name="MainMenuState.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/State/MainMenuState.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="375" column="22" selection-start-line="375" selection-start-column="22" selection-end-line="375" selection-end-column="22" />
+              <caret line="37" column="55" selection-start-line="37" selection-start-column="55" selection-end-line="37" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LevelSelectState.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/State/LevelSelectState.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LevelSelectElement.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/GUI/Elements/LevelSelectElement.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GUIArea.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/GUI/GUIArea.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="72" column="28" selection-start-line="72" selection-start-column="28" selection-end-line="72" selection-end-column="28" />
               <folding>
-                <element signature="e#13145#13146#0" expanded="true" />
-                <element signature="e#13184#13185#0" expanded="true" />
+                <element signature="e#1693#1694#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EntityProjectile.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Entity/Projectile/EntityProjectile.java">
+      <file leaf-file-name="TowerFour.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Tower/TowerFour.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="38" column="33" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
+              <caret line="15" column="98" selection-start-line="15" selection-start-column="98" selection-end-line="15" selection-end-column="98" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EntityOne.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Entity/EntityOne.java">
+      <file leaf-file-name="BasicAOETurret.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Weapon/Weapons/BasicAOETurret.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="40" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EntityTwo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Entity/EntityTwo.java">
+      <file leaf-file-name="TowerOne.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Tower/TowerOne.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EntityThree.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Entity/EntityThree.java">
+      <file leaf-file-name="TowerTwo.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Tower/TowerTwo.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EntityFour.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Entity/EntityFour.java">
+      <file leaf-file-name="TowerThree.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Tower/TowerThree.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Entity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Entity/Entity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="33" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InGameState.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/State/InGameState.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="198" column="0" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#16647#16648#0" expanded="true" />
-                <element signature="e#16693#16694#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AdvancedSmallBullet.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Weapon/Projectiles/AdvancedSmallBullet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="56" selection-start-line="8" selection-start-column="56" selection-end-line="8" selection-end-column="56" />
+              <caret line="16" column="86" selection-start-line="16" selection-start-column="86" selection-end-line="16" selection-end-column="86" />
               <folding />
             </state>
           </provider>
@@ -164,17 +179,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/RoundsPerTurn.java" />
-        <option value="$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/ShotsPerTurn.java" />
-        <option value="$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/RangeUpgrade.java" />
-        <option value="$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/Upgrade.java" />
-        <option value="$PROJECT_DIR$/src/me/jack/ld41/GUI/Elements/TextButton.java" />
-        <option value="$PROJECT_DIR$/src/me/jack/ld41/GUI/Elements/TextArea.java" />
-        <option value="$PROJECT_DIR$/src/me/jack/ld41/State/StateID.java" />
-        <option value="$PROJECT_DIR$/src/me/jack/ld41/GUI/GUIElement.java" />
-        <option value="$PROJECT_DIR$/src/me/jack/ld41/State/LevelSelectState.java" />
-        <option value="$PROJECT_DIR$/src/me/jack/ld41/LD41.java" />
-        <option value="$PROJECT_DIR$/src/me/jack/ld41/State/MainMenuState.java" />
         <option value="$PROJECT_DIR$/src/me/jack/ld41/Weapon.java" />
         <option value="$PROJECT_DIR$/src/me/jack/ld41/Weapon/WeaponType.java" />
         <option value="$PROJECT_DIR$/src/me/jack/ld41/Weapon/Weapon.java" />
@@ -191,8 +195,6 @@
         <option value="$PROJECT_DIR$/src/me/jack/ld41/Weapon/Weapons/Weapon.java" />
         <option value="$PROJECT_DIR$/src/me/jack/ld41/Weapon/Weapons/BasicTurret.java" />
         <option value="$PROJECT_DIR$/src/me/jack/ld41/Entity/Entity.java" />
-        <option value="$PROJECT_DIR$/src/me/jack/ld41/Tower/TestTower.java" />
-        <option value="$PROJECT_DIR$/src/me/jack/ld41/GUI/Elements/LevelSelectElement.java" />
         <option value="$PROJECT_DIR$/src/me/jack/ld41/Entity/PathFollower.java" />
         <option value="$PROJECT_DIR$/src/me/jack/ld41/Entity/TestEntity.java" />
         <option value="$PROJECT_DIR$/src/me/jack/ld41/Tower/TowerUpgrades.java" />
@@ -205,8 +207,6 @@
         <option value="$PROJECT_DIR$/src/me/jack/ld41/GUI/Elements/TowerElement.java" />
         <option value="$PROJECT_DIR$/src/me/jack/ld41/GUI/Elements/UpgradeElement.java" />
         <option value="$PROJECT_DIR$/src/me/jack/ld41/Weapon/Weapons/AdvancedTurret.java" />
-        <option value="$PROJECT_DIR$/src/me/jack/ld41/State/InGameState.java" />
-        <option value="$PROJECT_DIR$/src/me/jack/ld41/Tower/TestTowerTwo.java" />
         <option value="$PROJECT_DIR$/src/me/jack/ld41/Tower/Tower.java" />
         <option value="$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/WeaponUpgrade.java" />
         <option value="$PROJECT_DIR$/src/me/jack/ld41/Weapon/Projectiles/AdvancedSmallBullet.java" />
@@ -214,6 +214,21 @@
         <option value="$PROJECT_DIR$/src/me/jack/ld41/Entity/EntityFour.java" />
         <option value="$PROJECT_DIR$/src/me/jack/ld41/Entity/Projectile/EntityProjectile.java" />
         <option value="$PROJECT_DIR$/src/me/jack/ld41/Level/Level.java" />
+        <option value="$PROJECT_DIR$/src/me/jack/ld41/Tower/TestTower.java" />
+        <option value="$PROJECT_DIR$/src/me/jack/ld41/Tower/TestTowerTwo.java" />
+        <option value="$PROJECT_DIR$/src/me/jack/ld41/Tower/TowerTwo.java" />
+        <option value="$PROJECT_DIR$/src/me/jack/ld41/Weapon/Weapons/BasicMissleLauncher.java" />
+        <option value="$PROJECT_DIR$/src/me/jack/ld41/Weapon/Weapons/BasicAOETurrent.java" />
+        <option value="$PROJECT_DIR$/src/me/jack/ld41/Weapon/Weapons/basicAOETurrent.java" />
+        <option value="$PROJECT_DIR$/src/me/jack/ld41/State/InGameState.java" />
+        <option value="$PROJECT_DIR$/src/me/jack/ld41/Weapon/Weapons/BasicAOETurret.java" />
+        <option value="$PROJECT_DIR$/src/me/jack/ld41/Tower/TowerThree.java" />
+        <option value="$PROJECT_DIR$/src/me/jack/ld41/Tower/TowerFour.java" />
+        <option value="$PROJECT_DIR$/src/me/jack/ld41/Tower/TowerOne.java" />
+        <option value="$PROJECT_DIR$/src/me/jack/ld41/State/MainMenuState.java" />
+        <option value="$PROJECT_DIR$/src/me/jack/ld41/GUI/GUIArea.java" />
+        <option value="$PROJECT_DIR$/src/me/jack/ld41/GUI/Elements/LevelSelectElement.java" />
+        <option value="$PROJECT_DIR$/src/me/jack/ld41/State/LevelSelectState.java" />
         <option value="$PROJECT_DIR$/todo.txt" />
       </list>
     </option>
@@ -627,10 +642,10 @@
       <recent name="C:\Users\Jack\Documents\Ludum Dare\LD41\Game\res\levels" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="me.jack.ld41.Entity" />
-      <recent name="me.jack.ld41.Weapon.Projectiles" />
       <recent name="me.jack.ld41.Weapon.Weapons" />
       <recent name="me.jack.ld41.Tower" />
+      <recent name="me.jack.ld41.Entity" />
+      <recent name="me.jack.ld41.Weapon.Projectiles" />
       <recent name="me.jack.ld41.Tower.Upgrades" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
@@ -949,6 +964,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41197917" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -959,7 +975,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13541667" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1000,66 +1015,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_66/src.zip!/java/lang/Runtime.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.50614756">
-          <caret line="108" column="19" selection-start-line="108" selection-start-column="19" selection-end-line="108" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_66/src.zip!/java/lang/System.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8893443">
-          <caret line="970" column="32" selection-start-line="970" selection-start-column="32" selection-end-line="970" selection-end-column="32" />
-          <folding>
-            <element signature="e#40171#40172#0" expanded="false" />
-            <element signature="e#40220#40221#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/tiles.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/State/StateID.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="65" selection-start-line="6" selection-start-column="65" selection-end-line="6" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/slick.jar!/org/newdawn/slick/ImageBuffer.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.3275488">
-          <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/GUI/GUIElement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/State/LevelSelectState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27459016">
-          <caret line="41" column="67" selection-start-line="41" selection-start-column="67" selection-end-line="41" selection-end-column="67" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#597#598#0" expanded="false" />
-            <element signature="e#648#649#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/levels/3.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1070,7 +1025,7 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/levels/level.png">
+    <entry file="file://$PROJECT_DIR$/res/levels/1.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
@@ -1078,16 +1033,6 @@
     <entry file="file://$PROJECT_DIR$/res/levels/2.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/State/MainMenuState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8258197">
-          <caret line="79" column="28" selection-start-line="79" selection-start-column="28" selection-end-line="79" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Weapon/Weapons/WeaponType.java">
@@ -1193,16 +1138,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Weapon/Weapons/BasicTurret.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/RangeUpgrade.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1215,14 +1150,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="66" column="25" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/GUI/Elements/LevelSelectElement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -1299,26 +1226,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Tower/TestTower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="28" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Weapon/Weapons/AdvancedTurret.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="32" column="44" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Tower/TestTowerTwo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="47" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
           <folding />
         </state>
       </provider>
@@ -1377,18 +1288,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/State/InGameState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="198" column="0" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#16647#16648#0" expanded="true" />
-            <element signature="e#16693#16694#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Entity/EntityOne.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1440,10 +1339,122 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Weapon/Weapons/BasicTurret.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="53" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Weapon/Weapons/BasicMissleLauncher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/State/InGameState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="196" column="0" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Weapon/Weapons/BasicAOETurret.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Tower/TowerTwo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Tower/TowerThree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="86" selection-start-line="16" selection-start-column="86" selection-end-line="16" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Tower/TowerFour.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="98" selection-start-line="15" selection-start-column="98" selection-end-line="15" selection-end-column="98" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Tower/TowerOne.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/State/MainMenuState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="55" selection-start-line="37" selection-start-column="55" selection-end-line="37" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/GUI/GUIArea.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.82222223">
+          <caret line="72" column="4" selection-start-line="72" selection-start-column="4" selection-end-line="72" selection-end-column="4" />
+          <folding>
+            <element signature="e#1693#1694#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/GUI/GUIArea.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="72" column="28" selection-start-line="72" selection-start-column="28" selection-end-line="72" selection-end-column="28" />
+          <folding>
+            <element signature="e#1693#1694#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/GUI/Elements/LevelSelectElement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/State/LevelSelectState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/todo.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.84444445">
-          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.75555557">
+          <caret line="88" column="22" selection-start-line="88" selection-start-column="22" selection-end-line="88" selection-end-column="22" />
           <folding />
         </state>
       </provider>

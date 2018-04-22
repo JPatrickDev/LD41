@@ -69,4 +69,8 @@ public class GUIArea {
     public ArrayList<GUIElement> getElements() {
         return elements;
     }
+
+    public int getHeight() {
+        return height;
+    }
 }

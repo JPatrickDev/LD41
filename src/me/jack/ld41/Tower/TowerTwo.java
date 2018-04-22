@@ -10,9 +10,9 @@ import org.newdawn.slick.SlickException;
 /**
  * Created by Jack on 21/04/2018.
  */
-public class TestTowerTwo extends Tower {
+public class TowerTwo extends Tower {
 
-    public TestTowerTwo(int x, int y, int fireRateLevel, int shotsPerTurnLevel, int rangeLevel, int dmgLevel) {
+    public TowerTwo(int x, int y, int fireRateLevel, int shotsPerTurnLevel, int rangeLevel, int dmgLevel) {
         super(x, y, 1, 1,new TowerUpgrades(50,50,2,2,80 * (rangeLevel+1),80,1,1),0,20f,fireRateLevel,shotsPerTurnLevel,rangeLevel,dmgLevel);
     }
 
@@ -40,6 +40,6 @@ public class TestTowerTwo extends Tower {
 
     @Override
     public Tower copy() {
-        return new TestTowerTwo(getX(), getY(),getFireRateLevel(),getShotsPerTurnLevel(),getRangeLevel(),getDmgLevel());
+        return new TowerTwo(getX(), getY(),getFireRateLevel(),getShotsPerTurnLevel(),getRangeLevel(),getDmgLevel());
     }
 }

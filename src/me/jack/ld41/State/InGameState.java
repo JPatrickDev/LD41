@@ -8,9 +8,7 @@ import me.jack.ld41.Level.Level;
 import me.jack.ld41.Level.Tile.DirtTile;
 import me.jack.ld41.Level.Tile.Tile;
 import me.jack.ld41.Level.Turn;
-import me.jack.ld41.Tower.TestTower;
-import me.jack.ld41.Tower.TestTowerTwo;
-import me.jack.ld41.Tower.Tower;
+import me.jack.ld41.Tower.*;
 import me.jack.ld41.Tower.Upgrades.RangeUpgrade;
 import me.jack.ld41.Tower.Upgrades.ShotsPerTurn;
 import me.jack.ld41.Tower.Upgrades.Upgrade;
@@ -198,12 +196,12 @@ public class InGameState extends BasicGameState {
         hudGUIArea.addElement(weaponUpgrade);
 
 
-        // inHand = new TestTower(0, 0);
+        // inHand = new TowerOne(0, 0);
         towers.clear();
-        for (int i = 0; i != 2; i++) {
-            towers.add(new TestTower(0, 0, 0, 0, 0, 0));
-            towers.add(new TestTowerTwo(0, 0, 0, 0, 0, 0));
-        }
+        towers.add(new TowerOne(0, 0, 0, 0, 0, 0));
+        towers.add(new TowerTwo(0, 0, 0, 0, 0, 0));
+        towers.add(new TowerThree(0, 0, 0, 0, 0, 0));
+        towers.add(new TowerFour(0, 0, 0, 0, 0, 0));
         GUIElementListener listener = new GUIElementListener() {
             @Override
             public void mouseDown(int x, int y, int button, GUIElement element) {
@@ -282,10 +280,11 @@ public class InGameState extends BasicGameState {
     }
 
     Image upgradesOverlay = null;
+
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
 
-        if(upgradesOverlay == null)
+        if (upgradesOverlay == null)
             upgradesOverlay = new Image("res/upgradesOverlay.png");
 
         graphics.translate(gameArea.getWidth() / 2 - (level.getWidth() * Tile.TILE_SIZE) / 2, gameArea.getHeight() / 2 - (level.getHeight() * Tile.TILE_SIZE) / 2);
@@ -323,8 +322,8 @@ public class InGameState extends BasicGameState {
         hudGUIArea.render(graphics);
         skipGUIArea.render(graphics);
         graphics.resetTransform();
-        if(currentlySelected == null){
-            graphics.drawImage(upgradesOverlay,263,362);
+        if (currentlySelected == null) {
+            graphics.drawImage(upgradesOverlay, 263, 362);
         }
     }
 

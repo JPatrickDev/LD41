@@ -35,7 +35,7 @@ public class MainMenuState extends BasicGameState {
     public void enter(GameContainer container, StateBasedGame game) throws SlickException {
         super.enter(container, game);
 
-        area = new GUIArea(0, 0, container.getWidth(), container.getHeight());
+        area = new GUIArea(container.getWidth()/2 - 150, 100, 300, container.getHeight() - 200);
         GUIElementListener listener = new GUIElementListener() {
             @Override
             public void mouseDown(int x, int y, int button, GUIElement element) {
@@ -50,7 +50,8 @@ public class MainMenuState extends BasicGameState {
                             System.exit(0);
                             break;
                         case "Play":
-                            game.enterState(StateID.LEVEL_SELECT.getID()); break;
+                            game.enterState(StateID.LEVEL_SELECT.getID());
+                            break;
                     }
                 }
             }
@@ -65,13 +66,13 @@ public class MainMenuState extends BasicGameState {
 
             }
         };
-        TextButton backToLevelSelect = new TextButton("Play", 0, 100, container.getWidth(), 40, Color.orange, Color.black);
+        TextButton backToLevelSelect = new TextButton("Play", 0, 100, area.getWidth(), 40, Color.orange, Color.black);
         backToLevelSelect.setListener(listener);
-        TextButton backToMain = new TextButton("Settings", 0, 150, container.getWidth(), 40, Color.orange, Color.black);
+        TextButton backToMain = new TextButton("Settings", 0, 150, area.getWidth(), 40, Color.orange, Color.black);
         backToMain.setListener(listener);
-        TextButton quit = new TextButton("About", 0, 200, container.getWidth(), 40, Color.orange, Color.black);
+        TextButton quit = new TextButton("About", 0, 200, area.getWidth(), 40, Color.orange, Color.black);
         quit.setListener(listener);
-        TextButton exit = new TextButton("Quit", 0, 250, container.getWidth(), 40, Color.orange, Color.black);
+        TextButton exit = new TextButton("Quit", 0, 250, area.getWidth(), 40, Color.orange, Color.black);
         exit.setListener(listener);
 
         area.addElement(backToLevelSelect);

@@ -39,8 +39,6 @@ public class LevelSelectElement extends GUIElement {
     @Override
     public void render(Graphics graphics) {
         graphics.drawImage(img, getWidth() / 2 - img.getWidth() / 2, getHeight() / 2 - img.getHeight() / 2);
-        graphics.drawString(name,0,0);
-
     }
 
     @Override

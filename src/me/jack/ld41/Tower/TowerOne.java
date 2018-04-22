@@ -1,21 +1,18 @@
 package me.jack.ld41.Tower;
 
-import me.jack.ld41.Level.Level;
-import me.jack.ld41.Level.Tile.Tile;
 import me.jack.ld41.Weapon.Common.WeaponGroup;
 import me.jack.ld41.Weapon.Weapons.BasicTurret;
 import me.jack.ld41.Weapon.Weapons.Weapon;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
 /**
  * Created by Jack on 21/04/2018.
  */
-public class TestTower extends Tower {
+public class TowerOne extends Tower {
 
-    public TestTower(int x, int y,int fireRateLevel, int shotsPerTurnLevel,int rangeLevel, int dmgLevel) {
-        super(x, y, 1, 1,new TowerUpgrades(50,50,1,1,40 * (rangeLevel+1),40,1,1),0,8f,fireRateLevel,shotsPerTurnLevel,rangeLevel,dmgLevel);
+    public TowerOne(int x, int y, int fireRateLevel, int shotsPerTurnLevel, int rangeLevel, int dmgLevel) {
+        super(x, y, 1, 1,new TowerUpgrades(50,50,1,1,45 * (rangeLevel+1),45,1,1),0,8f,fireRateLevel,shotsPerTurnLevel,rangeLevel,dmgLevel);
     }
 
     @Override
@@ -35,6 +32,6 @@ public class TestTower extends Tower {
 
     @Override
     public Tower copy() {
-        return new TestTower(getX(), getY(),getFireRateLevel(),getShotsPerTurnLevel(),getRangeLevel(),getDmgLevel());
+        return new TowerOne(getX(), getY(),getFireRateLevel(),getShotsPerTurnLevel(),getRangeLevel(),getDmgLevel());
     }
 }

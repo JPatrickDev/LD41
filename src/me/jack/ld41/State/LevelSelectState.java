@@ -45,6 +45,9 @@ public class LevelSelectState extends BasicGameState {
                     InGameState.path = "res/levels/" + path;
                     stateBasedGame.enterState(StateID.IN_GAME.getID());
                 }
+                if(element instanceof TextButton){
+                    stateBasedGame.enterState(StateID.MAIN_MENU.getID());
+                }
             }
 
             @Override
@@ -59,12 +62,23 @@ public class LevelSelectState extends BasicGameState {
         };
 
         String[] levels = new File("res/levels/").list();
-        int width = (int) ((double)gameContainer.getWidth() / (double)levels.length);
+        int width = (int) ((double)gameContainer.getWidth() / 2);
         int x = 0;
+        int y = 0;
+        int i = 0;
         for(String l : levels){
-            area.addElement(new LevelSelectElement(l,Level.fromImage(new Image("res/levels/" + l)),x,50,width,width).setListener(listener));
+            area.addElement(new LevelSelectElement(l,Level.fromImage(new Image("res/levels/" + l)),x,y,width,width).setListener(listener));
             x+=width;
+            i++;
+            if(i >= 2){
+                x = 0;
+                y += width;
+                i = 0;
+            }
         }
+        TextButton back = new TextButton("Back To Main Menu",0,area.getHeight() - 30,area.getWidth(),30,Color.orange,Color.black);
+        back.setListener(listener);
+        area.addElement(back);
     }
 
     @Override
