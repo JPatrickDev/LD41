@@ -33,18 +33,18 @@ public class InGameState extends BasicGameState {
 
     public static String path;
     Level level = null;
-    private Rectangle gameArea = new Rectangle(0, 0, 420, 330), towerSelectArea = new Rectangle(420, 0, 160, 330), hud = new Rectangle(0, 330, 580, 150);
+    private Rectangle gameArea = new Rectangle(0, 0, 330, 330), towerSelectArea = new Rectangle(330, 0, 160, 170), hud = new Rectangle(0, 330, 580, 160), skipArea = new Rectangle(330, 170, 160, 330 - 100);
 
     private Tower inHand = null;
     public ArrayList<Tower> towers = new ArrayList<>();
     private HashMap<java.awt.Rectangle, Tower> rectToTower;
 
 
-    private GUIArea towersGUIArea, hudGUIArea;
+    private GUIArea towersGUIArea, hudGUIArea, skipGUIArea;
 
     int turnCount = 0;
     TextArea turnCounter, turnDisplay, livesDisplay, expDisplay, moneyDisplay, roundDisplay;
-    TextButton skip5Turns, skip10Turns;
+    TextButton skip5Turns, skip10Turns,skipRoundTurns,skip20Turns;
 
     ArrayList<UpgradeElement> upgrades = new ArrayList<>();
 
@@ -56,8 +56,8 @@ public class InGameState extends BasicGameState {
     }
 
     public void createUI() throws SlickException {
-        towersGUIArea = new GUIArea(420, 0, 160, 330);
-        towersGUIArea.addElement(new TextArea("Towers", 0, 0, 160, 30));
+        towersGUIArea = new GUIArea(330, 0, 160, 170);
+        towersGUIArea.addElement(new TextArea("Towers", 0, 7, 160, 30));
 
         hudGUIArea = new GUIArea(0, 330, 580, 150);
         turnCounter = new TextArea("Turn: " + turnCount, 0, 0, 200, 20, Color.yellow, Color.black);
@@ -90,13 +90,16 @@ public class InGameState extends BasicGameState {
             public void mouseUp(int x, int y, GUIElement element) {
                 if (element instanceof TextButton) {
                     switch (((TextButton) element).getText()) {
-                        case "Skip 5 Turns":
+                        case "5 Turns":
                             level.skipTurns(5);
                             break;
-                        case "Skip 10 Turns":
+                        case "10 Turns":
                             level.skipTurns(10);
                             break;
-                        case "Skip To Next Round":
+                        case "20 Turns":
+                            level.skipTurns(20);
+                            break;
+                        case "Next Round":
                             level.skipTurns(-1);
                             break;
                     }
@@ -114,17 +117,26 @@ public class InGameState extends BasicGameState {
             }
         };
 
-        skip5Turns = new TextButton("Skip 5 Turns", hudGUIArea.getWidth() - 200, 0, 200, 20, Color.magenta, Color.black);
+        skipGUIArea = new GUIArea((int) skipArea.getX(), (int) skipArea.getY(), (int) skipArea.getWidth(), (int) skipArea.getHeight());
+
+        TextArea skipTitle = new TextArea("Skip Turns:", 0, 0, (int) skipArea.getWidth(), 20);
+        skipGUIArea.addElement(skipTitle);
+        skip5Turns = new TextButton("5 Turns", 14,21 , (int) skipArea.getWidth() - 28, 25, Color.pink, Color.black);
         skip5Turns.setListener(skipListener);
-        hudGUIArea.addElement(skip5Turns);
+        skipGUIArea.addElement(skip5Turns);
 
-        skip10Turns = new TextButton("Skip 10 Turns", hudGUIArea.getWidth() - 200, 20, 200, 20, Color.pink, Color.black);
+        skip10Turns = new TextButton("10 Turns", 14, 56, (int) skipArea.getWidth()- 28, 25, Color.pink, Color.black);
         skip10Turns.setListener(skipListener);
-        hudGUIArea.addElement(skip10Turns);
+        skipGUIArea.addElement(skip10Turns);
 
-        skip10Turns = new TextButton("Skip To Next Round", hudGUIArea.getWidth() - 200, 40, 200, 20, Color.pink, Color.black);
-        skip10Turns.setListener(skipListener);
-        hudGUIArea.addElement(skip10Turns);
+
+        skip20Turns = new TextButton("20 Turns", 14, 91, (int) skipArea.getWidth()- 28, 25, Color.pink, Color.black);
+        skip20Turns.setListener(skipListener);
+        skipGUIArea.addElement(skip20Turns);
+
+        skipRoundTurns = new TextButton("Next Round", 14, 126, (int) skipArea.getWidth()- 28, 25, Color.pink, Color.black);
+        skipRoundTurns.setListener(skipListener);
+        skipGUIArea.addElement(skipRoundTurns);
         GUIElementListener upgradesListener = new GUIElementListener() {
             @Override
             public void mouseDown(int x, int y, int button, GUIElement element) {
@@ -169,8 +181,10 @@ public class InGameState extends BasicGameState {
 
 
         // inHand = new TestTower(0, 0);
-        towers.add(new TestTower(0, 0, 0, 0, 0, 0));
-        towers.add(new TestTowerTwo(0, 0, 0, 0, 0, 0));
+        for (int i = 0; i != 2; i++) {
+            towers.add(new TestTower(0, 0, 0, 0, 0, 0));
+            towers.add(new TestTowerTwo(0, 0, 0, 0, 0, 0));
+        }
         GUIElementListener listener = new GUIElementListener() {
             @Override
             public void mouseDown(int x, int y, int button, GUIElement element) {
@@ -201,14 +215,15 @@ public class InGameState extends BasicGameState {
         int startY = 30;
         int x = 0;
         int y = startY;
-        int width = towersGUIArea.getWidth() / 4;
+        int width = (towersGUIArea.getWidth() - 60) / 2;
+        x = 22;
         int height = width;
         for (Tower t : towers) {
             towersGUIArea.addElement(new TowerElement(t, x, y, width, height).setListener(listener));
-            x += width;
-            if (x >= width * 4) {
-                x = 0;
-                y += height;
+            x += width + 24 - 8;
+            if (x >= width * 2) {
+                x = 22;
+                y += height + 20;
             }
         }
     }
@@ -245,24 +260,27 @@ public class InGameState extends BasicGameState {
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
 
         graphics.translate(gameArea.getWidth() / 2 - (level.getWidth() * Tile.TILE_SIZE) / 2, gameArea.getHeight() / 2 - (level.getHeight() * Tile.TILE_SIZE) / 2);
-        level.render(graphics,this);
+        level.render(graphics, this);
         graphics.resetTransform();
-        graphics.setColor(Color.red);
+      /*  graphics.setColor(Color.red);
         graphics.fill(towerSelectArea);
         graphics.setColor(Color.blue);
         graphics.fill(hud);
         graphics.setColor(Color.white);
+        graphics.fill(skipArea);*/
+
+        graphics.drawImage(new Image("res/guiOverlay.png"),0,0);
         if (inHand != null) {
             Tile currentMouseTile = getCurrentMouseTile(gameContainer);
             if (currentMouseTile == null || currentMouseTile instanceof DirtTile) {
                 int mX = gameContainer.getInput().getMouseX();
                 int mY = gameContainer.getInput().getMouseY();
                 graphics.translate(mX - inHand.getWidth() * Tile.TILE_SIZE, mY - inHand.getHeight() * Tile.TILE_SIZE);
-                inHand.render(graphics,false);
+                inHand.render(graphics, false);
             } else if (currentMouseTile != null) {
                 graphics.translate(gameArea.getWidth() / 2 - (level.getWidth() * Tile.TILE_SIZE) / 2, gameArea.getHeight() / 2 - (level.getHeight() * Tile.TILE_SIZE) / 2);
                 graphics.translate(currentMouseTile.getX() * Tile.TILE_SIZE, currentMouseTile.getY() * Tile.TILE_SIZE);
-                inHand.render(graphics,false);
+                inHand.render(graphics, false);
                 graphics.setColor(Color.green);
                 graphics.drawRect(0, 0, inHand.getWidth() * Tile.TILE_SIZE, inHand.getHeight() * Tile.TILE_SIZE);
             }
@@ -274,6 +292,7 @@ public class InGameState extends BasicGameState {
         graphics.resetTransform();
         towersGUIArea.render(graphics);
         hudGUIArea.render(graphics);
+        skipGUIArea.render(graphics);
     }
 
     @Override
@@ -307,6 +326,7 @@ public class InGameState extends BasicGameState {
         super.mousePressed(button, x, y);
         towersGUIArea.mouseDown(x - towersGUIArea.getX(), y - towersGUIArea.getY(), button);
         hudGUIArea.mouseDown(x - hudGUIArea.getX(), y - hudGUIArea.getY(), button);
+        skipGUIArea.mouseDown(x - skipGUIArea.getX(), y - skipGUIArea.getY(), button);
         if (gameArea.contains(x, y)) {
             Tower towerAt = getMouseTower(x, y);
             if (inHand != null && towerAt == null) {
@@ -346,6 +366,7 @@ public class InGameState extends BasicGameState {
         super.mouseReleased(button, x, y);
         towersGUIArea.mouseUp(x - towersGUIArea.getX(), y - towersGUIArea.getY());
         hudGUIArea.mouseUp(x - hudGUIArea.getX(), y - hudGUIArea.getY());
+        skipGUIArea.mouseUp(x - skipGUIArea.getX(), y - skipGUIArea.getY());
     }
 
     @Override

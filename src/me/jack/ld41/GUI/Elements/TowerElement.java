@@ -27,7 +27,7 @@ public class TowerElement extends GUIElement {
         graphics.translate(-1 * (getWidth() / 2 - (tower.getWidth() * Tile.TILE_SIZE) / 2), -1 * (getHeight() / 2 - (tower.getHeight() * Tile.TILE_SIZE) / 2));
         graphics.setColor(Color.white);
         //TODO: Red text if player can't afford
-        graphics.drawString(tower.getCost() + "",0,0);
+        graphics.drawString(tower.getCost() + "",0,getHeight());
         if(!isUnlocked){
             graphics.setColor(new Color(255,0,0,180));
             graphics.fillRect(0,0,getWidth(),getHeight());

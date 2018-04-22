@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) throws SlickException {
         AppGameContainer agc = new AppGameContainer(new LD41("LD41 - Theme: XXXX"));
-        agc.setDisplayMode(580,480,false);
+        agc.setDisplayMode(490,490,false);
         agc.setTargetFrameRate(60);
         agc.start();
     }
