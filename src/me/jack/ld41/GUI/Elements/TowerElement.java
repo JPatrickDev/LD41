@@ -3,9 +3,7 @@ package me.jack.ld41.GUI.Elements;
 import me.jack.ld41.GUI.GUIElement;
 import me.jack.ld41.Level.Tile.Tile;
 import me.jack.ld41.Tower.Tower;
-import org.newdawn.slick.Color;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
+import org.newdawn.slick.*;
 
 /**
  * Created by Jack on 21/04/2018.
@@ -13,8 +11,15 @@ import org.newdawn.slick.Graphics;
 public class TowerElement extends GUIElement {
     private Tower tower;
     public boolean isUnlocked = false;
+    private static Image padlock;
     public TowerElement(Tower tower, int x, int y, int width, int height) {
         super(x, y, width, height);
+        if(padlock == null)
+            try {
+                padlock = new Image("res/padlock.png");
+            } catch (SlickException e) {
+                e.printStackTrace();
+            }
         this.tower = tower;
     }
 
@@ -29,8 +34,9 @@ public class TowerElement extends GUIElement {
         //TODO: Red text if player can't afford
         graphics.drawString(tower.getCost() + "",0,getHeight());
         if(!isUnlocked){
-            graphics.setColor(new Color(255,0,0,180));
-            graphics.fillRect(0,0,getWidth(),getHeight());
+          //  graphics.setColor(new Color(255,0,0,180));
+           // graphics.fillRect(0,0,getWidth(),getHeight());
+            graphics.drawImage(padlock,getWidth()/2 - padlock.getWidth()/2,getHeight()/2 - padlock.getHeight()/2);
         }
     }
 
