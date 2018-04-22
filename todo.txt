@@ -97,7 +97,8 @@ Tutorial screens
 GUI improvements
     - Upgrade tooltips
     - **Better upgrade icons**
-All towers need at least one weapon upgrade
+    - Make Enemies flash when hit
+All towers need at least one weapon upgrade/
 Bugs:
     - Fixing effects being buyable after they are maxed/
     - Player should only be able to do anything during the P turn/

@@ -45,7 +45,7 @@ public class Level {
     private int level = 1;
     private int points;
 
-    private float money = 10.0f;
+    private float money = 10000.0f;
 
     private int round = 1;
     private int spawnedThisRound = 0;

@@ -1,9 +1,7 @@
 package me.jack.ld41.Tower;
 
 import me.jack.ld41.Weapon.Common.WeaponGroup;
-import me.jack.ld41.Weapon.Weapons.BasicAOETurret;
-import me.jack.ld41.Weapon.Weapons.BasicMissleLauncher;
-import me.jack.ld41.Weapon.Weapons.Weapon;
+import me.jack.ld41.Weapon.Weapons.*;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
@@ -18,10 +16,17 @@ public class TowerFour extends Tower {
 
     @Override
     public void setUpWeapons() throws SlickException {
-        WeaponGroup group = new WeaponGroup(0, 0, getWidth(), getHeight());
-        Weapon turret = new BasicAOETurret(getWidth() / 2 - 8, getHeight() / 2 - 8);
-        group.addWeaponPart(turret);
-        this.addWeaponGroup(group);
+        if(getDmgLevel() >= 2){
+            WeaponGroup group = new WeaponGroup(0, 0, getWidth(), getHeight());
+            Weapon turret = new AdvancedAOETurret(getWidth() / 2 - 8, getHeight() / 2 - 8);
+            group.addWeaponPart(turret);
+            this.addWeaponGroup(group);
+        }else {
+            WeaponGroup group = new WeaponGroup(0, 0, getWidth(), getHeight());
+            Weapon turret = new BasicAOETurret(getWidth() / 2 - 8, getHeight() / 2 - 8);
+            group.addWeaponPart(turret);
+            this.addWeaponGroup(group);
+        }
     }
 
     @Override
