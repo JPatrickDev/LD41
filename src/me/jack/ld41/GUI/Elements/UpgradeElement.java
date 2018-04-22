@@ -13,7 +13,7 @@ import org.newdawn.slick.Graphics;
  */
 public class UpgradeElement extends GUIElement {
     private Upgrade upgrade;
-    public boolean isUnlocked = false;
+    public boolean isUnlocked = true;
 
     public UpgradeElement(Upgrade upgrade, int x, int y, int width, int height) {
         super(x, y, width, height);
@@ -22,13 +22,13 @@ public class UpgradeElement extends GUIElement {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.setColor(Color.green);
-        graphics.fillRect(0, 0, getWidth(), getHeight());
-        graphics.translate(getWidth() / 2 - (Tile.TILE_SIZE * 2) / 2, getHeight() / 2 - (Tile.TILE_SIZE * 2) / 2);
+        graphics.setColor(Color.black);
+        graphics.drawRect(0, 0, getWidth(), getHeight());
+        graphics.translate(getWidth() / 2 - 16, getHeight() / 2 - 16);
         if (upgrade != null) {
             upgrade.render(graphics);
         }
-        graphics.translate(-1 * (getWidth() / 2 - (Tile.TILE_SIZE * 2) / 2), -1 * (getHeight() / 2 - (Tile.TILE_SIZE * 2) / 2));
+        graphics.translate(-1 * (getWidth() / 2 - 16), -1 * (getHeight() / 2 - 16));
         graphics.setColor(Color.white);
         if (!isUnlocked) {
             graphics.setColor(new Color(255, 0, 0, 180));
@@ -36,9 +36,10 @@ public class UpgradeElement extends GUIElement {
         }
         if (upgrade != null) {
             graphics.setColor(Color.white);
-            graphics.drawString(upgrade.getCost() + "", 0, 0);
+            graphics.drawString(upgrade.getCost() + "", getWidth()/2 - graphics.getFont().getWidth(upgrade.getCost() + "")/2, getHeight() - graphics.getFont().getLineHeight() + 5);
         }
     }
+
     @Override
     public void update(GameContainer container) {
 

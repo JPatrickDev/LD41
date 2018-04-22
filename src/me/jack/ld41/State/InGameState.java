@@ -14,6 +14,7 @@ import me.jack.ld41.Tower.Tower;
 import me.jack.ld41.Tower.Upgrades.RangeUpgrade;
 import me.jack.ld41.Tower.Upgrades.ShotsPerTurn;
 import me.jack.ld41.Tower.Upgrades.Upgrade;
+import me.jack.ld41.Tower.Upgrades.WeaponUpgrade;
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
@@ -41,7 +42,7 @@ public class InGameState extends BasicGameState {
 
     int turnCount = 0;
     TextArea turnCounter, livesDisplay, expDisplay, moneyDisplay, roundDisplay;
-    TextButton skip5Turns, skip10Turns, skipRoundTurns, skip20Turns;
+    TextButton skip5Turns, skip10Turns, skipRoundTurns, skip20Turns, instructions, backToMain;
 
     EXPElement exp, round;
 
@@ -64,7 +65,7 @@ public class InGameState extends BasicGameState {
         turnCounter = new TextArea("Turn: " + turnCount, 6, 6, 75, 17);
         hudGUIArea.addElement(turnCounter);
 
-        turnDisplay = new TurnDisplayElement(118,45,94,42);
+        turnDisplay = new TurnDisplayElement(118, 45, 94, 42);
         hudGUIArea.addElement(turnDisplay);
 
         livesDisplay = new TextArea("Lives Remaining: " + level.getLivesLeft(), 6, 109, 206, 17);
@@ -138,6 +139,15 @@ public class InGameState extends BasicGameState {
         skipRoundTurns = new TextButton("Next Round", 14, 126, (int) skipArea.getWidth() - 28, 25, Color.pink, Color.black);
         skipRoundTurns.setListener(skipListener);
         skipGUIArea.addElement(skipRoundTurns);
+
+        instructions = new TextButton("Tutorial", 234, 105, 110, 25, Color.pink, Color.black);
+        instructions.setListener(skipListener);
+        hudGUIArea.addElement(instructions);
+
+        backToMain = new TextButton("Main Menu", 234 + 113 + 3, 105, 110, 25, Color.pink, Color.black);
+        backToMain.setListener(skipListener);
+        hudGUIArea.addElement(backToMain);
+
         GUIElementListener upgradesListener = new GUIElementListener() {
             @Override
             public void mouseDown(int x, int y, int button, GUIElement element) {
@@ -171,14 +181,21 @@ public class InGameState extends BasicGameState {
 
             }
         };
-        UpgradeElement shotRateUpgrade = new UpgradeElement(new ShotsPerTurn(0), 250, 0, 64, 64);
+        TextArea upgradesTitle = new TextArea("Upgrades:", 232, 0, 230, 17);
+        hudGUIArea.addElement(upgradesTitle);
+        UpgradeElement shotRateUpgrade = new UpgradeElement(new ShotsPerTurn(0), 250, 18, 64, 64);
         shotRateUpgrade.setListener(upgradesListener);
         upgrades.add(shotRateUpgrade);
         hudGUIArea.addElement(shotRateUpgrade);
-        UpgradeElement rangeUpgrade = new UpgradeElement(new RangeUpgrade(0), 250 + 64, 0, 64, 64);
+        UpgradeElement rangeUpgrade = new UpgradeElement(new RangeUpgrade(0), 250 + 64, 18, 64, 64);
         rangeUpgrade.setListener(upgradesListener);
         upgrades.add(rangeUpgrade);
         hudGUIArea.addElement(rangeUpgrade);
+
+        UpgradeElement weaponUpgrade = new UpgradeElement(new WeaponUpgrade(0), 250 + 64 * 2, 18, 64, 64);
+        weaponUpgrade.setListener(upgradesListener);
+        upgrades.add(weaponUpgrade);
+        hudGUIArea.addElement(weaponUpgrade);
 
 
         // inHand = new TestTower(0, 0);
@@ -310,7 +327,7 @@ public class InGameState extends BasicGameState {
         turnCount = level.update(this, i, (int) (gameContainer.getInput().getMouseX() + gameArea.getWidth() / 2 - (level.getWidth() * Tile.TILE_SIZE) / 2), (int) ((int) gameContainer.getInput().getMouseY() + (gameArea.getHeight() / 2 - (level.getHeight() * Tile.TILE_SIZE) / 2)));
         turnCounter.setText("Turn: " + turnCount);
 
-      //  turnDisplay.setText(level.getCurrentTurn().name());
+        //  turnDisplay.setText(level.getCurrentTurn().name());
         livesDisplay.setText("Lives Remaining: " + level.getLivesLeft());
         expDisplay.setText(level.getLevel() + ":" + level.getPoints() + "(" + Math.pow((level.getLevel() + 1) / 2, 2) + ")");
         exp.setNum(level.getLevel());
