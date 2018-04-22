@@ -332,14 +332,14 @@ public class InGameState extends BasicGameState {
 
         lockCheck();
         turnCount = level.update(this, i, (int) (gameContainer.getInput().getMouseX() + gameArea.getWidth() / 2 - (level.getWidth() * Tile.TILE_SIZE) / 2), (int) ((int) gameContainer.getInput().getMouseY() + (gameArea.getHeight() / 2 - (level.getHeight() * Tile.TILE_SIZE) / 2)));
-        turnCounter.setText("Turn: " + turnCount);
+        turnCounter.setText("Turn:" + turnCount);
 
         //  turnDisplay.setText(level.getCurrentTurn().name());
         livesDisplay.setText("Lives Remaining: " + level.getLivesLeft());
         expDisplay.setText(level.getLevel() + ":" + level.getPoints() + "(" + Math.pow((level.getLevel() + 1) / 2, 2) + ")");
         exp.setNum(level.getLevel());
         exp.setScore(level.getPoints(), (float) Math.pow((level.getLevel() + 1) / 2, 2));
-        moneyDisplay.setText("Money:" + level.getMoney());
+        moneyDisplay.setText("Money:" + (int)(level.getMoney()));
         roundDisplay.setText("Round:" + level.getRound() + "(" + level.getToSpawn(level.getRound()) + ")");
         round.setNum(level.getRound());
         round.setScore(level.getSpawnedThisRound(), level.getToSpawn(level.getRound()));

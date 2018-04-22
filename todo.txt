@@ -92,3 +92,11 @@ Balance/?
 Finish main menu/
 Finish level select screen/
 Tutorial screens
+GUI improvements
+Bugs:
+    - Fixing effects being buyable after they are maxed
+    - Player should only be able to do anything during the P turn
+    - Money needs rounding/
+    - Remove space in "Turn: "/
+    - Center cost for towers
+    - Tower price in red if can't afford
