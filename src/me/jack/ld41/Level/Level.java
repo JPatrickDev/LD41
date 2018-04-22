@@ -1,9 +1,7 @@
 package me.jack.ld41.Level;
 
-import me.jack.ld41.Entity.EntityTwo;
-import me.jack.ld41.Entity.PathFollower;
+import me.jack.ld41.Entity.*;
 import me.jack.ld41.Entity.Projectile.EntityProjectile;
-import me.jack.ld41.Entity.EntityOne;
 import me.jack.ld41.Level.Tile.DirtTile;
 import me.jack.ld41.Level.Tile.Tile;
 import me.jack.ld41.State.InGameState;
@@ -341,18 +339,47 @@ public class Level {
                 return;
             }
         }
-        if (r.nextInt(10) >= 5)
+        if (r.nextInt(7) >= 5)
             return;
-        if(round >= 5){
+        if(round >= 5 && round < 10){
             if(r.nextInt(5) == 0){
                 pathFollowers.add(new EntityTwo(startPoint.x * Tile.TILE_SIZE, startPoint.y * Tile.TILE_SIZE));
+                spawned();
+                return;
             }else{
                 pathFollowers.add(new EntityOne(startPoint.x * Tile.TILE_SIZE, startPoint.y * Tile.TILE_SIZE));
+                spawned();
+                return;
+            }
+        }if(round >= 10 && round < 15){
+            if(r.nextInt(5) == 0){
+                pathFollowers.add(new EntityTwo(startPoint.x * Tile.TILE_SIZE, startPoint.y * Tile.TILE_SIZE));
+                spawned();
+                return;
+            }else{
+                pathFollowers.add(new EntityThree(startPoint.x * Tile.TILE_SIZE, startPoint.y * Tile.TILE_SIZE));
+                spawned();
+                return;
+            }
+        }if(round >= 15){
+            if(r.nextInt(5) == 0){
+                pathFollowers.add(new EntityThree(startPoint.x * Tile.TILE_SIZE, startPoint.y * Tile.TILE_SIZE));
+                spawned();
+                return;
+            }else{
+                pathFollowers.add(new EntityFour(startPoint.x * Tile.TILE_SIZE, startPoint.y * Tile.TILE_SIZE));
+                spawned();
+                return;
             }
         }else{
             pathFollowers.add(new EntityOne(startPoint.x * Tile.TILE_SIZE, startPoint.y * Tile.TILE_SIZE));
+            spawned();
+            return;
         }
 
+    }
+
+    public void spawned(){
         spawnedThisRound++;
         if (spawnedThisRound >= getToSpawn(round)) {
             spawnedThisRound = 0;

@@ -83,3 +83,8 @@ Known issues:
     - Money is still removed even if effect is not applied
     - Can place towers during other turns
         - Breaks it
+
+
+Two more enemies/
+Two more weapon types
+Balance

@@ -15,7 +15,7 @@ import java.util.Random;
  * Created by Jack on 21/04/2018.
  */
 public class EntityProjectile extends Entity {
-    private float moveSpeed = 2f, damage;
+    private float moveSpeed = 5f, damage;
     private float xVel, yVel;
     private boolean dead = false;
     Random r = new Random();
@@ -36,7 +36,7 @@ public class EntityProjectile extends Entity {
     @Override
     public void update(Level level) {
         age++;
-        if (age >= 100 + r.nextInt(50))
+        if (age >= 50 + r.nextInt(50))
             dead = true;
         setX(getX() + xVel);
         setY(getY() + yVel);
