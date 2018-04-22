@@ -9,7 +9,7 @@ import org.newdawn.slick.SlickException;
 public class GrassTile extends Tile {
 
     public GrassTile(int x, int y) throws SlickException {
-        super(x, y, 0, 0, true);
+        super(x, y, 0, 0, false);
     }
 
 }

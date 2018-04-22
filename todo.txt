@@ -90,15 +90,19 @@ Two more weapon types/
 Two more towers/
 Balance/?
 Finish main menu/
+   - Improve
 Finish level select screen/
 Tutorial screens
     - InGame/
     - State
 GUI improvements
-    - Upgrade tooltips
+    - Upgrade tooltips/
     - **Better upgrade icons**
-    - Make Enemies flash when hit
+    - Make Enemies flash when hit/
 All towers need at least one weapon upgrade/
+More levels/
+add a stone tile/
+*****name*****
 Bugs:
     - Fixing effects being buyable after they are maxed/
     - Player should only be able to do anything during the P turn/

@@ -14,7 +14,7 @@ import org.newdawn.slick.Graphics;
 public class UpgradeElement extends GUIElement {
     private Upgrade upgrade;
     public boolean isUnlocked = true;
-
+    public boolean tooltip = false;
     public UpgradeElement(Upgrade upgrade, int x, int y, int width, int height) {
         super(x, y, width, height);
         this.upgrade = upgrade;
@@ -40,6 +40,13 @@ public class UpgradeElement extends GUIElement {
             graphics.setColor(Color.white);
             graphics.drawString(upgrade.getCost() + "", getWidth()/2 - graphics.getFont().getWidth(upgrade.getCost() + "")/2, getHeight() - graphics.getFont().getLineHeight() + 5);
         }
+
+        if(tooltip){
+            graphics.setColor(Color.gray);
+            graphics.fillRect(0,0,getWidth(),getHeight());
+            graphics.setColor(Color.white);
+            graphics.drawString(this.upgrade.getName(),getWidth()/2 - graphics.getFont().getWidth(this.upgrade.getName())/2,getHeight()/2 - graphics.getFont().getHeight(upgrade.getName())/2);
+        }
     }
 
     @Override
@@ -53,5 +60,12 @@ public class UpgradeElement extends GUIElement {
 
     public Upgrade getUpgrade() {
         return upgrade;
+    }
+
+    public void mouseEntered() {
+        tooltip = true;
+    }
+    public void mouseLeaved(){
+        tooltip = false;
     }
 }

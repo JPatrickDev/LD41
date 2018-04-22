@@ -36,8 +36,27 @@ public class GUIArea {
         g.translate(-x, -y);
     }
 
+    int lMX = -1, lMY = -1;
     public void update(GameContainer container) {
+        if(lMX != -1){
+            int cMX = container.getInput().getMouseX();
+            int cMY = container.getInput().getMouseY();
+            cMX = cMX - getX();
+            cMY = cMY - getY();
+            for(GUIElement c : elements){
+                if(c.contains(lMX,lMY) && ! c.contains(cMX,cMY)){
+                    c.mouseLeave(cMX,cMY);
+                }
+                if(!c.contains(lMX,lMY) && c.contains(cMX,cMY)){
+                    c.mouseEnter(cMX,cMY);
+                }
+            }
+        }
 
+        lMX = container.getInput().getMouseX();
+        lMY = container.getInput().getMouseY();
+        lMX = lMX - getX();
+        lMY = lMY - getY();
     }
 
     public void mouseDown(int x, int y, int button) {

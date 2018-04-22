@@ -11,7 +11,7 @@ public class WeaponUpgrade extends Upgrade {
 
 
     public WeaponUpgrade(int level) throws SlickException {
-        super("Weapon Upgrade", "More firepower can't hurt..", 1f, level, 2, 25);
+        super("Weapon\nUpgrade", "More firepower can't hurt..", 1f, level, 2, 25);
         if(level >= 3){
             this.validUpgrade = false;
         }

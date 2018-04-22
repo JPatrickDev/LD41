@@ -13,6 +13,8 @@ public class TowerElement extends GUIElement {
     public boolean isUnlocked = false;
     private static Image padlock;
     public boolean canAfford = false;
+
+
     public TowerElement(Tower tower, int x, int y, int width, int height) {
         super(x, y, width, height);
         if(padlock == null)
@@ -42,6 +44,7 @@ public class TowerElement extends GUIElement {
            // graphics.fillRect(0,0,getWidth(),getHeight());
             graphics.drawImage(padlock,getWidth()/2 - padlock.getWidth()/2,getHeight()/2 - padlock.getHeight()/2);
         }
+
     }
 
     @Override
@@ -52,4 +55,6 @@ public class TowerElement extends GUIElement {
     public Tower getTower() {
         return tower;
     }
+
+
 }

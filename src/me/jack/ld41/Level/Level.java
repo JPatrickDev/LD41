@@ -53,6 +53,7 @@ public class Level {
     static {
         colourToTile.put("3B9415", "GrassTile");
         colourToTile.put("702400", "DirtTile");
+        colourToTile.put("404040", "StoneTile");
     }
 
     public Level(int w, int h) {
@@ -341,37 +342,39 @@ public class Level {
         }
         if (r.nextInt(7) >= 5)
             return;
-        if(round >= 5 && round < 10){
-            if(r.nextInt(5) == 0){
+        if (round >= 5 && round < 10) {
+            if (r.nextInt(5) == 0) {
                 pathFollowers.add(new EntityTwo(startPoint.x * Tile.TILE_SIZE, startPoint.y * Tile.TILE_SIZE));
                 spawned();
                 return;
-            }else{
+            } else {
                 pathFollowers.add(new EntityOne(startPoint.x * Tile.TILE_SIZE, startPoint.y * Tile.TILE_SIZE));
                 spawned();
                 return;
             }
-        }if(round >= 10 && round < 15){
-            if(r.nextInt(5) == 0){
+        }
+        if (round >= 10 && round < 15) {
+            if (r.nextInt(5) == 0) {
                 pathFollowers.add(new EntityTwo(startPoint.x * Tile.TILE_SIZE, startPoint.y * Tile.TILE_SIZE));
                 spawned();
                 return;
-            }else{
+            } else {
                 pathFollowers.add(new EntityThree(startPoint.x * Tile.TILE_SIZE, startPoint.y * Tile.TILE_SIZE));
                 spawned();
                 return;
             }
-        }if(round >= 15){
-            if(r.nextInt(5) == 0){
+        }
+        if (round >= 15) {
+            if (r.nextInt(5) == 0) {
                 pathFollowers.add(new EntityThree(startPoint.x * Tile.TILE_SIZE, startPoint.y * Tile.TILE_SIZE));
                 spawned();
                 return;
-            }else{
+            } else {
                 pathFollowers.add(new EntityFour(startPoint.x * Tile.TILE_SIZE, startPoint.y * Tile.TILE_SIZE));
                 spawned();
                 return;
             }
-        }else{
+        } else {
             pathFollowers.add(new EntityOne(startPoint.x * Tile.TILE_SIZE, startPoint.y * Tile.TILE_SIZE));
             spawned();
             return;
@@ -379,7 +382,7 @@ public class Level {
 
     }
 
-    public void spawned(){
+    public void spawned() {
         spawnedThisRound++;
         if (spawnedThisRound >= getToSpawn(round)) {
             spawnedThisRound = 0;

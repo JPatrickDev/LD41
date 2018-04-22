@@ -174,12 +174,18 @@ public class InGameState extends BasicGameState {
 
             @Override
             public void mouseEnter(int x, int y, GUIElement element) {
-
+                System.out.println("Mouse Enter");
+                if(element instanceof UpgradeElement){
+                    ((UpgradeElement) element).mouseEntered();
+                }
             }
 
             @Override
             public void mouseLeave(int x, int y, GUIElement element) {
-
+                System.out.println("Mouse Leave");
+                if(element instanceof UpgradeElement) {
+                    ((UpgradeElement) element).mouseLeaved();
+                }
             }
         };
         TextArea upgradesTitle = new TextArea("Upgrades:", 232, 0, 230, 17);
@@ -224,12 +230,18 @@ public class InGameState extends BasicGameState {
 
             @Override
             public void mouseEnter(int x, int y, GUIElement element) {
-
+                System.out.println("Mouse Enter");
+                if(element instanceof UpgradeElement){
+                    ((UpgradeElement) element).mouseEntered();
+                }
             }
 
             @Override
             public void mouseLeave(int x, int y, GUIElement element) {
-
+                System.out.println("Mouse Leave");
+                if(element instanceof UpgradeElement) {
+                    ((UpgradeElement) element).mouseLeaved();
+                }
             }
         };
         int startY = 30;
@@ -308,7 +320,7 @@ public class InGameState extends BasicGameState {
         graphics.drawImage(new Image("res/guiOverlay.png"), 0, 0);
         if (inHand != null) {
             Tile currentMouseTile = getCurrentMouseTile(gameContainer);
-            if (currentMouseTile == null || currentMouseTile instanceof DirtTile) {
+            if (currentMouseTile == null ||  currentMouseTile.isSolid()) {
                 int mX = gameContainer.getInput().getMouseX();
                 int mY = gameContainer.getInput().getMouseY();
                 graphics.translate(mX - inHand.getWidth() * Tile.TILE_SIZE, mY - inHand.getHeight() * Tile.TILE_SIZE);
@@ -359,6 +371,8 @@ public class InGameState extends BasicGameState {
             GameOverState.level = level;
             stateBasedGame.enterState(StateID.GAME_OVER.getID());
         }
+        towersGUIArea.update(gameContainer);
+        hudGUIArea.update(gameContainer);
     }
 
     @Override
@@ -380,7 +394,7 @@ public class InGameState extends BasicGameState {
             if (inHand != null && towerAt == null) {
                 Tile currentMouseTile = getCurrentMouseTile(x, y);
                 this.currentlySelected = towerAt;
-                if (currentMouseTile != null && !(currentMouseTile instanceof DirtTile) && level.getMoney() >= inHand.getCost()) {
+                if (currentMouseTile != null && !currentMouseTile.isSolid() && level.getMoney() >= inHand.getCost()) {
                     Tower t = inHand.copy();
                     t.setX(currentMouseTile.getX() * Tile.TILE_SIZE);
                     t.setY(currentMouseTile.getY() * Tile.TILE_SIZE);

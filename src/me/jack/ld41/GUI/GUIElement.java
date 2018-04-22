@@ -4,6 +4,8 @@ import me.jack.ld41.Tower.Tower;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 
+import java.awt.*;
+
 /**
  * Created by Jack on 21/04/2018.
  */
@@ -60,5 +62,20 @@ public abstract class GUIElement {
     }
 
 
+    public boolean contains(int lMX, int lMY) {
+        return new Rectangle(getX(), getY(), getWidth(), getHeight()).contains(lMX, lMY);
+    }
+
+    public void mouseLeave(int cMX, int cMY) {
+        if (listener != null) {
+            listener.mouseLeave(cMX, cMY, this);
+        }
+    }
+
+    public void mouseEnter(int cMX, int cMY) {
+        if (listener != null) {
+            listener.mouseEnter(cMX, cMY, this);
+        }
+    }
 
 }
