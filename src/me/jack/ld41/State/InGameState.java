@@ -31,6 +31,7 @@ import java.util.HashMap;
  */
 public class InGameState extends BasicGameState {
 
+    public static String path;
     Level level = null;
     private Rectangle gameArea = new Rectangle(0, 0, 420, 330), towerSelectArea = new Rectangle(420, 0, 160, 330), hud = new Rectangle(0, 330, 580, 150);
 
@@ -51,7 +52,10 @@ public class InGameState extends BasicGameState {
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
-        level = Level.fromImage(new Image("res/levels/level.png"));
+
+    }
+
+    public void createUI() throws SlickException {
         towersGUIArea = new GUIArea(420, 0, 160, 330);
         towersGUIArea.addElement(new TextArea("Towers", 0, 0, 160, 30));
 
@@ -201,6 +205,14 @@ public class InGameState extends BasicGameState {
                 y += height;
             }
         }
+    }
+
+    @Override
+    public void enter(GameContainer container, StateBasedGame game) throws SlickException {
+        super.enter(container, game);
+        level = Level.fromImage(new Image(path));
+        createUI();
+
     }
 
     public void lockCheck() {

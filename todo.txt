@@ -49,8 +49,8 @@ Round System : 21:30/
         - Like an Android Toast
 Skipping X turns 21:45/
     Skip to next round?/
-Game Over Screen 10:15
-Level Select Screen 11:00
+Game Over Screen 10:15/
+Level Select Screen 11:00/
 Main Menu 11:30
 
 Towers should only be able to fire every X turns
