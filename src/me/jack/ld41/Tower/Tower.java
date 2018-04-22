@@ -68,6 +68,11 @@ public abstract class Tower {
 
     public abstract void setUpWeapons() throws SlickException;
 
+
+    public void resetWeapons() throws SlickException {
+        this.groups.clear();
+        setUpWeapons();
+    }
     public void render(Graphics g, boolean drawRange) {
         //System.out.println("render called");
         for (WeaponGroup group : this.groups) {
@@ -204,5 +209,9 @@ public abstract class Tower {
 
     public void addWeaponGroup(WeaponGroup group) {
         this.groups.add(group);
+    }
+
+    public void setDmgLevel(int dmgLevel) {
+        this.dmgLevel = dmgLevel;
     }
 }

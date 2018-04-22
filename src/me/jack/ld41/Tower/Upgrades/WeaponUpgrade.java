@@ -11,17 +11,17 @@ public class WeaponUpgrade extends Upgrade {
 
 
     public WeaponUpgrade(int level) throws SlickException {
-        super("Weapon Upgrade", "More firepower can't hurt..", 1f, level, 2,25);
+        super("Weapon Upgrade", "More firepower can't hurt..", 1f, level, 2, 25);
     }
 
     @Override
     public WeaponUpgrade getNextForTower(Tower t) {
 
         try {
-            return new WeaponUpgrade(t.getRangeLevel() + 1);
+            return new WeaponUpgrade(t.getDmgLevel() + 1);
         } catch (SlickException e) {
             e.printStackTrace();
-        }catch (RuntimeException e1){
+        } catch (RuntimeException e1) {
             try {
                 return new WeaponUpgrade(3);
             } catch (SlickException e) {
@@ -33,13 +33,21 @@ public class WeaponUpgrade extends Upgrade {
 
     @Override
     public void use(Tower currentlySelected, InGameState parent) {
-        currentlySelected.getUpgrades().setRange(currentlySelected.getUpgrades().getBaseRange() * (this.getLevel() + 1));
-        currentlySelected.setRangeLevel((currentlySelected.getRangeLevel() + 1));
-        for(Tower tower : parent.towers){
-            if(tower.getClass().isInstance(currentlySelected)){
+        currentlySelected.setDmgLevel((this.getLevel() + 1));
+        try {
+            currentlySelected.resetWeapons();
+        } catch (SlickException e) {
+            e.printStackTrace();
+        }
+        for (Tower tower : parent.towers) {
+            if (tower.getClass().isInstance(currentlySelected)) {
                 System.out.println("True");
-                tower.getUpgrades().setRange(currentlySelected.getUpgrades().getBaseRange() * (this.getLevel() + 1));
-                tower.setRangeLevel((currentlySelected.getRangeLevel()));
+                tower.setDmgLevel((this.getLevel() + 1));
+                try {
+                    tower.resetWeapons();
+                } catch (SlickException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
