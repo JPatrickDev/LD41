@@ -40,10 +40,12 @@ public class InGameState extends BasicGameState {
     private GUIArea towersGUIArea, hudGUIArea, skipGUIArea;
 
     int turnCount = 0;
-    TextArea turnCounter, turnDisplay, livesDisplay, expDisplay, moneyDisplay, roundDisplay;
+    TextArea turnCounter, livesDisplay, expDisplay, moneyDisplay, roundDisplay;
     TextButton skip5Turns, skip10Turns, skipRoundTurns, skip20Turns;
 
     EXPElement exp, round;
+
+    TurnDisplayElement turnDisplay;
 
     ArrayList<UpgradeElement> upgrades = new ArrayList<>();
 
@@ -62,18 +64,18 @@ public class InGameState extends BasicGameState {
         turnCounter = new TextArea("Turn: " + turnCount, 6, 6, 75, 17);
         hudGUIArea.addElement(turnCounter);
 
-        turnDisplay = new TextArea(level.getCurrentTurn().name(), 0, 20, 200, 20, Color.green, Color.black);
-        // hudGUIArea.addElement(turnDisplay);
+        turnDisplay = new TurnDisplayElement(118,45,94,42);
+        hudGUIArea.addElement(turnDisplay);
 
-        livesDisplay = new TextArea("Lives: " + level.getLivesLeft(), 93, 6, 119, 17);
+        livesDisplay = new TextArea("Lives Remaining: " + level.getLivesLeft(), 6, 109, 206, 17);
         hudGUIArea.addElement(livesDisplay);
 
         expDisplay = new TextArea(level.getLevel() + ":" + level.getPoints() + "(" + Math.pow((level.getLevel() + 1) / 2, 2) + ")", 0, 60, 200, 20, Color.pink, Color.black);
         // hudGUIArea.addElement(expDisplay);
 
 
-        moneyDisplay = new TextArea("Money:" + level.getMoney(), 0, 80, 200, 20, Color.cyan, Color.black);
-        // hudGUIArea.addElement(moneyDisplay);
+        moneyDisplay = new TextArea("Money:" + level.getMoney(), 93, 6, 119, 17);
+        hudGUIArea.addElement(moneyDisplay);
 
         roundDisplay = new TextArea("Round:" + level.getRound() + "(" + level.getToSpawn(level.getRound()) + ")", 0, 100, 200, 20, Color.magenta, Color.black);
         // hudGUIArea.addElement(roundDisplay);
@@ -180,6 +182,7 @@ public class InGameState extends BasicGameState {
 
 
         // inHand = new TestTower(0, 0);
+        towers.clear();
         for (int i = 0; i != 2; i++) {
             towers.add(new TestTower(0, 0, 0, 0, 0, 0));
             towers.add(new TestTowerTwo(0, 0, 0, 0, 0, 0));
@@ -226,10 +229,10 @@ public class InGameState extends BasicGameState {
             }
         }
 
-        exp = new EXPElement(6, 37, 42, 42, Color.blue);
+        exp = new EXPElement(6, 45, 42, 42, Color.blue);
         hudGUIArea.addElement(exp);
 
-        round = new EXPElement(62, 37, 42, 42, Color.red);
+        round = new EXPElement(62, 45, 42, 42, Color.red);
         hudGUIArea.addElement(round);
     }
 
@@ -307,8 +310,8 @@ public class InGameState extends BasicGameState {
         turnCount = level.update(this, i, (int) (gameContainer.getInput().getMouseX() + gameArea.getWidth() / 2 - (level.getWidth() * Tile.TILE_SIZE) / 2), (int) ((int) gameContainer.getInput().getMouseY() + (gameArea.getHeight() / 2 - (level.getHeight() * Tile.TILE_SIZE) / 2)));
         turnCounter.setText("Turn: " + turnCount);
 
-        turnDisplay.setText(level.getCurrentTurn().name());
-        livesDisplay.setText("Lives: " + level.getLivesLeft());
+      //  turnDisplay.setText(level.getCurrentTurn().name());
+        livesDisplay.setText("Lives Remaining: " + level.getLivesLeft());
         expDisplay.setText(level.getLevel() + ":" + level.getPoints() + "(" + Math.pow((level.getLevel() + 1) / 2, 2) + ")");
         exp.setNum(level.getLevel());
         exp.setScore(level.getPoints(), (float) Math.pow((level.getLevel() + 1) / 2, 2));
@@ -316,6 +319,7 @@ public class InGameState extends BasicGameState {
         roundDisplay.setText("Round:" + level.getRound() + "(" + level.getToSpawn(level.getRound()) + ")");
         round.setNum(level.getRound());
         round.setScore(level.getSpawnedThisRound(), level.getToSpawn(level.getRound()));
+        turnDisplay.setCurrentTurn(level.currentTurn);
         if (level.getLivesLeft() <= 0) {
             GameOverState.level = level;
             stateBasedGame.enterState(StateID.GAME_OVER.getID());
