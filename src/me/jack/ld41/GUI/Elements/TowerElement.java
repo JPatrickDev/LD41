@@ -12,6 +12,7 @@ public class TowerElement extends GUIElement {
     private Tower tower;
     public boolean isUnlocked = false;
     private static Image padlock;
+    public boolean canAfford = false;
     public TowerElement(Tower tower, int x, int y, int width, int height) {
         super(x, y, width, height);
         if(padlock == null)
@@ -32,7 +33,10 @@ public class TowerElement extends GUIElement {
         graphics.translate(-1 * (getWidth() / 2 - (tower.getWidth() * Tile.TILE_SIZE) / 2), -1 * (getHeight() / 2 - (tower.getHeight() * Tile.TILE_SIZE) / 2));
         graphics.setColor(Color.white);
         //TODO: Red text if player can't afford
-        graphics.drawString(tower.getCost() + "",0,getHeight());
+        if(!canAfford){
+            graphics.setColor(Color.red);
+        }
+        graphics.drawString(tower.getCost() + "",getWidth()/2 - graphics.getFont().getWidth(tower.getCost() + "")/2,getHeight());
         if(!isUnlocked){
           //  graphics.setColor(new Color(255,0,0,180));
            // graphics.fillRect(0,0,getWidth(),getHeight());

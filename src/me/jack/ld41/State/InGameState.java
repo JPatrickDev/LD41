@@ -268,6 +268,7 @@ public class InGameState extends BasicGameState {
                 TowerElement t = ((TowerElement) element);
                 Tower to = t.getTower();
                 t.isUnlocked = this.level.getLevel() >= to.getLevel();
+                t.canAfford = this.level.getMoney() >= to.getCost();
             }
         }
     }
