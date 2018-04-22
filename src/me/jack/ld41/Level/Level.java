@@ -1,8 +1,9 @@
 package me.jack.ld41.Level;
 
+import me.jack.ld41.Entity.EntityTwo;
 import me.jack.ld41.Entity.PathFollower;
 import me.jack.ld41.Entity.Projectile.EntityProjectile;
-import me.jack.ld41.Entity.TestEntity;
+import me.jack.ld41.Entity.EntityOne;
 import me.jack.ld41.Level.Tile.DirtTile;
 import me.jack.ld41.Level.Tile.Tile;
 import me.jack.ld41.State.InGameState;
@@ -342,7 +343,16 @@ public class Level {
         }
         if (r.nextInt(10) >= 5)
             return;
-        pathFollowers.add(new TestEntity(startPoint.x * Tile.TILE_SIZE, startPoint.y * Tile.TILE_SIZE));
+        if(round >= 5){
+            if(r.nextInt(5) == 0){
+                pathFollowers.add(new EntityTwo(startPoint.x * Tile.TILE_SIZE, startPoint.y * Tile.TILE_SIZE));
+            }else{
+                pathFollowers.add(new EntityOne(startPoint.x * Tile.TILE_SIZE, startPoint.y * Tile.TILE_SIZE));
+            }
+        }else{
+            pathFollowers.add(new EntityOne(startPoint.x * Tile.TILE_SIZE, startPoint.y * Tile.TILE_SIZE));
+        }
+
         spawnedThisRound++;
         if (spawnedThisRound >= getToSpawn(round)) {
             spawnedThisRound = 0;

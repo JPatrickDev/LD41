@@ -96,7 +96,7 @@ public abstract class Tower {
             System.out.println("Taking turn");
             if (shotsTaken < upgrades.getShotsPerTurn()) {
                 System.out.println("Rand?");
-                if (r.nextInt(10) == 0 && lastShotTime >= this.upgrades.getFireSpeed()) {
+                if (r.nextInt(5) == 0 && lastShotTime >= this.upgrades.getFireSpeed()) {
                     System.out.println("Firing");
                     System.out.println("Shot Fired");
                     shotsTaken++;

@@ -2,6 +2,8 @@ package me.jack.ld41.Entity;
 
 import me.jack.ld41.Level.Level;
 import me.jack.ld41.Level.Tile.Tile;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 
 import java.awt.*;
 
@@ -17,8 +19,18 @@ public abstract class PathFollower extends Entity {
     private float maxHealth = 0;
     private boolean wasKilled = false;
 
+
+
+    public static SpriteSheet sprites = null;
+
     public PathFollower(float x, float y, float maxHealth) {
         super(x, y);
+        if(sprites == null)
+            try {
+                sprites = new SpriteSheet("res/enemies.png",16,16);
+            } catch (SlickException e) {
+                e.printStackTrace();
+            }
         this.maxHealth = maxHealth;
         this.health = maxHealth;
     }

@@ -22,7 +22,7 @@ public class TowerUpgrades {
     }
 
     public int getFireSpeed() {
-        return fireSpeed;
+        return 10;
     }
 
     public int getShotsPerTurn() {
