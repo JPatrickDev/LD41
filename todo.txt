@@ -53,6 +53,29 @@ Game Over Screen 10:15/
 Level Select Screen 11:00/
 Main Menu 11:30/
 
+Weapon Systems
+    - Group of Weapon objects
+        - Grenade launcher
+        - Basic Gun
+        - ....
+   - Group of projectile objects
+        - Split in to types
+            - Small bullet
+            - Large bullet
+            - Missile
+            - Grenade
+            - Flames
+            - ....
+        - Guns can accept ANY of one or more types
+            - E.g. a gun might accept small AND large bullets
+    - Weapons are assembled in to WeaponGroups
+        - WeaponGroups can have WeaponGroups as children
+            - To allow for a "gun" with two chambers
+    - A Tower can have 0 or more weapon groups
+
+
+
+
 Towers should only be able to fire every X turns
     - Upgradable
 

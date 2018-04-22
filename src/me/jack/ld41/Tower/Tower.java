@@ -1,13 +1,17 @@
 package me.jack.ld41.Tower;
 
 import me.jack.ld41.Entity.PathFollower;
-import me.jack.ld41.Entity.Projectile.Projectile;
-import me.jack.ld41.Entity.Projectile.TestProjectile;
+import me.jack.ld41.Entity.Projectile.EntityProjectile;
 import me.jack.ld41.Level.Level;
 import me.jack.ld41.Level.Tile.Tile;
+import me.jack.ld41.Weapon.Common.WeaponGroup;
+import me.jack.ld41.Weapon.Weapons.Weapon;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 
 import java.awt.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -31,8 +35,18 @@ public abstract class Tower {
     private int rangeLevel = 0;
     private int dmgLevel = 0;
 
+    private ArrayList<WeaponGroup> groups = new ArrayList<>();
+
+    public static SpriteSheet sheet;
 
     public Tower(int x, int y, int width, int height, TowerUpgrades upgrades, int unlockedAt, float cost, int fireRateLevel, int shotsPerTurnLevel, int rangeLevel, int dmgLevel) {
+        if (sheet == null) {
+            try {
+                sheet = new SpriteSheet("res/towers.png", 32, 32);
+            } catch (SlickException e) {
+                e.printStackTrace();
+            }
+        }
         this.x = x;
         this.y = y;
         this.width = width;
@@ -44,36 +58,63 @@ public abstract class Tower {
         this.shotsPerTurnLevel = shotsPerTurnLevel;
         this.rangeLevel = rangeLevel;
         this.dmgLevel = dmgLevel;
+        try {
+            setUpWeapons();
+        } catch (SlickException e) {
+            e.printStackTrace();
+        }
     }
 
-    public abstract void render(Graphics g);
+    public abstract void setUpWeapons() throws SlickException;
+
+    public void render(Graphics g) {
+        //System.out.println("render called");
+        for (WeaponGroup group : this.groups) {
+            //System.out.println("Drawing group");
+            //System.out.println(group.getX() + ":" + group.getY());
+            g.translate(group.getX(), group.getY());
+            group.render(g);
+            g.translate(-group.getX(), -group.getY());
+        }
+    }
 
     Random r = new Random();
 
     int lastShotTime = 0;
 
-    public Projectile update(Level level, int delta) {
+    public ArrayList<EntityProjectile> update(Level level, int delta, Point mousePos) {
         lastShotTime += delta;
         if (takingTurn) {
+            System.out.println("Taking turn");
             if (shotsTaken < upgrades.getShotsPerTurn()) {
-                if (r.nextInt(10) == 0 && lastShotTime >= this.upgrades.getFireSpeed()) {
-                    System.out.println("Shot Fired");
-                    shotsTaken++;
-                    lastShotTime = 0;
-                    ArrayList<PathFollower> valid = level.getTargets(getX(), getY(), this.upgrades.getRange());
-                    if (valid.size() == 0) {
-                        shotsTaken = upgrades.getShotsPerTurn();
-                    } else {
-                        PathFollower target = valid.get(r.nextInt(valid.size()));
-                        return new TestProjectile(getX(), getY(), new Point((int) target.getX() + Tile.TILE_SIZE / 2, (int) target.getY() + Tile.TILE_SIZE / 2));
+                System.out.println("Rand?");
+                //if (r.nextInt(10) == 0 && lastShotTime >= this.upgrades.getFireSpeed()) {
+                System.out.println("Firing");
+                System.out.println("Shot Fired");
+                shotsTaken++;
+                ArrayList<Weapon> all = new ArrayList<>();
+                for (WeaponGroup group : this.groups)
+                    all.addAll(group.getAllWeapons());
+                System.out.println("Found" + all.size() + " weapons.");
+                for (Weapon w : all) {
+                    ArrayList<PathFollower> targets = level.getTargets(getX() + w.getX(), getY() + w.getY(), 40f);
+                    if (targets.size() != 0) {
+                        try {
+                            PathFollower t = targets.get(r.nextInt(targets.size()));
+                            w.fire(getX(), getY(), level, (int) t.getX(), (int) t.getY());
+                        } catch (SlickException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
+                //    }
             } else {
                 turnOver = true;
                 takingTurn = false;
             }
 
         }
+
         return null;
     }
 
@@ -151,5 +192,9 @@ public abstract class Tower {
 
     public void setRangeLevel(int rangeLevel) {
         this.rangeLevel = rangeLevel;
+    }
+
+    public void addWeaponGroup(WeaponGroup group) {
+        this.groups.add(group);
     }
 }

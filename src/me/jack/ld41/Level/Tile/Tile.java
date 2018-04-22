@@ -13,7 +13,7 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class Tile {
 
-    public static final int TILE_SIZE = 16;
+    public static final int TILE_SIZE = 32;
 
 
     private int x, y;

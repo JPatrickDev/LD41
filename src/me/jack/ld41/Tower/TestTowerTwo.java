@@ -14,15 +14,21 @@ public class TestTowerTwo extends Tower {
     }
 
     @Override
+    public void setUpWeapons() {
+
+    }
+
+    @Override
     public void render(Graphics g) {
         g.setColor(Color.yellow);
-        g.fillRect(getX(), getY(), getWidth() * Tile.TILE_SIZE, getHeight() * Tile.TILE_SIZE);
+        g.fillRect(0,0, getWidth() * Tile.TILE_SIZE, getHeight() * Tile.TILE_SIZE);
         g.setColor(Color.white);
+        super.render(g);
     }
 
 
     @Override
     public Tower copy() {
-        return new TestTowerTwo(getX(), getY(),getFireRateLevel(),getShotsPerTurnLevel(),getRangeLevel(),getDmgLevel());
+        return new TestTowerTwo(getX(), getY(), getFireRateLevel(), getShotsPerTurnLevel(), getRangeLevel(), getDmgLevel());
     }
 }

@@ -60,7 +60,7 @@ public abstract class PathFollower extends Entity {
                 setyO(0);
                 setX(currentTarget.x * Tile.TILE_SIZE);
                 setY(currentTarget.y * Tile.TILE_SIZE);
-                System.out.println("Done!");
+                //System.out.println("Done!");
                 isMoving = false;
             }
         }

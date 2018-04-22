@@ -43,8 +43,8 @@ public class InGameState extends BasicGameState {
     private GUIArea towersGUIArea, hudGUIArea;
 
     int turnCount = 0;
-    TextArea turnCounter, turnDisplay, livesDisplay, expDisplay, moneyDisplay,roundDisplay;
-    TextButton skip5Turns,skip10Turns;
+    TextArea turnCounter, turnDisplay, livesDisplay, expDisplay, moneyDisplay, roundDisplay;
+    TextButton skip5Turns, skip10Turns;
 
     ArrayList<UpgradeElement> upgrades = new ArrayList<>();
 
@@ -88,11 +88,17 @@ public class InGameState extends BasicGameState {
 
             @Override
             public void mouseUp(int x, int y, GUIElement element) {
-                if(element instanceof TextButton){
-                    switch(((TextButton) element).getText()){
-                        case "Skip 5 Turns" : level.skipTurns(5); break;
-                        case "Skip 10 Turns" : level.skipTurns(10); break;
-                        case "Skip To Next Round":  level.skipTurns(-1); break;
+                if (element instanceof TextButton) {
+                    switch (((TextButton) element).getText()) {
+                        case "Skip 5 Turns":
+                            level.skipTurns(5);
+                            break;
+                        case "Skip 10 Turns":
+                            level.skipTurns(10);
+                            break;
+                        case "Skip To Next Round":
+                            level.skipTurns(-1);
+                            break;
                     }
                 }
             }
@@ -129,7 +135,7 @@ public class InGameState extends BasicGameState {
             public void mouseUp(int x, int y, GUIElement element) {
                 if (element instanceof UpgradeElement) {
                     if (InGameState.this.currentlySelected != null) {
-                        System.out.println("Using");
+                        //System.out.println("Using");
                         Upgrade up = ((UpgradeElement) element).getUpgrade();
                         if (up != null && up.getNextForTower(currentlySelected) != null && level.getMoney() >= up.getCost()) {
                             up.use(InGameState.this.currentlySelected, InGameState.this);
@@ -173,7 +179,7 @@ public class InGameState extends BasicGameState {
 
             @Override
             public void mouseUp(int x, int y, GUIElement element) {
-                System.out.println("Clicked");
+                //System.out.println("Clicked");
                 if (element instanceof TowerElement) {
                     Tower t = ((TowerElement) element).getTower();
                     if (((TowerElement) element).isUnlocked && InGameState.this.level.getMoney() >= t.getCost()) {
@@ -276,7 +282,7 @@ public class InGameState extends BasicGameState {
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
 
         lockCheck();
-        turnCount = level.update(this, i);
+        turnCount = level.update(this, i, (int) (gameContainer.getInput().getMouseX() + gameArea.getWidth() / 2 - (level.getWidth() * Tile.TILE_SIZE) / 2), (int) ((int) gameContainer.getInput().getMouseY() + (gameArea.getHeight() / 2 - (level.getHeight() * Tile.TILE_SIZE) / 2)));
         turnCounter.setText("Turn: " + turnCount);
 
         turnDisplay.setText(level.getCurrentTurn().name());
@@ -285,7 +291,7 @@ public class InGameState extends BasicGameState {
         moneyDisplay.setText("Money:" + level.getMoney());
         roundDisplay.setText("Round:" + level.getRound() + "(" + level.getToSpawn(level.getRound()) + ")");
 
-        if(level.getLivesLeft() <= 0){
+        if (level.getLivesLeft() <= 0) {
             GameOverState.level = level;
             stateBasedGame.enterState(StateID.GAME_OVER.getID());
         }

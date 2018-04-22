@@ -1,13 +1,12 @@
 package me.jack.ld41.Level;
 
 import me.jack.ld41.Entity.PathFollower;
-import me.jack.ld41.Entity.Projectile.Projectile;
+import me.jack.ld41.Entity.Projectile.EntityProjectile;
 import me.jack.ld41.Entity.TestEntity;
 import me.jack.ld41.Level.Tile.DirtTile;
 import me.jack.ld41.Level.Tile.Tile;
 import me.jack.ld41.State.InGameState;
 import me.jack.ld41.Tower.Tower;
-import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -38,7 +37,7 @@ public class Level {
 
     private ArrayList<PathFollower> pathFollowers = new ArrayList<>();
     private ArrayList<Tower> towers = new ArrayList<>();
-    private ArrayList<Projectile> projectiles = new ArrayList<>();
+    private ArrayList<EntityProjectile> entityProjectiles = new ArrayList<>();
 
 
     private int livesLeft = 5;
@@ -77,10 +76,12 @@ public class Level {
         }
 
         for (Tower t : towers) {
+            g.translate(t.getX(), t.getY());
             t.render(g);
+            g.translate(-t.getX(), -t.getY());
         }
 
-        for (Projectile p : projectiles) {
+        for (EntityProjectile p : entityProjectiles) {
             p.render(g);
         }
         g.drawString(currentTurn.name(), -40, -40);
@@ -90,8 +91,8 @@ public class Level {
 
     int i = 0;
 
-    public int update(InGameState parent, int delta) {
-        System.out.println(skipping);
+    public int update(InGameState parent, int delta, int mX, int mY) {
+        //System.out.println(skipping);
         for (Tile[] t : tiles) {
             for (Tile tile : t) {
                 if (tile != null)
@@ -102,19 +103,19 @@ public class Level {
         if (currentTurn == Turn.TOWER_TURN) {
             boolean allDone = true;
             for (Tower t : towers) {
-                Projectile p = t.update(this, delta);
+                ArrayList<EntityProjectile> p = t.update(this, delta, new Point(mX, mY));
                 if (p != null)
-                    projectiles.add(p);
+                    entityProjectiles.addAll(p);
                 if (!t.isTurnOver())
                     allDone = false;
             }
-            for (Projectile p : projectiles) {
+            for (EntityProjectile p : entityProjectiles) {
                 p.update(this);
                 if (!p.isDead())
                     allDone = false;
             }
             if (allDone) {
-                System.out.println("Tower turn over");
+                //System.out.println("Tower turn over");
                 toggleTurn();
             }
         }
@@ -127,7 +128,7 @@ public class Level {
                     allDone = false;
             }
             if (allDone) {
-                System.out.println("Computer turn over");
+                //System.out.println("Computer turn over");
                 toggleTurn();
             }
         }
@@ -143,7 +144,7 @@ public class Level {
         }
 
 
-        Iterator<Projectile> eI = projectiles.iterator();
+        Iterator<EntityProjectile> eI = entityProjectiles.iterator();
         while (eI.hasNext()) {
             if (eI.next().isDead())
                 eI.remove();
@@ -161,7 +162,7 @@ public class Level {
 
     public void toggleTurn() {
         if (currentTurn == Turn.PLAYER_TURN) {
-            System.out.println("Starting towers");
+            //System.out.println("Starting towers");
             i++;
             currentTurn = Turn.TOWER_TURN;
             for (Tower t : towers) {
@@ -387,5 +388,9 @@ public class Level {
 
     public void skipTurns(int skipping) {
         this.skipping = skipping;
+    }
+
+    public void addProjectile(me.jack.ld41.Weapon.Projectiles.Projectile basicSmallBullet, int x, int y, int tX, int tY) {
+        entityProjectiles.add(new EntityProjectile(basicSmallBullet, x, y, tX, tY));
     }
 }
