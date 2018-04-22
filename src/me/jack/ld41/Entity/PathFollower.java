@@ -2,8 +2,8 @@ package me.jack.ld41.Entity;
 
 import me.jack.ld41.Level.Level;
 import me.jack.ld41.Level.Tile.Tile;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.*;
+import org.newdawn.slick.Graphics;
 
 import java.awt.*;
 
@@ -22,12 +22,14 @@ public abstract class PathFollower extends Entity {
 
 
     public static SpriteSheet sprites = null;
-
+    public static org.newdawn.slick.Image hit = null;
+    boolean flashing = false;
     public PathFollower(float x, float y, float maxHealth) {
         super(x, y);
         if(sprites == null)
             try {
                 sprites = new SpriteSheet("res/enemies.png",16,16);
+                hit = new org.newdawn.slick.Image("res/hit.png");
             } catch (SlickException e) {
                 e.printStackTrace();
             }
@@ -78,12 +80,27 @@ public abstract class PathFollower extends Entity {
         }
     }
 
+
+    int i = 0;
+    @Override
+    public void render(Graphics g) {
+        if(flashing) {
+            g.drawImage(hit, (getX() + getxO()) + 8, getY() + getyO() + 8);
+            i++;
+            if(i > 10){
+                i = 0;
+                flashing = false;
+            }
+        }
+    }
+
     public Rectangle getCurrentHitbox() {
         return new Rectangle((int) (getX() + getxO()) + 8, (int) (getY() + getyO()) + 8, Tile.TILE_SIZE/2, Tile.TILE_SIZE/2);
     }
 
     public void damage(float damage) {
         health -= damage;
+        flashing = true;
         if (health <= 0) {
             dead = true;
             wasKilled = true;

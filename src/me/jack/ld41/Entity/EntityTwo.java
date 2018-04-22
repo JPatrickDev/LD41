@@ -19,6 +19,6 @@ public class EntityTwo extends PathFollower {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(img,(getX() + getxO()) + 8, getY() + getyO() + 8);
+        g.drawImage(img,(getX() + getxO()) + 8, getY() + getyO() + 8);   super.render(g);
     }
 }
