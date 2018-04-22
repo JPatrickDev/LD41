@@ -67,7 +67,7 @@ public abstract class PathFollower extends Entity {
     }
 
     public Rectangle getCurrentHitbox() {
-        return new Rectangle((int) (getX() + getxO()), (int) (getY() + getyO()), Tile.TILE_SIZE, Tile.TILE_SIZE);
+        return new Rectangle((int) (getX() + getxO()) + 8, (int) (getY() + getyO()) + 8, Tile.TILE_SIZE/2, Tile.TILE_SIZE/2);
     }
 
     public void damage(float damage) {

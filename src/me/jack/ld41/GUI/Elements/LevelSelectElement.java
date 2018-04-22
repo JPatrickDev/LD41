@@ -25,7 +25,7 @@ public class LevelSelectElement extends GUIElement {
         try {
             Image i = new Image(level.getWidth() * Tile.TILE_SIZE, level.getHeight() * Tile.TILE_SIZE);
             Graphics g = i.getGraphics();
-            level.render(g);
+            level.render(g,null);
             g.flush();
             float ratio = (float) (((double) getWidth() / 2) / ((double) i.getWidth()));
             i = i.getScaledCopy((int) (i.getWidth() * ratio), (int) (i.getHeight() * ratio));

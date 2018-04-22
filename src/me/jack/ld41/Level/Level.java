@@ -63,7 +63,7 @@ public class Level {
 
     }
 
-    public void render(Graphics g) {
+    public void render(Graphics g, InGameState parent) {
         for (Tile[] t : tiles) {
             for (Tile tile : t) {
                 if (tile != null)
@@ -77,7 +77,10 @@ public class Level {
 
         for (Tower t : towers) {
             g.translate(t.getX(), t.getY());
-            t.render(g);
+            if (parent != null)
+                t.render(g, parent.currentlySelected == t);
+            else
+                t.render(g, false);
             g.translate(-t.getX(), -t.getY());
         }
 

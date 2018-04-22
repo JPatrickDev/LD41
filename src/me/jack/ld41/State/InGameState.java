@@ -48,7 +48,7 @@ public class InGameState extends BasicGameState {
 
     ArrayList<UpgradeElement> upgrades = new ArrayList<>();
 
-    private Tower currentlySelected = null;
+    public Tower currentlySelected = null;
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
@@ -243,27 +243,26 @@ public class InGameState extends BasicGameState {
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
-        graphics.setColor(Color.black);
-        graphics.fill(gameArea);
+
+        graphics.translate(gameArea.getWidth() / 2 - (level.getWidth() * Tile.TILE_SIZE) / 2, gameArea.getHeight() / 2 - (level.getHeight() * Tile.TILE_SIZE) / 2);
+        level.render(graphics,this);
+        graphics.resetTransform();
         graphics.setColor(Color.red);
         graphics.fill(towerSelectArea);
         graphics.setColor(Color.blue);
         graphics.fill(hud);
         graphics.setColor(Color.white);
-        graphics.translate(gameArea.getWidth() / 2 - (level.getWidth() * Tile.TILE_SIZE) / 2, gameArea.getHeight() / 2 - (level.getHeight() * Tile.TILE_SIZE) / 2);
-        level.render(graphics);
-        graphics.resetTransform();
         if (inHand != null) {
             Tile currentMouseTile = getCurrentMouseTile(gameContainer);
             if (currentMouseTile == null || currentMouseTile instanceof DirtTile) {
                 int mX = gameContainer.getInput().getMouseX();
                 int mY = gameContainer.getInput().getMouseY();
                 graphics.translate(mX - inHand.getWidth() * Tile.TILE_SIZE, mY - inHand.getHeight() * Tile.TILE_SIZE);
-                inHand.render(graphics);
+                inHand.render(graphics,false);
             } else if (currentMouseTile != null) {
                 graphics.translate(gameArea.getWidth() / 2 - (level.getWidth() * Tile.TILE_SIZE) / 2, gameArea.getHeight() / 2 - (level.getHeight() * Tile.TILE_SIZE) / 2);
                 graphics.translate(currentMouseTile.getX() * Tile.TILE_SIZE, currentMouseTile.getY() * Tile.TILE_SIZE);
-                inHand.render(graphics);
+                inHand.render(graphics,false);
                 graphics.setColor(Color.green);
                 graphics.drawRect(0, 0, inHand.getWidth() * Tile.TILE_SIZE, inHand.getHeight() * Tile.TILE_SIZE);
             }
@@ -275,7 +274,6 @@ public class InGameState extends BasicGameState {
         graphics.resetTransform();
         towersGUIArea.render(graphics);
         hudGUIArea.render(graphics);
-        graphics.drawString(currentlySelected + " hi", 0, 0);
     }
 
     @Override

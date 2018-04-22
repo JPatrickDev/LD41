@@ -19,11 +19,11 @@ public class TestTowerTwo extends Tower {
     }
 
     @Override
-    public void render(Graphics g) {
+    public void render(Graphics g,boolean range) {
         g.setColor(Color.yellow);
         g.fillRect(0,0, getWidth() * Tile.TILE_SIZE, getHeight() * Tile.TILE_SIZE);
         g.setColor(Color.white);
-        super.render(g);
+        super.render(g,range);
     }
 
 

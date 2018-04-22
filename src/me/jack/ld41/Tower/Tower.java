@@ -6,9 +6,10 @@ import me.jack.ld41.Level.Level;
 import me.jack.ld41.Level.Tile.Tile;
 import me.jack.ld41.Weapon.Common.WeaponGroup;
 import me.jack.ld41.Weapon.Weapons.Weapon;
+import org.newdawn.slick.*;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.geom.Circle;
 
 import java.awt.*;
 import java.lang.reflect.Array;
@@ -67,7 +68,7 @@ public abstract class Tower {
 
     public abstract void setUpWeapons() throws SlickException;
 
-    public void render(Graphics g) {
+    public void render(Graphics g, boolean drawRange) {
         //System.out.println("render called");
         for (WeaponGroup group : this.groups) {
             //System.out.println("Drawing group");
@@ -75,6 +76,13 @@ public abstract class Tower {
             g.translate(group.getX(), group.getY());
             group.render(g);
             g.translate(-group.getX(), -group.getY());
+        }
+
+        if (drawRange) {
+            g.setColor(new Color(255, 100, 100, 100));
+            Circle c = new Circle(Tile.TILE_SIZE / 2, Tile.TILE_SIZE / 2, upgrades.getRange());
+            g.fill(c);
+            g.setColor(Color.white);
         }
     }
 
@@ -88,26 +96,26 @@ public abstract class Tower {
             System.out.println("Taking turn");
             if (shotsTaken < upgrades.getShotsPerTurn()) {
                 System.out.println("Rand?");
-                //if (r.nextInt(10) == 0 && lastShotTime >= this.upgrades.getFireSpeed()) {
-                System.out.println("Firing");
-                System.out.println("Shot Fired");
-                shotsTaken++;
-                ArrayList<Weapon> all = new ArrayList<>();
-                for (WeaponGroup group : this.groups)
-                    all.addAll(group.getAllWeapons());
-                System.out.println("Found" + all.size() + " weapons.");
-                for (Weapon w : all) {
-                    ArrayList<PathFollower> targets = level.getTargets(getX() + w.getX(), getY() + w.getY(), 40f);
-                    if (targets.size() != 0) {
-                        try {
-                            PathFollower t = targets.get(r.nextInt(targets.size()));
-                            w.fire(getX(), getY(), level, (int) t.getX(), (int) t.getY());
-                        } catch (SlickException e) {
-                            e.printStackTrace();
+                if (r.nextInt(10) == 0 && lastShotTime >= this.upgrades.getFireSpeed()) {
+                    System.out.println("Firing");
+                    System.out.println("Shot Fired");
+                    shotsTaken++;
+                    ArrayList<Weapon> all = new ArrayList<>();
+                    for (WeaponGroup group : this.groups)
+                        all.addAll(group.getAllWeapons());
+                    System.out.println("Found" + all.size() + " weapons.");
+                    for (Weapon w : all) {
+                        ArrayList<PathFollower> targets = level.getTargets(getX() + w.getX(), getY() + w.getY(), upgrades.getRange());
+                        if (targets.size() != 0) {
+                            try {
+                                PathFollower t = targets.get(r.nextInt(targets.size()));
+                                w.fire(getX(), getY(), level, (int) t.getX(), (int) t.getY());
+                            } catch (SlickException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 }
-                //    }
             } else {
                 turnOver = true;
                 takingTurn = false;

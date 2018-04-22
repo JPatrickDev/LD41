@@ -20,7 +20,7 @@ public class TestEntity extends PathFollower {
     @Override
     public void render(Graphics g) {
         g.setColor(c);
-        g.fillRect(getX() + getxO(), getY() + getyO(), 16, 16);
+        g.fillRect((getX() + getxO()) + 8, getY() + getyO() + 8, 16, 16);
         g.setColor(Color.white);
     }
 }

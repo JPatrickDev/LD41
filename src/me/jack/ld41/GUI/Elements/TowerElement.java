@@ -23,7 +23,7 @@ public class TowerElement extends GUIElement {
         graphics.setColor(Color.green);
         graphics.fillRect(0, 0, getWidth(), getHeight());
         graphics.translate(getWidth() / 2 - (tower.getWidth() * Tile.TILE_SIZE) / 2, getHeight() / 2 - (tower.getHeight() * Tile.TILE_SIZE) / 2);
-        tower.render(graphics);
+        tower.render(graphics,false);
         graphics.translate(-1 * (getWidth() / 2 - (tower.getWidth() * Tile.TILE_SIZE) / 2), -1 * (getHeight() / 2 - (tower.getHeight() * Tile.TILE_SIZE) / 2));
         graphics.setColor(Color.white);
         //TODO: Red text if player can't afford

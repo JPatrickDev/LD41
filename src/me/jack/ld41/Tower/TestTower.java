@@ -15,7 +15,7 @@ import org.newdawn.slick.SlickException;
 public class TestTower extends Tower {
 
     public TestTower(int x, int y,int fireRateLevel, int shotsPerTurnLevel,int rangeLevel, int dmgLevel) {
-        super(x, y, 1, 1,new TowerUpgrades(20,50,1,1,40,40,1,1),0,8f,fireRateLevel,shotsPerTurnLevel,rangeLevel,dmgLevel);
+        super(x, y, 1, 1,new TowerUpgrades(50,50,1,1,40 * (rangeLevel+1),40,1,1),0,8f,fireRateLevel,shotsPerTurnLevel,rangeLevel,dmgLevel);
     }
 
     @Override
@@ -27,9 +27,9 @@ public class TestTower extends Tower {
     }
 
     @Override
-    public void render(Graphics g) {
+    public void render(Graphics g,boolean range) {
         g.drawImage(Tower.sheet.getSprite(0,0),0,0);
-        super.render(g);
+        super.render(g,range);
     }
 
 
