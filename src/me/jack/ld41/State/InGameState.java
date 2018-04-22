@@ -103,7 +103,8 @@ public class InGameState extends BasicGameState {
                             level.skipTurns(-1);
                             break;
                         case "Tutorial":
-                            drawTut = !drawTut;break;
+                            drawTut = !drawTut;
+                            break;
                     }
                 }
             }
@@ -157,10 +158,10 @@ public class InGameState extends BasicGameState {
             @Override
             public void mouseUp(int x, int y, GUIElement element) {
                 if (element instanceof UpgradeElement) {
-                    if (InGameState.this.currentlySelected != null) {
+                    if (InGameState.this.currentlySelected != null && level.currentTurn == Turn.PLAYER_TURN) {
                         //System.out.println("Using");
                         Upgrade up = ((UpgradeElement) element).getUpgrade();
-                        if (up != null && up.getNextForTower(currentlySelected) != null && level.getMoney() >= up.getCost()) {
+                        if (up != null && up.getNextForTower(currentlySelected) != null && level.getMoney() >= up.getCost() && up.isValidUpgrade()) {
                             up.use(InGameState.this.currentlySelected, InGameState.this);
                             level.setMoney(level.getMoney() - up.getCost());
                             ((UpgradeElement) element).setUpgrade(up);
@@ -282,9 +283,10 @@ public class InGameState extends BasicGameState {
         }
     }
 
-    Image upgradesOverlay = null,tutorialOverlay = null;
+    Image upgradesOverlay = null, tutorialOverlay = null;
 
     boolean drawTut = false;
+
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
 
@@ -331,8 +333,8 @@ public class InGameState extends BasicGameState {
         if (currentlySelected == null) {
             graphics.drawImage(upgradesOverlay, 263, 362);
         }
-        if(drawTut && tutorialOverlay != null){
-            graphics.drawImage(tutorialOverlay,0,0);
+        if (drawTut && tutorialOverlay != null) {
+            graphics.drawImage(tutorialOverlay, 0, 0);
         }
     }
 
@@ -348,7 +350,7 @@ public class InGameState extends BasicGameState {
         expDisplay.setText(level.getLevel() + ":" + level.getPoints() + "(" + Math.pow((level.getLevel() + 1) / 2, 2) + ")");
         exp.setNum(level.getLevel());
         exp.setScore(level.getPoints(), (float) Math.pow((level.getLevel() + 1) / 2, 2));
-        moneyDisplay.setText("Money:" + (int)(level.getMoney()));
+        moneyDisplay.setText("Money:" + (int) (level.getMoney()));
         roundDisplay.setText("Round:" + level.getRound() + "(" + level.getToSpawn(level.getRound()) + ")");
         round.setNum(level.getRound());
         round.setScore(level.getSpawnedThisRound(), level.getToSpawn(level.getRound()));
@@ -371,8 +373,9 @@ public class InGameState extends BasicGameState {
         super.mousePressed(button, x, y);
         towersGUIArea.mouseDown(x - towersGUIArea.getX(), y - towersGUIArea.getY(), button);
         hudGUIArea.mouseDown(x - hudGUIArea.getX(), y - hudGUIArea.getY(), button);
-        skipGUIArea.mouseDown(x - skipGUIArea.getX(), y - skipGUIArea.getY(), button);
-        if (gameArea.contains(x, y)) {
+        if (level.currentTurn == Turn.PLAYER_TURN)
+            skipGUIArea.mouseDown(x - skipGUIArea.getX(), y - skipGUIArea.getY(), button);
+        if (gameArea.contains(x, y) && level.currentTurn == Turn.PLAYER_TURN) {
             Tower towerAt = getMouseTower(x, y);
             if (inHand != null && towerAt == null) {
                 Tile currentMouseTile = getCurrentMouseTile(x, y);
@@ -383,6 +386,7 @@ public class InGameState extends BasicGameState {
                     t.setY(currentMouseTile.getY() * Tile.TILE_SIZE);
                     level.addTower(t);
                     level.setMoney(level.getMoney() - inHand.getCost());
+                    inHand = null;
                 }
             }
             if (towerAt != null) {

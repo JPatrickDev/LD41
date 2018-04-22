@@ -22,6 +22,8 @@ public class UpgradeElement extends GUIElement {
 
     @Override
     public void render(Graphics graphics) {
+        if(!upgrade.isValidUpgrade())
+            return;
         graphics.setColor(Color.black);
         graphics.drawRect(0, 0, getWidth(), getHeight());
         graphics.translate(getWidth() / 2 - 16, getHeight() / 2 - 16);

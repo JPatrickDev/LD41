@@ -11,7 +11,10 @@ public class ShotsPerTurn extends Upgrade {
 
 
     public ShotsPerTurn(int level) throws SlickException {
-        super("Shots Per Turn Upgrade", "SPT upgrades really help against fast enemies.", 1f, level, 0,20);
+        super("Shots Per Turn Upgrade", "SPT upgrades really help against groups of enemies.", 1f, level, 0,20);
+        if(level >= 3){
+            this.validUpgrade = false;
+        }
     }
 
     @Override

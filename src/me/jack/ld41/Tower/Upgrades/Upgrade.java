@@ -20,6 +20,7 @@ public abstract class Upgrade {
     private float unlockMultiplier;
     private int level;
     private float cost;
+    protected boolean validUpgrade = true;
 
     public Upgrade(String name, String description, float unlockMultiplier, int level, int yPos,float baseCost) throws SlickException {
         if (upgradeIcons == null) {
@@ -68,5 +69,9 @@ public abstract class Upgrade {
 
     public float getCost(){
         return this.cost * (level + 1);
+    }
+
+    public boolean isValidUpgrade() {
+        return validUpgrade;
     }
 }
