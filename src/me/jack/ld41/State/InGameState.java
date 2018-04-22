@@ -1,9 +1,6 @@
 package me.jack.ld41.State;
 
-import me.jack.ld41.GUI.Elements.TextArea;
-import me.jack.ld41.GUI.Elements.TextButton;
-import me.jack.ld41.GUI.Elements.TowerElement;
-import me.jack.ld41.GUI.Elements.UpgradeElement;
+import me.jack.ld41.GUI.Elements.*;
 import me.jack.ld41.GUI.GUIArea;
 import me.jack.ld41.GUI.GUIElement;
 import me.jack.ld41.GUI.GUIElementListener;
@@ -44,7 +41,9 @@ public class InGameState extends BasicGameState {
 
     int turnCount = 0;
     TextArea turnCounter, turnDisplay, livesDisplay, expDisplay, moneyDisplay, roundDisplay;
-    TextButton skip5Turns, skip10Turns,skipRoundTurns,skip20Turns;
+    TextButton skip5Turns, skip10Turns, skipRoundTurns, skip20Turns;
+
+    EXPElement exp, round;
 
     ArrayList<UpgradeElement> upgrades = new ArrayList<>();
 
@@ -59,25 +58,25 @@ public class InGameState extends BasicGameState {
         towersGUIArea = new GUIArea(330, 0, 160, 170);
         towersGUIArea.addElement(new TextArea("Towers", 0, 7, 160, 30));
 
-        hudGUIArea = new GUIArea(0, 330, 580, 150);
-        turnCounter = new TextArea("Turn: " + turnCount, 0, 0, 200, 20, Color.yellow, Color.black);
+        hudGUIArea = new GUIArea(14, 344, 462, 132);
+        turnCounter = new TextArea("Turn: " + turnCount, 6, 6, 75, 17);
         hudGUIArea.addElement(turnCounter);
 
         turnDisplay = new TextArea(level.getCurrentTurn().name(), 0, 20, 200, 20, Color.green, Color.black);
-        hudGUIArea.addElement(turnDisplay);
+        // hudGUIArea.addElement(turnDisplay);
 
-        livesDisplay = new TextArea("Lives Remaining: " + level.getLivesLeft(), 0, 40, 200, 20, Color.red, Color.black);
+        livesDisplay = new TextArea("Lives: " + level.getLivesLeft(), 93, 6, 119, 17);
         hudGUIArea.addElement(livesDisplay);
 
         expDisplay = new TextArea(level.getLevel() + ":" + level.getPoints() + "(" + Math.pow((level.getLevel() + 1) / 2, 2) + ")", 0, 60, 200, 20, Color.pink, Color.black);
-        hudGUIArea.addElement(expDisplay);
+        // hudGUIArea.addElement(expDisplay);
 
 
         moneyDisplay = new TextArea("Money:" + level.getMoney(), 0, 80, 200, 20, Color.cyan, Color.black);
-        hudGUIArea.addElement(moneyDisplay);
+        // hudGUIArea.addElement(moneyDisplay);
 
         roundDisplay = new TextArea("Round:" + level.getRound() + "(" + level.getToSpawn(level.getRound()) + ")", 0, 100, 200, 20, Color.magenta, Color.black);
-        hudGUIArea.addElement(roundDisplay);
+        // hudGUIArea.addElement(roundDisplay);
 
 
         GUIElementListener skipListener = new GUIElementListener() {
@@ -121,20 +120,20 @@ public class InGameState extends BasicGameState {
 
         TextArea skipTitle = new TextArea("Skip Turns:", 0, 0, (int) skipArea.getWidth(), 20);
         skipGUIArea.addElement(skipTitle);
-        skip5Turns = new TextButton("5 Turns", 14,21 , (int) skipArea.getWidth() - 28, 25, Color.pink, Color.black);
+        skip5Turns = new TextButton("5 Turns", 14, 21, (int) skipArea.getWidth() - 28, 25, Color.pink, Color.black);
         skip5Turns.setListener(skipListener);
         skipGUIArea.addElement(skip5Turns);
 
-        skip10Turns = new TextButton("10 Turns", 14, 56, (int) skipArea.getWidth()- 28, 25, Color.pink, Color.black);
+        skip10Turns = new TextButton("10 Turns", 14, 56, (int) skipArea.getWidth() - 28, 25, Color.pink, Color.black);
         skip10Turns.setListener(skipListener);
         skipGUIArea.addElement(skip10Turns);
 
 
-        skip20Turns = new TextButton("20 Turns", 14, 91, (int) skipArea.getWidth()- 28, 25, Color.pink, Color.black);
+        skip20Turns = new TextButton("20 Turns", 14, 91, (int) skipArea.getWidth() - 28, 25, Color.pink, Color.black);
         skip20Turns.setListener(skipListener);
         skipGUIArea.addElement(skip20Turns);
 
-        skipRoundTurns = new TextButton("Next Round", 14, 126, (int) skipArea.getWidth()- 28, 25, Color.pink, Color.black);
+        skipRoundTurns = new TextButton("Next Round", 14, 126, (int) skipArea.getWidth() - 28, 25, Color.pink, Color.black);
         skipRoundTurns.setListener(skipListener);
         skipGUIArea.addElement(skipRoundTurns);
         GUIElementListener upgradesListener = new GUIElementListener() {
@@ -226,6 +225,12 @@ public class InGameState extends BasicGameState {
                 y += height + 20;
             }
         }
+
+        exp = new EXPElement(6, 37, 42, 42, Color.blue);
+        hudGUIArea.addElement(exp);
+
+        round = new EXPElement(62, 37, 42, 42, Color.red);
+        hudGUIArea.addElement(round);
     }
 
     @Override
@@ -269,7 +274,7 @@ public class InGameState extends BasicGameState {
         graphics.setColor(Color.white);
         graphics.fill(skipArea);*/
 
-        graphics.drawImage(new Image("res/guiOverlay.png"),0,0);
+        graphics.drawImage(new Image("res/guiOverlay.png"), 0, 0);
         if (inHand != null) {
             Tile currentMouseTile = getCurrentMouseTile(gameContainer);
             if (currentMouseTile == null || currentMouseTile instanceof DirtTile) {
@@ -303,11 +308,14 @@ public class InGameState extends BasicGameState {
         turnCounter.setText("Turn: " + turnCount);
 
         turnDisplay.setText(level.getCurrentTurn().name());
-        livesDisplay.setText("Lives Remaining: " + level.getLivesLeft());
+        livesDisplay.setText("Lives: " + level.getLivesLeft());
         expDisplay.setText(level.getLevel() + ":" + level.getPoints() + "(" + Math.pow((level.getLevel() + 1) / 2, 2) + ")");
+        exp.setNum(level.getLevel());
+        exp.setScore(level.getPoints(), (float) Math.pow((level.getLevel() + 1) / 2, 2));
         moneyDisplay.setText("Money:" + level.getMoney());
         roundDisplay.setText("Round:" + level.getRound() + "(" + level.getToSpawn(level.getRound()) + ")");
-
+        round.setNum(level.getRound());
+        round.setScore(level.getSpawnedThisRound(), level.getToSpawn(level.getRound()));
         if (level.getLivesLeft() <= 0) {
             GameOverState.level = level;
             stateBasedGame.enterState(StateID.GAME_OVER.getID());

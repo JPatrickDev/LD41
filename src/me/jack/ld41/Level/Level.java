@@ -44,10 +44,10 @@ public class Level {
     private int livesLeft = 5;
 
 
-    private int level = 50;
+    private int level = 1;
     private int points;
 
-    private float money = 8000.0f;
+    private float money = 10.0f;
 
     private int round = 1;
     private int spawnedThisRound = 0;
@@ -405,5 +405,9 @@ public class Level {
 
     public void addProjectile(me.jack.ld41.Weapon.Projectiles.Projectile basicSmallBullet, int x, int y, int tX, int tY) {
         entityProjectiles.add(new EntityProjectile(basicSmallBullet, x, y, tX, tY));
+    }
+
+    public int getSpawnedThisRound() {
+        return spawnedThisRound;
     }
 }

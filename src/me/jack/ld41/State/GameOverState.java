@@ -54,6 +54,8 @@ public class GameOverState extends BasicGameState {
                     if(element instanceof TextButton){
                         switch (((TextButton) element).getText()){
                             case "Quit": System.exit(0); break;
+                            case "Back To Main Menu": game.enterState(StateID.MAIN_MENU.getID()); break;
+                            case "Back To Level Select": game.enterState(StateID.LEVEL_SELECT.getID()); break;
                         }
                     }
                 }
