@@ -102,6 +102,8 @@ public class InGameState extends BasicGameState {
                         case "Next Round":
                             level.skipTurns(-1);
                             break;
+                        case "Tutorial":
+                            drawTut = !drawTut;break;
                     }
                 }
             }
@@ -279,13 +281,16 @@ public class InGameState extends BasicGameState {
         }
     }
 
-    Image upgradesOverlay = null;
+    Image upgradesOverlay = null,tutorialOverlay = null;
 
+    boolean drawTut = false;
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
 
-        if (upgradesOverlay == null)
+        if (upgradesOverlay == null) {
             upgradesOverlay = new Image("res/upgradesOverlay.png");
+            tutorialOverlay = new Image("res/tutorial.png");
+        }
 
         graphics.translate(gameArea.getWidth() / 2 - (level.getWidth() * Tile.TILE_SIZE) / 2, gameArea.getHeight() / 2 - (level.getHeight() * Tile.TILE_SIZE) / 2);
         level.render(graphics, this);
@@ -324,6 +329,9 @@ public class InGameState extends BasicGameState {
         graphics.resetTransform();
         if (currentlySelected == null) {
             graphics.drawImage(upgradesOverlay, 263, 362);
+        }
+        if(drawTut && tutorialOverlay != null){
+            graphics.drawImage(tutorialOverlay,0,0);
         }
     }
 
