@@ -281,8 +281,12 @@ public class InGameState extends BasicGameState {
         }
     }
 
+    Image upgradesOverlay = null;
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
+
+        if(upgradesOverlay == null)
+            upgradesOverlay = new Image("res/upgradesOverlay.png");
 
         graphics.translate(gameArea.getWidth() / 2 - (level.getWidth() * Tile.TILE_SIZE) / 2, gameArea.getHeight() / 2 - (level.getHeight() * Tile.TILE_SIZE) / 2);
         level.render(graphics, this);
@@ -318,6 +322,10 @@ public class InGameState extends BasicGameState {
         towersGUIArea.render(graphics);
         hudGUIArea.render(graphics);
         skipGUIArea.render(graphics);
+        graphics.resetTransform();
+        if(currentlySelected == null){
+            graphics.drawImage(upgradesOverlay,263,362);
+        }
     }
 
     @Override

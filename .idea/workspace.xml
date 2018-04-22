@@ -2,16 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9ea413a-def3-441f-af2e-8d9998da41ba" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/WeaponUpgrade.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/GUI/Elements/UpgradeElement.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/GUI/Elements/UpgradeElement.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/InGameState$1.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/InGameState$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/InGameState$2.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/InGameState$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/InGameState$3.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/InGameState$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/InGameState.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/InGameState.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/guiOverlay.png" afterPath="$PROJECT_DIR$/res/guiOverlay.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/upgrades.png" afterPath="$PROJECT_DIR$/res/upgrades.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jack/ld41/GUI/Elements/UpgradeElement.java" afterPath="$PROJECT_DIR$/src/me/jack/ld41/GUI/Elements/UpgradeElement.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jack/ld41/State/InGameState.java" afterPath="$PROJECT_DIR$/src/me/jack/ld41/State/InGameState.java" />
     </list>
     <ignored path="Game.iws" />
@@ -60,12 +50,12 @@
       <file leaf-file-name="InGameState.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/State/InGameState.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44183007">
-              <caret line="194" column="96" selection-start-line="194" selection-start-column="96" selection-end-line="194" selection-end-column="96" />
+            <state vertical-scroll-proportion="0.50849676">
+              <caret line="326" column="54" selection-start-line="326" selection-start-column="54" selection-end-line="326" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#16367#16368#0" expanded="true" />
-                <element signature="e#16413#16414#0" expanded="true" />
+                <element signature="e#16647#16648#0" expanded="true" />
+                <element signature="e#16693#16694#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1452,12 +1442,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/State/InGameState.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44183007">
-          <caret line="194" column="96" selection-start-line="194" selection-start-column="96" selection-end-line="194" selection-end-column="96" />
+        <state vertical-scroll-proportion="0.50849676">
+          <caret line="326" column="54" selection-start-line="326" selection-start-column="54" selection-end-line="326" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#16367#16368#0" expanded="true" />
-            <element signature="e#16413#16414#0" expanded="true" />
+            <element signature="e#16647#16648#0" expanded="true" />
+            <element signature="e#16693#16694#0" expanded="true" />
           </folding>
         </state>
       </provider>
