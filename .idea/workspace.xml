@@ -2,36 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9ea413a-def3-441f-af2e-8d9998da41ba" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jack/ld41/Level/Tile/StoneTile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/GUI/Elements/TowerElement.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/GUI/Elements/TowerElement.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/GUI/Elements/UpgradeElement.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/GUI/Elements/UpgradeElement.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/GUI/GUIArea.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/GUI/GUIArea.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/GUI/GUIElement.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/GUI/GUIElement.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/Level/Level.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/Level/Level.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/Level/Tile/GrassTile.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/Level/Tile/GrassTile.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/InGameState$2.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/InGameState$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/InGameState$3.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/InGameState$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/InGameState.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/State/InGameState.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/Tower/Upgrades/RangeUpgrade.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/Tower/Upgrades/RangeUpgrade.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/Tower/Upgrades/ShotsPerTurn.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/Tower/Upgrades/ShotsPerTurn.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/Tower/Upgrades/WeaponUpgrade.class" afterPath="$PROJECT_DIR$/out/production/LD41/me/jack/ld41/Tower/Upgrades/WeaponUpgrade.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/levels/1.png" afterPath="$PROJECT_DIR$/res/levels/1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/levels/2.png" afterPath="$PROJECT_DIR$/res/levels/2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/levels/3.png" afterPath="$PROJECT_DIR$/res/levels/3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/levels/4.png" afterPath="$PROJECT_DIR$/res/levels/4.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/tiles.png" afterPath="$PROJECT_DIR$/res/tiles.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/upgrades.png" afterPath="$PROJECT_DIR$/res/upgrades.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jack/ld41/GUI/Elements/TowerElement.java" afterPath="$PROJECT_DIR$/src/me/jack/ld41/GUI/Elements/TowerElement.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jack/ld41/GUI/Elements/UpgradeElement.java" afterPath="$PROJECT_DIR$/src/me/jack/ld41/GUI/Elements/UpgradeElement.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jack/ld41/GUI/GUIArea.java" afterPath="$PROJECT_DIR$/src/me/jack/ld41/GUI/GUIArea.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jack/ld41/GUI/GUIElement.java" afterPath="$PROJECT_DIR$/src/me/jack/ld41/GUI/GUIElement.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jack/ld41/Level/Level.java" afterPath="$PROJECT_DIR$/src/me/jack/ld41/Level/Level.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jack/ld41/Level/Tile/GrassTile.java" afterPath="$PROJECT_DIR$/src/me/jack/ld41/Level/Tile/GrassTile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jack/ld41/State/InGameState.java" afterPath="$PROJECT_DIR$/src/me/jack/ld41/State/InGameState.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/RangeUpgrade.java" afterPath="$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/RangeUpgrade.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/ShotsPerTurn.java" afterPath="$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/ShotsPerTurn.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/WeaponUpgrade.java" afterPath="$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/WeaponUpgrade.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/todo.txt" afterPath="$PROJECT_DIR$/todo.txt" />
     </list>
     <ignored path="Game.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,11 +28,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="todo.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="todo.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/todo.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5777778">
-              <caret line="99" column="30" selection-start-line="99" selection-start-column="30" selection-end-line="99" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="89" column="16" selection-start-line="89" selection-start-column="16" selection-end-line="89" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -73,26 +48,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UpgradeElement.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/GUI/Elements/UpgradeElement.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-              <folding>
-                <element signature="e#2187#2188#0" expanded="true" />
-                <element signature="e#2217#2218#0" expanded="true" />
-                <element signature="e#2248#2249#0" expanded="true" />
-                <element signature="e#2279#2280#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ShotsPerTurn.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/ShotsPerTurn.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
+              <caret line="13" column="105" selection-start-line="13" selection-start-column="105" selection-end-line="13" selection-end-column="105" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RangeUpgrade.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/RangeUpgrade.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="13" column="78" selection-start-line="13" selection-start-column="78" selection-end-line="13" selection-end-column="78" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WeaponUpgrade.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/WeaponUpgrade.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.022222223">
+              <caret line="13" column="81" selection-start-line="13" selection-start-column="81" selection-end-line="13" selection-end-column="81" />
               <folding />
             </state>
           </provider>
@@ -145,16 +125,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WeaponUpgrade.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/WeaponUpgrade.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="23" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -228,16 +198,16 @@
         <option value="$PROJECT_DIR$/src/me/jack/ld41/GUI/GUIArea.java" />
         <option value="$PROJECT_DIR$/src/me/jack/ld41/GUI/GUIElement.java" />
         <option value="$PROJECT_DIR$/src/me/jack/ld41/GUI/Elements/TowerElement.java" />
-        <option value="$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/RangeUpgrade.java" />
-        <option value="$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/WeaponUpgrade.java" />
         <option value="$PROJECT_DIR$/src/me/jack/ld41/GUI/Elements/UpgradeElement.java" />
-        <option value="$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/ShotsPerTurn.java" />
         <option value="$PROJECT_DIR$/src/me/jack/ld41/Level/Level.java" />
         <option value="$PROJECT_DIR$/src/me/jack/ld41/Level/Tile/StoneTile.java" />
         <option value="$PROJECT_DIR$/src/me/jack/ld41/Level/Tile/DirtTile.java" />
         <option value="$PROJECT_DIR$/src/me/jack/ld41/Level/Tile/GrassTile.java" />
         <option value="$PROJECT_DIR$/src/me/jack/ld41/State/InGameState.java" />
         <option value="$PROJECT_DIR$/todo.txt" />
+        <option value="$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/ShotsPerTurn.java" />
+        <option value="$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/RangeUpgrade.java" />
+        <option value="$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/WeaponUpgrade.java" />
       </list>
     </option>
   </component>
@@ -1377,22 +1347,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/RangeUpgrade.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/WeaponUpgrade.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="23" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/GUI/Elements/UpgradeElement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1403,14 +1357,6 @@
             <element signature="e#2248#2249#0" expanded="true" />
             <element signature="e#2279#2280#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/ShotsPerTurn.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1466,8 +1412,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/todo.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5777778">
-          <caret line="99" column="30" selection-start-line="99" selection-start-column="30" selection-end-line="99" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="89" column="16" selection-start-line="89" selection-start-column="16" selection-end-line="89" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/ShotsPerTurn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="105" selection-start-line="13" selection-start-column="105" selection-end-line="13" selection-end-column="105" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/RangeUpgrade.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="78" selection-start-line="13" selection-start-column="78" selection-end-line="13" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jack/ld41/Tower/Upgrades/WeaponUpgrade.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.022222223">
+          <caret line="13" column="81" selection-start-line="13" selection-start-column="81" selection-end-line="13" selection-end-column="81" />
           <folding />
         </state>
       </provider>

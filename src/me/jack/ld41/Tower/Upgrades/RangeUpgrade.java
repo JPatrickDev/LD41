@@ -11,7 +11,7 @@ public class RangeUpgrade extends Upgrade {
 
 
     public RangeUpgrade(int level) throws SlickException {
-        super("Range\nUpgrade", "Hit Targets Further Away!.", 1f, level, 1,25);
+        super("Range\nUpgrade", "Hit Targets Further Away!.", 1f, level, 1,125);
         if(level >= 3){
             this.validUpgrade = false;
         }
