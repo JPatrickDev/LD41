@@ -1,9 +1,6 @@
 package me.jack.ld41;
 
-import me.jack.ld41.State.GameOverState;
-import me.jack.ld41.State.InGameState;
-import me.jack.ld41.State.LevelSelectState;
-import me.jack.ld41.State.MainMenuState;
+import me.jack.ld41.State.*;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
@@ -22,5 +19,7 @@ public class LD41 extends StateBasedGame{
         addState(new LevelSelectState());
         addState(new InGameState());
         addState(new GameOverState());
+        addState(new HowToPlay());
+        addState(new AboutState());
     }
 }

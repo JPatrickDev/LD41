@@ -39,13 +39,13 @@ public class Level {
     private ArrayList<EntityProjectile> entityProjectiles = new ArrayList<>();
 
 
-    private int livesLeft = 5;
+    private int livesLeft = 8;
 
 
     private int level = 1;
     private int points;
 
-    private float money = 10000.0f;
+    private float money = 10f;
 
     private int round = 1;
     private int spawnedThisRound = 0;
@@ -316,7 +316,7 @@ public class Level {
 
     public void pathfinderKilled() {
         addPoints(1);
-        float i = 2.5f + r.nextFloat() * 2;
+        float i = (float) (2 + r.nextFloat()/2);
         addMoney(Float.valueOf(roundOffTo2DecPlaces(i)));
     }
 

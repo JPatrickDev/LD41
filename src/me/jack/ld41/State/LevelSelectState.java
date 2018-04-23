@@ -19,6 +19,8 @@ import java.io.File;
 public class LevelSelectState extends BasicGameState {
 
 
+    private Image bg;
+
     @Override
     public int getID() {
         return StateID.LEVEL_SELECT.getID();
@@ -28,8 +30,10 @@ public class LevelSelectState extends BasicGameState {
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
-        area = new GUIArea(0, 0, gameContainer.getWidth(), gameContainer.getHeight());
-        area.addElement(new TextArea("Select A Level:", 0, 10, gameContainer.getWidth(), 30, Color.black, Color.white));
+
+        bg = new Image("res/mainMenuBG.png");
+        area = new GUIArea(14, 14, 462,462);
+        area.addElement(new TextArea("Select A Level:", 0, 10, area.getWidth(), 30));
 
 
         GUIElementListener listener = new GUIElementListener() {
@@ -61,13 +65,13 @@ public class LevelSelectState extends BasicGameState {
             }
         };
 
-        String[] levels = new File("res/levels/").list();
+
         int width = (int) ((double)gameContainer.getWidth() / 2);
         int x = 0;
         int y = 0;
         int i = 0;
-        for(String l : levels){
-            area.addElement(new LevelSelectElement(l,Level.fromImage(new Image("res/levels/" + l)),x,y,width,width).setListener(listener));
+        for(int j = 1; j != 5; j++){
+            area.addElement(new LevelSelectElement(j + ".png",Level.fromImage(new Image("res/levels/" + j + ".png")),x,y,width,width).setListener(listener));
             x+=width;
             i++;
             if(i >= 2){
@@ -88,6 +92,7 @@ public class LevelSelectState extends BasicGameState {
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
+        graphics.drawImage(bg,0,0);
         if (area != null)
             area.render(graphics);
     }

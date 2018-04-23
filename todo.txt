@@ -88,20 +88,21 @@ Known issues:
 Two more enemies/
 Two more weapon types/
 Two more towers/
-Balance/?
+Balance/
 Finish main menu/
-   - Improve
+   - Improve/
 Finish level select screen/
 Tutorial screens
     - InGame/
-    - State
+    - State/
 GUI improvements
     - Upgrade tooltips/
-    - **Better upgrade icons**
+    - **Better upgrade icons**/
     - Make Enemies flash when hit/
 All towers need at least one weapon upgrade/
 More levels/
 add a stone tile/
+About screen/
 *****name*****
 Bugs:
     - Fixing effects being buyable after they are maxed/

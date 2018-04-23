@@ -6,10 +6,7 @@ import me.jack.ld41.GUI.GUIArea;
 import me.jack.ld41.GUI.GUIElement;
 import me.jack.ld41.GUI.GUIElementListener;
 import me.jack.ld41.Level.Level;
-import org.newdawn.slick.Color;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -19,6 +16,8 @@ import org.newdawn.slick.state.StateBasedGame;
 public class MainMenuState extends BasicGameState {
 
 
+    Image logo = null;
+    Image bg = null;
     @Override
     public int getID() {
         return StateID.MAIN_MENU.getID();
@@ -28,7 +27,8 @@ public class MainMenuState extends BasicGameState {
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
-
+        logo = new Image("res/logo.png");
+        bg = new Image("res/mainMenuBG.png");
     }
 
     @Override
@@ -52,6 +52,12 @@ public class MainMenuState extends BasicGameState {
                         case "Play":
                             game.enterState(StateID.LEVEL_SELECT.getID());
                             break;
+                        case "How To Play":
+                            game.enterState(StateID.HOW_TO_PLAY.getID());
+                            break;
+                        case "About":
+                            game.enterState(StateID.ABOUT.getID());
+                            break;
                     }
                 }
             }
@@ -68,9 +74,9 @@ public class MainMenuState extends BasicGameState {
         };
         TextButton backToLevelSelect = new TextButton("Play", 0, 100, area.getWidth(), 40, Color.orange, Color.black);
         backToLevelSelect.setListener(listener);
-        TextButton backToMain = new TextButton("Settings", 0, 150, area.getWidth(), 40, Color.orange, Color.black);
+        TextButton backToMain = new TextButton("About", 0, 150, area.getWidth(), 40, Color.orange, Color.black);
         backToMain.setListener(listener);
-        TextButton quit = new TextButton("About", 0, 200, area.getWidth(), 40, Color.orange, Color.black);
+        TextButton quit = new TextButton("How To Play", 0, 200, area.getWidth(), 40, Color.orange, Color.black);
         quit.setListener(listener);
         TextButton exit = new TextButton("Quit", 0, 250, area.getWidth(), 40, Color.orange, Color.black);
         exit.setListener(listener);
@@ -84,6 +90,8 @@ public class MainMenuState extends BasicGameState {
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
+        graphics.drawImage(bg,0,0);
+        graphics.drawImage(logo,0,50);
         if (area != null)
             area.render(graphics);
     }

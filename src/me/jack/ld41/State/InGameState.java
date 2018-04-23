@@ -55,7 +55,7 @@ public class InGameState extends BasicGameState {
 
     }
 
-    public void createUI() throws SlickException {
+    public void createUI(StateBasedGame game) throws SlickException {
         towersGUIArea = new GUIArea(330, 0, 160, 170);
         towersGUIArea.addElement(new TextArea("Towers", 0, 7, 160, 30));
 
@@ -105,6 +105,8 @@ public class InGameState extends BasicGameState {
                         case "Tutorial":
                             drawTut = !drawTut;
                             break;
+                        case "Main Menu":
+                            game.enterState(StateID.MAIN_MENU.getID());
                     }
                 }
             }
@@ -175,7 +177,7 @@ public class InGameState extends BasicGameState {
             @Override
             public void mouseEnter(int x, int y, GUIElement element) {
                 System.out.println("Mouse Enter");
-                if(element instanceof UpgradeElement){
+                if (element instanceof UpgradeElement) {
                     ((UpgradeElement) element).mouseEntered();
                 }
             }
@@ -183,7 +185,7 @@ public class InGameState extends BasicGameState {
             @Override
             public void mouseLeave(int x, int y, GUIElement element) {
                 System.out.println("Mouse Leave");
-                if(element instanceof UpgradeElement) {
+                if (element instanceof UpgradeElement) {
                     ((UpgradeElement) element).mouseLeaved();
                 }
             }
@@ -231,7 +233,7 @@ public class InGameState extends BasicGameState {
             @Override
             public void mouseEnter(int x, int y, GUIElement element) {
                 System.out.println("Mouse Enter");
-                if(element instanceof UpgradeElement){
+                if (element instanceof UpgradeElement) {
                     ((UpgradeElement) element).mouseEntered();
                 }
             }
@@ -239,7 +241,7 @@ public class InGameState extends BasicGameState {
             @Override
             public void mouseLeave(int x, int y, GUIElement element) {
                 System.out.println("Mouse Leave");
-                if(element instanceof UpgradeElement) {
+                if (element instanceof UpgradeElement) {
                     ((UpgradeElement) element).mouseLeaved();
                 }
             }
@@ -270,7 +272,7 @@ public class InGameState extends BasicGameState {
     public void enter(GameContainer container, StateBasedGame game) throws SlickException {
         super.enter(container, game);
         level = Level.fromImage(new Image(path));
-        createUI();
+        createUI(game);
 
     }
 
@@ -320,7 +322,7 @@ public class InGameState extends BasicGameState {
         graphics.drawImage(new Image("res/guiOverlay.png"), 0, 0);
         if (inHand != null) {
             Tile currentMouseTile = getCurrentMouseTile(gameContainer);
-            if (currentMouseTile == null ||  currentMouseTile.isSolid()) {
+            if (currentMouseTile == null || currentMouseTile.isSolid()) {
                 int mX = gameContainer.getInput().getMouseX();
                 int mY = gameContainer.getInput().getMouseY();
                 graphics.translate(mX - inHand.getWidth() * Tile.TILE_SIZE, mY - inHand.getHeight() * Tile.TILE_SIZE);
